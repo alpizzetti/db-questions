@@ -8,4 +8,4 @@
     $url = BASE_URL . 'index.php';
     header("Location: $url");
   }
-  ?> 
+  ?>
