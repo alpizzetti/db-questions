@@ -26,7 +26,7 @@
  <html>
 
  <head>
-     <title>Sistema de Login com 2FA / Google</title>
+     <title>Banco de Questões - SENAI/CTAI</title>
      <link rel="stylesheet" type="text/css" href="style.css" charset="utf-8" />
  </head>
 

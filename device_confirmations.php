@@ -12,20 +12,20 @@
 	$email = $userDetails->email;
 	require_once 'googleLib/GoogleAuthenticator.php';
 	$ga = new GoogleAuthenticator();
-	$qrCodeUrl = $ga->getQRCodeGoogleUrl($email, $secret, 'Nome do APP');
+	$qrCodeUrl = $ga->getQRCodeGoogleUrl($email, $secret, 'Banco de Dados de Questões - SENAI/SC');
 	?>
 
  <!DOCTYPE html>
  <html>
 
  <head>
- 	<title>Sistema de Login com 2FA / Google</title>
+ 	<title>Banco de Questões - SENAI/CTAI</title>
  	<link rel="stylesheet" type="text/css" href="style.css" charset="utf-8" />
  </head>
 
  <body>
  	<div id="container">
- 		<h1>Sistema de Login com 2FA / Google</h1>
+ 		<h1>Banco de Questões - SENAI/CTAI</h1>
  		<div id='device'>
 
  			<p>Insira o código de verificação gerado no aplicativo Google Authenticator do seu telefone.</p>

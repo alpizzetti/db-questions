@@ -54,13 +54,13 @@ if (!empty($_POST['signupSubmit'])) {
 <html>
 
 <head>
-    <title>Sistema de Login com 2FA / Google</title>
+    <title>Banco de Questões - SENAI/CTAI</title>
     <link rel="stylesheet" type="text/css" href="style.css" charset="utf-8" />
 </head>
 
 <body>
     <div id="container">
-        <h1>Sistema de Login com 2FA / Google</h1>
+        <h1>Banco de Questões - SENAI/CTAI</h1>
         <div id="login">
             <h3>Login</h3>
             <form method="post" action="" name="login">

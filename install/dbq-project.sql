@@ -8,19 +8,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema google2fa
+-- Schema dbquestions
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema google2fa
+-- Schema dbquestions
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `google2fa` DEFAULT CHARACTER SET utf8 ;
-USE `google2fa` ;
+CREATE SCHEMA IF NOT EXISTS `dbquestions` DEFAULT CHARACTER SET utf8 ;
+USE `dbquestions` ;
 
 -- -----------------------------------------------------
--- Table `google2fa`.`users`
+-- Table `dbquestions`.`users`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `google2fa`.`users` (
+CREATE TABLE IF NOT EXISTS `dbquestions`.`users` (
   `uid` INT(11) NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(120) NOT NULL,
   `password` VARCHAR(200) NOT NULL,

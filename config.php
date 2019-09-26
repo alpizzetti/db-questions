@@ -3,8 +3,8 @@ session_start();
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', 'root');
-define('DB_DATABASE', 'google2fa');
-define("BASE_URL", "http://localhost/google-2fa/");
+define('DB_DATABASE', 'dbquestions');
+define("BASE_URL", "http://localhost/db-questions/");
 
 function getDB()
 {
