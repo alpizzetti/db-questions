@@ -22,7 +22,7 @@ if (!empty($_POST['loginSubmit'])) {
             $url = BASE_URL . 'device_confirmations.php';
             header("Location: $url");
         } else {
-            $errorMsgLogin = "Please check login details.";
+            $errorMsgLogin = "E-mail ou Senha Errada.";
         }
     }
 }
@@ -65,7 +65,7 @@ if (!empty($_POST['signupSubmit'])) {
             <h3>Login</h3>
             <form method="post" action="" name="login">
                 <label>E-mail</label>
-                <input type="text" name="usernameEmail" autocomplete="off" />
+                <input type="email" name="usernameEmail" autocomplete="off" />
                 <label>Senha</label>
                 <input type="password" name="password" autocomplete="off" />
                 <div class="errorMsg"><?php echo $errorMsgLogin; ?></div>
@@ -80,7 +80,7 @@ if (!empty($_POST['signupSubmit'])) {
                 <label>Nome</label>
                 <input type="text" name="nameReg" autocomplete="off" />
                 <label>Email</label>
-                <input type="text" name="emailReg" autocomplete="off" />
+                <input type="email" name="emailReg" autocomplete="off" />
                 <label>Senha</label>
                 <input type="password" name="passwordReg" autocomplete="off" />
                 <div class="errorMsg"><?php echo $errorMsgReg; ?></div>
