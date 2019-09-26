@@ -45,7 +45,7 @@ if (!empty($_POST['signupSubmit'])) {
             $errorMsgReg = "Este Usuário ou E-mail já existe.";
         }
     } else {
-        $errorMsgReg = "Insira dados válidos";
+        $errorMsgReg = "Insira Dados Válidos";
     }
 }
 
