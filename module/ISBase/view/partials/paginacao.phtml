@@ -1,0 +1,22 @@
+<ul class="pagination pagination-sm pull-right">
+    <?php if (isset($this->previous)) { ?>
+        <li><a href="<?php echo '?pagina=' . $this->previous . $this->filters; ?>">Anterior</a></li>
+        <?php
+    }
+
+    foreach ($this->pagesInRange as $itens) {
+        if ($this->current == $itens) {
+            ?>
+            <li class="active"><a href="javascript:void(0)"><?php echo $itens; ?></a></li>
+                <?php
+            } else {
+                ?>
+            <li><a href="<?php echo '?pagina=' . $itens . $this->filters; ?>"><?php echo $itens; ?></a></li>
+            <?php
+        }
+    }
+    if (isset($this->next)) {
+        ?>
+        <li><a href="<?php echo '?pagina=' . $this->next . $this->filters; ?>">Próximo</a></li>
+    <?php } ?>
+</ul>

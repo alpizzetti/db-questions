@@ -1,0 +1,442 @@
+<h1 class="page-title">Cadastro de Unidades</h1>
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <i class="icon-home"></i>
+            <a href="<?php echo $this->url('home'); ?>">Home</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <a href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'unidades', 'action' => 'index')); ?>">Unidades</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <span>Editar</span>
+        </li>
+    </ul>
+</div>
+<div class="portlet light ">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-pencil font-yellow"></i>
+            <span class="caption-subject font-yellow bold uppercase">Editar</span>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <?php echo $this->form()->openTag($form); ?>
+        <div class="form-body">
+            <?php echo $this->partial('partials/notificacoes'); ?>
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="form-section">Dados</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 display-none">
+                    <div class="form-group">
+                        <?php
+                        echo $this->formLabel($form->get("status"));
+                        echo $this->formElement($form->get("status"));
+                        echo $this->formElementErrors($form->get("status"), array('class' => "parsley-error-list"));
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <?php
+                        echo $this->formLabel($form->get("pessoa"));
+                        echo $this->formElement($form->get("pessoa"));
+                        echo $this->formElementErrors($form->get("pessoa"), array('class' => "parsley-error-list"));
+                        ?>
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <?php
+                        if ($pessoa == "PJ") {
+                            $form->get("nome")->setLabel('*Nome fantasia:');
+                        } else {
+                            $form->get("nome")->setLabel('*Nome:');
+                        }
+                        echo $this->formLabel($form->get("nome"));
+                        echo $this->formElement($form->get("nome"));
+                        echo $this->formElementErrors($form->get("nome"), array('class' => "parsley-error-list"));
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <div class="<?php echo $pessoa == "PF" ? "display-none" : ""; ?>" id="div-cliente-pj">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <?php
+                            echo $this->formLabel($form->get("simples_nacional"));
+                            echo $this->formElement($form->get("simples_nacional"));
+                            echo $this->formElementErrors($form->get("simples_nacional"), array('class' => "parsley-error-list"));
+                            ?>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <?php
+                            echo $this->formLabel($form->get("cnpj"));
+                            echo $this->formElement($form->get("cnpj"));
+                            echo $this->formElementErrors($form->get("cnpj"), array('class' => "parsley-error-list"));
+                            ?>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <?php
+                            echo $this->formLabel($form->get("ie"));
+                            echo $this->formElement($form->get("ie"));
+                            echo $this->formElementErrors($form->get("ie"), array('class' => "parsley-error-list"));
+                            ?>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <?php
+                            echo $this->formLabel($form->get("razao_social"));
+                            echo $this->formElement($form->get("razao_social"));
+                            echo $this->formElementErrors($form->get("razao_social"), array('class' => "parsley-error-list"));
+                            ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <?php
+                            echo $this->formLabel($form->get("nome_responsavel"));
+                            echo $this->formElement($form->get("nome_responsavel"));
+                            echo $this->formElementErrors($form->get("nome_responsavel"), array('class' => "parsley-error-list"));
+                            ?>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <?php
+                            echo $this->formLabel($form->get("cpf_responsavel"));
+                            echo $this->formElement($form->get("cpf_responsavel"));
+                            echo $this->formElementErrors($form->get("cpf_responsavel"), array('class' => "parsley-error-list"));
+                            ?>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <?php
+                            echo $this->formLabel($form->get("email_responsavel"));
+                            echo $this->formElement($form->get("email_responsavel"));
+                            echo $this->formElementErrors($form->get("email_responsavel"), array('class' => "parsley-error-list"));
+                            ?>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <?php
+                            echo $this->formLabel($form->get("fone_responsavel"));
+                            echo $this->formElement($form->get("fone_responsavel"));
+                            echo $this->formElementErrors($form->get("fone_responsavel"), array('class' => "parsley-error-list"));
+                            ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row <?php echo $pessoa == "PJ" ? "display-none" : ""; ?>" id="div-cliente-pf">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <?php
+                        echo $this->formLabel($form->get("cpf"));
+                        echo $this->formElement($form->get("cpf"));
+                        echo $this->formElementErrors($form->get("cpf"), array('class' => "parsley-error-list"));
+                        ?>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <?php
+                        echo $this->formLabel($form->get("rg"));
+                        echo $this->formElement($form->get("rg"));
+                        echo $this->formElementErrors($form->get("rg"), array('class' => "parsley-error-list"));
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <?php
+                        echo $this->formLabel($form->get("observacoes"));
+                        echo $this->formElement($form->get("observacoes"));
+                        echo $this->formElementErrors($form->get("observacoes"), array('class' => "parsley-error-list"));
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="form-section">Dados de Contato</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <?php
+                                echo $this->formLabel($form->get("fone_comercial"));
+                                echo $this->formElement($form->get("fone_comercial"));
+                                echo $this->formElementErrors($form->get("fone_comercial"), array('class' => "parsley-error-list"));
+                                ?>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <?php
+                                echo $this->formLabel($form->get("fone_celular"));
+                                echo $this->formElement($form->get("fone_celular"));
+                                echo $this->formElementErrors($form->get("fone_celular"), array('class' => "parsley-error-list"));
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <?php
+                                echo $this->formLabel($form->get("fone_residencial"));
+                                echo $this->formElement($form->get("fone_residencial"));
+                                echo $this->formElementErrors($form->get("fone_residencial"), array('class' => "parsley-error-list"));
+                                ?>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <?php
+                                echo $this->formLabel($form->get("fone_outro"));
+                                echo $this->formElement($form->get("fone_outro"));
+                                echo $this->formElementErrors($form->get("fone_outro"), array('class' => "parsley-error-list"));
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="form-section">Internet</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <?php
+                                echo $this->formLabel($form->get("email"));
+                                echo $this->formElement($form->get("email"));
+                                echo $this->formElementErrors($form->get("email"), array('class' => "parsley-error-list"));
+                                ?>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <?php
+                                echo $this->formLabel($form->get("email_outro"));
+                                echo $this->formElement($form->get("email_outro"));
+                                echo $this->formElementErrors($form->get("email_outro"), array('class' => "parsley-error-list"));
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <?php
+                                echo $this->formLabel($form->get("site"));
+                                echo $this->formElement($form->get("site"));
+                                echo $this->formElementErrors($form->get("site"), array('class' => "parsley-error-list"));
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="form-section">Endereço</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?php echo $this->formLabel($form->get("cep")); ?>
+                        <div class="input-group">
+                            <?php echo $this->formElement($form->get("cep")); ?>
+                            <span class="input-group-addon" style="cursor: pointer;" title="Pesquisar CEP" onclick="cepBuscarEndereco();">
+                                <i class="fa fa-search font-dark"></i>
+                            </span>
+                        </div>
+                        <div>
+                            <?php echo $this->formElementErrors($form->get("cep"), array('class' => "parsley-error-list")); ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?php
+                        echo $this->formLabel($form->get("estado"));
+                        echo $this->formElement($form->get("estado"));
+                        echo $this->formElementErrors($form->get("estado"), array('class' => "parsley-error-list"));
+                        ?>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?php
+                        echo $this->formLabel($form->get("cidade"));
+                        echo $this->formElement($form->get("cidade"));
+                        echo $this->formElementErrors($form->get("cidade"), array('class' => "parsley-error-list"));
+                        ?>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?php
+                        echo $this->formLabel($form->get("bairro"));
+                        echo $this->formElement($form->get("bairro"));
+                        echo $this->formElementErrors($form->get("bairro"), array('class' => "parsley-error-list"));
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <?php
+                        echo $this->formLabel($form->get("logradouro"));
+                        echo $this->formElement($form->get("logradouro"));
+                        echo $this->formElementErrors($form->get("logradouro"), array('class' => "parsley-error-list"));
+                        ?>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?php
+                        echo $this->formLabel($form->get("numero"));
+                        echo $this->formElement($form->get("numero"));
+                        echo $this->formElementErrors($form->get("numero"), array('class' => "parsley-error-list"));
+                        ?>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?php
+                        echo $this->formLabel($form->get("complemento"));
+                        echo $this->formElement($form->get("complemento"));
+                        echo $this->formElementErrors($form->get("complemento"), array('class' => "parsley-error-list"));
+                        ?>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="form-section">Horários de Funcionamento</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?php
+                        echo $this->formLabel($form->get("segunda_sexta_abertura"));
+                        echo $this->formElement($form->get("segunda_sexta_abertura"));
+                        echo $this->formElementErrors($form->get("segunda_sexta_abertura"), array('class' => "parsley-error-list"));
+                        ?>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?php
+                        echo $this->formLabel($form->get("segunda_sexta_fechamento"));
+                        echo $this->formElement($form->get("segunda_sexta_fechamento"));
+                        echo $this->formElementErrors($form->get("segunda_sexta_fechamento"), array('class' => "parsley-error-list"));
+                        ?>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?php
+                        echo $this->formLabel($form->get("sabado_abertura"));
+                        echo $this->formElement($form->get("sabado_abertura"));
+                        echo $this->formElementErrors($form->get("sabado_abertura"), array('class' => "parsley-error-list"));
+                        ?>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?php
+                        echo $this->formLabel($form->get("sabado_fechamento"));
+                        echo $this->formElement($form->get("sabado_fechamento"));
+                        echo $this->formElementErrors($form->get("sabado_fechamento"), array('class' => "parsley-error-list"));
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?php
+                        echo $this->formLabel($form->get("domingo_abertura"));
+                        echo $this->formElement($form->get("domingo_abertura"));
+                        echo $this->formElementErrors($form->get("domingo_abertura"), array('class' => "parsley-error-list"));
+                        ?>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?php
+                        echo $this->formLabel($form->get("domingo_fechamento"));
+                        echo $this->formElement($form->get("domingo_fechamento"));
+                        echo $this->formElementErrors($form->get("domingo_fechamento"), array('class' => "parsley-error-list"));
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="form-section">Parametros para Relatórios</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?php
+                        echo $this->formLabel($form->get("royalties_produtos"));
+                        echo $this->formElement($form->get("royalties_produtos"));
+                        echo $this->formElementErrors($form->get("royalties_produtos"), array('class' => "parsley-error-list"));
+                        ?>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?php
+                        echo $this->formLabel($form->get("royalties_servicos"));
+                        echo $this->formElement($form->get("royalties_servicos"));
+                        echo $this->formElementErrors($form->get("royalties_servicos"), array('class' => "parsley-error-list"));
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-actions right">
+            <button type="submit" class="btn grey-mint pull-right"><i class="fa fa-save"></i> Salvar</button>
+            <?php
+            echo $this->formElement($form->get("id"));
+            echo $this->formElement($form->get("security"));
+            ?>
+        </div>
+        <?php echo $this->form()->closeTag($form); ?>
+    </div>
+</div>

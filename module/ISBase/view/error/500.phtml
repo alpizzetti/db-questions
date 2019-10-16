@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+    <!--<![endif]-->
+    <head>       
+        <?php
+        echo $this->headTitle(' Erro 500');
+
+        echo $this->headMeta()
+                ->setCharset('utf-8')
+                ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+                ->appendName('viewport', 'width=device-width, initial-scale=1')
+                ->appendName('description', '')
+                ->appendName('author', '');
+
+//        echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/x-icon', 'href' => '/global/img/favicon.ico'))
+//                ->appendStylesheet('https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all')
+//                ->appendStylesheet('/global/plugins/font-awesome/css/font-awesome.min.css')
+//                ->appendStylesheet('/global/plugins/simple-line-icons/simple-line-icons.min.css')
+//                ->appendStylesheet('/global/plugins/bootstrap/css/bootstrap.min.css')
+//                ->appendStylesheet('/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css')
+//                ->appendStylesheet('/global/css/components-rounded.css')
+//                ->appendStylesheet('/global/css/plugins.css')
+//                ->appendStylesheet('/layout/css/layout.min.css')
+//                ->appendStylesheet('/layout/css/themes/light2.min.css')
+//                ->appendStylesheet('/pages/css/error.min.css');
+        ?>
+    </head>
+    <body class="page-404-full-page">
+        <div class="row">
+            <div class="col-md-12 page-500">
+                <br/>
+                <div class=" number"> 500 </div>
+                <div class=" details">
+                    <h2 style="margin-bottom: 25px;">Oops! Algo deu errado.</h2>
+                </div>
+                <div class="col-md-12 page-404">
+                    <div class="details">
+                        <h1><?php echo ('An error occurred') ?></h1>
+                        <h2><?php echo $this->message ?></h2>
+
+                        <?php if (isset($this->display_exceptions) && $this->display_exceptions): ?>
+
+                            <?php if (isset($this->exception) && $this->exception instanceof Exception): ?>
+                                <hr/>
+                                <h2><?php echo ('Additional information') ?>:</h2>
+                                <h3><?php echo get_class($this->exception); ?></h3>
+                                <dl>
+                                    <dt><?php echo ('File') ?>:</dt>
+                                    <dd>
+                                        <pre class="prettyprint linenums"><?php echo $this->exception->getFile() ?>:<?php echo $this->exception->getLine() ?></pre>
+                                    </dd>
+                                    <dt><?php echo ('Message') ?>:</dt>
+                                    <dd>
+                                        <pre class="prettyprint linenums"><?php echo $this->escapeHtml($this->exception->getMessage()) ?></pre>
+                                    </dd>
+                                    <dt><?php echo ('Stack trace') ?>:</dt>
+                                    <dd>
+                                        <pre class="prettyprint linenums"><?php echo $this->escapeHtml($this->exception->getTraceAsString()) ?></pre>
+                                    </dd>
+                                </dl>
+                                <?php
+                                $e = $this->exception->getPrevious();
+                                if ($e) :
+                                    ?>
+                                    <hr/>
+                                    <h2><?php echo ('Previous exceptions') ?>:</h2>
+                                    <ul class="unstyled">
+                                        <?php while ($e) : ?>
+                                            <li>
+                                                <h3><?php echo get_class($e); ?></h3>
+                                                <dl>
+                                                    <dt><?php echo ('File') ?>:</dt>
+                                                    <dd>
+                                                        <pre class="prettyprint linenums"><?php echo $e->getFile() ?>:<?php echo $e->getLine() ?></pre>
+                                                    </dd>
+                                                    <dt><?php echo ('Message') ?>:</dt>
+                                                    <dd>
+                                                        <pre class="prettyprint linenums"><?php echo $this->escapeHtml($e->getMessage()) ?></pre>
+                                                    </dd>
+                                                    <dt><?php echo ('Stack trace') ?>:</dt>
+                                                    <dd>
+                                                        <pre class="prettyprint linenums"><?php echo $this->escapeHtml($e->getTraceAsString()) ?></pre>
+                                                    </dd>
+                                                </dl>
+                                            </li>
+                                            <?php
+                                            $e = $e->getPrevious();
+                                        endwhile;
+                                        ?>
+                                    </ul>
+                                <?php endif; ?>
+
+                            <?php else: ?>
+
+                                <h3><?php echo ('No Exception available') ?></h3>
+
+                            <?php endif ?>
+
+                        <?php endif ?>
+                    </div>
+                </div>
+            </div>
+    </body>
+</html>

@@ -1,0 +1,20 @@
+<?php
+if (count($mensagens)) {
+    foreach ($mensagens as $mensagem) {
+        ?> 
+        <div class="row">
+            <div class="col-md-12">
+                <div class="App-alerts alert alert-<?php echo key($mensagem); ?> fade in">
+                    <button class="close" aria-hidden="true" data-dismiss="alert" type="button"></button>
+                    <?php if (key($mensagem) == "success") { ?>
+                        <i class="fa-lg fa fa-check"></i>
+                    <?php } elseif (key($mensagem) == "danger") { ?>
+                        <i class="fa-lg fa fa-warning"></i>
+                    <?php } ?>
+                    <?php echo current($mensagem); ?>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
+}

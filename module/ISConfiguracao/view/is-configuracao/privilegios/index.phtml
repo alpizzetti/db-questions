@@ -1,0 +1,142 @@
+<?php $totalItens = $dados->getTotalItemCount(); ?>
+<h1 class="page-title">Cadastro de Privilégios</h1>
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <i class="icon-home"></i>
+            <a href="<?php echo $this->url('home'); ?>">Home</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <span>Privilégios</span>
+        </li>
+    </ul>
+</div>
+<div class="portlet light">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-list font-yellow"></i>
+            <span class="caption-subject font-yellow bold uppercase">Exibir/Buscar</span>
+            <span class="caption-helper"><?php echo ISBase\Util\IdealizeUtil::itensLocalizados($totalItens, "privilegio"); ?></span>
+        </div>
+        <div class="actions">
+            <a class="btn grey-mint pull-right" href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'privilegios', 'action' => 'novo')); ?>">
+                <i class="icon-plus"></i> Novo
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <?php echo $this->form()->openTag($form); ?>
+        <div class="form-body">
+            <?php echo $this->partial('partials/notificacoes'); ?>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?php
+                        echo $this->formLabel($form->get("grupo"));
+                        echo $this->formElement($form->get("grupo"));
+                        echo $this->formElementErrors($form->get("grupo"), array('class' => "parsley-error-list"));
+                        ?>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?php
+                        echo $this->formLabel($form->get("funcionalidade"));
+                        echo $this->formElement($form->get("funcionalidade"));
+                        echo $this->formElementErrors($form->get("funcionalidade"), array('class' => "parsley-error-list"));
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <button type="submit" class="btn default pull-right"><i class="fa fa-search"></i> Buscar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php echo $this->form()->closeTag($form); ?>
+    </div>
+    <div class="portlet-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Grupo</th>
+                        <th>Funcionalidade</th>
+                        <th width="10">Ler</th>
+                        <th width="10">Escrever</th>
+                        <?php if ($acl['escrever']) { ?>
+                            <th width="20"></th>
+                            <th width="20"></th>
+                        <?php } ?>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($dados as $privilegio) { ?>
+                        <tr>
+                            <td>
+                                <?php if ($acl['escrever']) { ?>
+                                    <a href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'privilegios', 'action' => 'editar', 'id' => $privilegio['id'])); ?>">
+                                        <?php echo $privilegio['grupo']; ?>
+                                    </a>
+                                    <?php
+                                } else {
+                                    echo $privilegio['grupo'];
+                                }
+                                ?>
+                            </td>
+                            <td><?php echo $privilegio['funcionalidade']; ?></td>
+                            <td class="text-center"><?php echo $privilegio['ler'] ? "<span class='label label-sm label-info'> <i class='fa fa-check'></i> </span>" : "<span class='label label-sm label-danger'> <i class='fa fa-check'></i> </span>"; ?></td>
+                            <td class="text-center"><?php echo $privilegio['escrever'] ? "<span class='label label-sm label-info'> <i class='fa fa-check'></i> </span>" : "<span class='label label-sm label-danger'> <i class='fa fa-check'></i> </span>"; ?></td>
+                            <?php if ($acl['escrever']) { ?>
+                                <td>
+                                    <a class="btn default btn-xs yellow-stripe" title="Editar" href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'privilegios', 'action' => 'editar', 'id' => $privilegio['id'])); ?>">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a class="btn default btn-xs red-stripe" title="Remover" href="javascript:;" onclick="modal_remover('<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'privilegios', 'action' => 'remover', 'id' => $privilegio['id'])); ?>');">
+                                        <i class="fa fa-remove"></i>
+                                    </a>
+                                </td>
+                            <?php } ?>
+                        </tr>
+                    <?php } if ($totalItens == 0) { ?>
+                        <tr>
+                            <td colspan="12">Nenhum registro localizado</td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+        <?php if ($totalItens > 20) { ?>
+            <div class="row">
+                <div class="col-md-12 col-sm-12" >
+                    <?php echo $this->paginationControl($dados, 'Sliding', 'partials/paginacao', array("filters" => $filtros)); ?>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
+</div>
+<div id="modal_remover_item" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">ATENÇÃO</h4>
+            </div>
+            <div class="modal-body">
+                <div class="scroller" style="height:50px" data-always-visible="1" data-rail-visible1="1">
+                    <h4>Deseja realmente remover?</h4>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal" type="button"><i class="fa fa-remove"></i> Não</button>
+                <a class="btn red" id="modal_remover_botao" href="#"><i class="fa fa-check"></i> Sim</a>
+            </div>
+        </div>
+    </div>
+</div>
