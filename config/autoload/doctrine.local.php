@@ -6,11 +6,11 @@ return array(
             'orm_default' => array(
                 'driverClass' => 'Doctrine\DBAL\Driver\PDOMySql\Driver',
                 'params' => array(
-                    'host' => 'localhost',
+                    'host' => 'pizzetti.net',
                     'port' => '3306',
-                    'dbname' => 'senai',
-                    'user' => 'root',
-                    'password' => 'root',
+                    'dbname' => 'pizzet31_pi',
+                    'user' => 'pizzet31_pi',
+                    'password' => 'jONshHuJV8YW',
                     'driverOptions' => array(
                         PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'UTF8'"
                     )
