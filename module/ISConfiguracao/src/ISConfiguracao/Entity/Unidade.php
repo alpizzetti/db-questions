@@ -12,7 +12,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\HasLifecycleCallbacks
  * @ORM\Entity(repositoryClass="UnidadeRepository")
  */
-class Unidade {
+class Unidade
+{
 
     /**
      * @var integer
@@ -29,6 +30,13 @@ class Unidade {
      * @ORM\Column(name="nome", type="string", length=100, precision=0, scale=0, nullable=false, unique=false)
      */
     private $nome;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=100, nullable=false)
+     */
+    private $email;
 
     /**
      * @var string
@@ -65,72 +73,97 @@ class Unidade {
      */
     private $usuarios;
 
-    public function __construct(array $options = array()) {
+    public function __construct(array $options = array())
+    {
         (new Hydrator\ClassMethods)->hydrate($options, $this);
         $this->dataCriacao = new \DateTime("now");
         $this->usuarios = new ArrayCollection();
     }
-    
-    public function getId() {
+
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function getNome() {
+    public function getNome()
+    {
         return $this->nome;
     }
 
-    public function getTelefone() {
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function getTelefone()
+    {
         return $this->telefone;
     }
 
-    public function getStatus() {
+    public function getStatus()
+    {
         return $this->status;
     }
 
-    public function getDataCriacao() {
+    public function getDataCriacao()
+    {
         return $this->dataCriacao;
     }
 
-    public function getDataAlteracao() {
+    public function getDataAlteracao()
+    {
         return $this->dataAlteracao;
     }
 
-    public function getUsuarios() {
+    public function getUsuarios()
+    {
         return $this->usuarios;
     }
 
-    public function setId($id) {
+    public function setId($id)
+    {
         $this->id = $id;
         return $this;
     }
 
-    public function setNome($nome) {
+    public function setNome($nome)
+    {
         $this->nome = $nome;
         return $this;
     }
 
-    public function setTelefone($telefone) {
+    public function setEmail($email)
+    {
+        $this->email = $email;
+        return $this;
+    }
+
+    public function setTelefone($telefone)
+    {
         $this->telefone = $telefone;
         return $this;
     }
 
-    public function setStatus($status) {
+    public function setStatus($status)
+    {
         $this->status = $status;
         return $this;
     }
 
-    public function setDataCriacao() {
+    public function setDataCriacao()
+    {
         $this->dataCriacao = new \DateTime("now");
         return $this;
     }
 
-    public function setDataAlteracao() {
+    public function setDataAlteracao()
+    {
         $this->dataAlteracao = new \DateTime("now");
         return $this;
     }
-    
-    public function toArray() {
+
+    public function toArray()
+    {
         return (new Hydrator\ClassMethods())->extract($this);
     }
-
 }

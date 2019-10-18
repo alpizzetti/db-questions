@@ -38,15 +38,7 @@
                         ?>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <?php
-                        echo $this->formLabel($form->get("estado"));
-                        echo $this->formElement($form->get("estado"));
-                        ?>
-                    </div>
-                </div>
-                <div class="col-md-7">
+                <div class="col-md-10">
                     <div class="form-group">
                         <?php
                         echo $this->formLabel($form->get("filtro"));
@@ -95,7 +87,7 @@
                                 <?php } ?>
                             </td>
                             <td><?php echo $unidade['email']; ?></td>
-                            <td><?php echo $unidade['foneComercial']; ?></td>
+                            <td><?php echo $unidade['telefone']; ?></td>
                             <td class="text-center" id="linha_totalacessos_<?php echo $unidade['id']; ?>">
                                 <?php if ($unidade['totalAcessos'] <= 1) { ?>
                                     <span><?php echo $unidade['totalAcessos']; ?></span>

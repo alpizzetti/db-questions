@@ -5,14 +5,16 @@ namespace ISConfiguracao\Entity;
 use Doctrine\ORM\EntityRepository;
 use ISBase\Paginator\AdapterQuery;
 
-class UnidadeRepository extends EntityRepository {
+class UnidadeRepository extends EntityRepository
+{
 
-    public function listagemIndex($request) {
-        $dql = "SELECT uni.id, uni.nome, uni.email, uni.foneComercial, uni.status, DATE(MAX(ace.data)) AS ultimoAcesso, COUNT(ace.id) AS totalAcessos"
-                . " FROM ISConfiguracao\Entity\Unidade uni"
-                . " LEFT JOIN uni.usuarios usu"
-                . " LEFT JOIN usu.acessos ace"
-                . " WHERE uni.status = :status";
+    public function listagemIndex($request)
+    {
+        $dql = "SELECT uni.id, uni.nome, uni.email, uni.telefone, uni.status, DATE(MAX(ace.data)) AS ultimoAcesso, COUNT(ace.id) AS totalAcessos"
+            . " FROM ISConfiguracao\Entity\Unidade uni"
+            . " LEFT JOIN uni.usuarios usu"
+            . " LEFT JOIN usu.acessos ace"
+            . " WHERE uni.status = :status";
 
         $params['status'] = $request['status'];
 
@@ -38,11 +40,12 @@ class UnidadeRepository extends EntityRepository {
         return (new AdapterQuery($query, $request['pagina'], 20, $this->getEntityManager()))->getPaginator();
     }
 
-    public function popularCombobox() {
+    public function popularCombobox()
+    {
         $dql = "SELECT uni.id, uni.nome"
-                . " FROM ISConfiguracao\Entity\Unidade uni"
-                . " WHERE uni.status = :status"
-                . " ORDER BY uni.nome";
+            . " FROM ISConfiguracao\Entity\Unidade uni"
+            . " WHERE uni.status = :status"
+            . " ORDER BY uni.nome";
 
         $params['status'] = true;
 
@@ -54,5 +57,4 @@ class UnidadeRepository extends EntityRepository {
 
         return $saida;
     }
-
 }
