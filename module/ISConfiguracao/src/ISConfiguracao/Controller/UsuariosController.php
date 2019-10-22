@@ -6,9 +6,11 @@ use ISBase\Controller\CrudController;
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
 
-class UsuariosController extends CrudController {
+class UsuariosController extends CrudController
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
 
         $this->entity = "ISConfiguracao\Entity\Usuario";
@@ -31,7 +33,8 @@ class UsuariosController extends CrudController {
         );
     }
 
-    public function indexAction() {
+    public function indexAction()
+    {
         if ($this->getAcesso("ler")) {
             $form = $this->getServiceLocator()->get("ISConfiguracao\Form\UsuarioIndex");
             $request['filtro'] = $this->params()->fromQuery("filtro", null);
@@ -58,7 +61,8 @@ class UsuariosController extends CrudController {
         return $this->notFoundAction()->setTerminal(true);
     }
 
-    public function novoAction() {
+    public function novoAction()
+    {
         if ($this->getAcesso()) {
             $form = $this->getServiceLocator()->get("ISConfiguracao\Form\UsuarioDados");
             $request = $this->getRequest();
@@ -91,7 +95,8 @@ class UsuariosController extends CrudController {
         return $this->notFoundAction()->setTerminal(true);
     }
 
-    public function editarAction() {
+    public function editarAction()
+    {
         if ($this->getAcesso()) {
             $usuario = $this->getEntityManager()->getRepository($this->entity)->find($this->params()->fromRoute("id", 0));
 
@@ -127,7 +132,8 @@ class UsuariosController extends CrudController {
         return $this->notFoundAction()->setTerminal(true);
     }
 
-    public function editarSenhaAction() {
+    public function editarSenhaAction()
+    {
         if ($this->getAcesso()) {
             $usuario = $this->getEntityManager()->getRepository($this->entity)->find($this->params()->fromRoute("id", 0));
 
@@ -156,7 +162,8 @@ class UsuariosController extends CrudController {
         return $this->notFoundAction()->setTerminal(true);
     }
 
-    public function meusDadosPerfilAction() {
+    public function meusDadosPerfilAction()
+    {
         $usuario = $this->getEntityManager()->getRepository($this->entity)->find($this->usuarioId);
 
         if (!empty($usuario)) {
@@ -184,7 +191,8 @@ class UsuariosController extends CrudController {
         return $this->notFoundAction()->setTerminal(true);
     }
 
-    public function meusDadosSenhaAction() {
+    public function meusDadosSenhaAction()
+    {
         $usuario = $this->getEntityManager()->getRepository($this->entity)->find($this->usuarioId);
 
         if (!empty($usuario)) {
@@ -219,7 +227,8 @@ class UsuariosController extends CrudController {
         return $this->notFoundAction()->setTerminal(true);
     }
 
-    public function ativarRemoverAction() {
+    public function ativarRemoverAction()
+    {
         if ($this->getAcesso()) {
             $usuario = $this->getEntityManager()->getRepository($this->entity)->find($this->params()->fromRoute('id', 0));
 
@@ -247,7 +256,8 @@ class UsuariosController extends CrudController {
         return $this->notFoundAction()->setTerminal(true);
     }
 
-    public function autenticarComoAction() {
+    public function autenticarComoAction()
+    {
         if ($this->getAcesso() || !empty($this->sessao->getUsuario("usuarioSessao"))) {
             $usuario = $this->getEntityManager()->getRepository($this->entity)->find($this->params()->fromRoute("id", 0));
 
@@ -269,7 +279,8 @@ class UsuariosController extends CrudController {
         return $this->notFoundAction()->setTerminal(true);
     }
 
-    public function localizarAcessosAction() {
+    public function localizarAcessosAction()
+    {
         $request = $this->getRequest();
         $retorno["sucesso"] = false;
 
@@ -295,7 +306,8 @@ class UsuariosController extends CrudController {
         return new JsonModel($retorno);
     }
 
-    private function validarEmail($id, $email) {
+    private function validarEmail($id, $email)
+    {
         $usuario = $this->getEntityManager()->getRepository($this->entity)->selecionarPorEmailStatus($email);
 
         if ($usuario != null) {
@@ -308,5 +320,4 @@ class UsuariosController extends CrudController {
             return true;
         }
     }
-
 }

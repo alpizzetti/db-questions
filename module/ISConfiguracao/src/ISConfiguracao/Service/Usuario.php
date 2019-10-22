@@ -8,19 +8,22 @@ use ISBase\Service\AbstractService;
 use Zend\Mail\Transport\Smtp as SmtpTransport;
 use Zend\Stdlib\Hydrator;
 
-class Usuario extends AbstractService {
+class Usuario extends AbstractService
+{
 
     protected $transport;
     protected $view;
 
-    public function __construct(EntityManager $em, SmtpTransport $transport, $view) {
+    public function __construct(EntityManager $em, SmtpTransport $transport, $view)
+    {
         parent::__construct($em);
         $this->entity = "ISConfiguracao\Entity\Usuario";
         $this->transport = $transport;
         $this->view = $view;
     }
 
-    public function insert(array $data) {
+    public function insert(array $data)
+    {
         $grupo = $this->em->getReference("ISConfiguracao\Entity\Grupo", $data['grupo']);
         $unidade = $this->em->getReference("ISConfiguracao\Entity\Unidade", $data['unidade']);
 
@@ -34,7 +37,8 @@ class Usuario extends AbstractService {
         return $usuario;
     }
 
-    public function update(array $data) {
+    public function update(array $data)
+    {
         $usuario = $this->em->getReference($this->entity, $data['id']);
         $grupo = $this->em->getReference('ISConfiguracao\Entity\Grupo', $data['grupo']);
         $unidade = $this->em->getReference("ISConfiguracao\Entity\Unidade", $data['unidade']);
@@ -51,7 +55,8 @@ class Usuario extends AbstractService {
         return $usuario;
     }
 
-    public function updateMeusDadosPerfil(array $data, $usuario) {
+    public function updateMeusDadosPerfil(array $data, $usuario)
+    {
         $usuario->setNome($data['nome']);
         $usuario->setDataAlteracao();
 
@@ -61,7 +66,8 @@ class Usuario extends AbstractService {
         return $usuario;
     }
 
-    public function updateMeusDadosSenha(array $data, $usuario) {
+    public function updateMeusDadosSenha(array $data, $usuario)
+    {
         $usuario->setsenha($data['senha']);
         $usuario->setDataAlteracao();
 
@@ -71,17 +77,19 @@ class Usuario extends AbstractService {
         return $usuario;
     }
 
-    public function logAcesso($usuario) {
+    public function logAcesso($usuario)
+    {
         $log = new \ISConfiguracao\Entity\UsuarioAcesso();
         $log->setUsuario($usuario);
-        
+
         $this->em->persist($log);
         $this->em->flush();
 
         return $log;
     }
 
-    public function criarToken($usuario) {
+    public function criarToken($usuario)
+    {
         $usuario->setTokenWeb();
 
         $this->em->persist($usuario);
@@ -92,7 +100,8 @@ class Usuario extends AbstractService {
         return true;
     }
 
-    public function senhaRedefinir($usuario, $global) {
+    public function senhaRedefinir($usuario, $global)
+    {
         $usuario->setTokenTrocarSenha();
 
         $this->em->persist($usuario);
@@ -100,15 +109,16 @@ class Usuario extends AbstractService {
 
         $mail = new Mail($this->transport, $this->view, 'redefinir-senha');
         $mail->setSubject('Redefinir sua senha')
-                ->setTo($usuario->getEmail())
-                ->setData(array('url' => $global['url'], 'link' => $global['url'] . 'usuarios/senha/redefinir/confirmar?token=' . $usuario->getTokenTrocarSenha(), 'nome' => $usuario->getNome(true)))
-                ->prepare()
-                ->send();
+            ->setTo($usuario->getEmail())
+            ->setData(array('url' => $global['url'], 'link' => $global['url'] . 'usuarios/senha/redefinir/confirmar?token=' . $usuario->getTokenTrocarSenha(), 'nome' => $usuario->getNome(true)))
+            ->prepare()
+            ->send();
 
         return true;
     }
 
-    public function senhaConfirmar($usuario, $senha) {
+    public function senhaConfirmar($usuario, $senha)
+    {
         $usuario->setTokenTrocarSenha(false);
         $usuario->setSenha($senha);
 
@@ -117,5 +127,4 @@ class Usuario extends AbstractService {
 
         return true;
     }
-
 }

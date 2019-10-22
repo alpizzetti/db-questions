@@ -4,13 +4,16 @@ namespace ISConfiguracao\Form;
 
 use Zend\InputFilter\InputFilter;
 
-class UsuarioSenhaFilter extends InputFilter {
+class UsuarioSenhaFilter extends InputFilter
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->addElements();
     }
 
-    private function addElements() {
+    private function addElements()
+    {
         $this->add(array(
             'name' => 'senha',
             'required' => true,
@@ -56,5 +59,4 @@ class UsuarioSenhaFilter extends InputFilter {
             )
         ));
     }
-
 }

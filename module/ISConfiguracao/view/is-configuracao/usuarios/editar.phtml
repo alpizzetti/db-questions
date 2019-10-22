@@ -1,4 +1,4 @@
-<h1 class="page-title">Cadastro de Usuários</h1>
+<h1 class="page-title">Editar Usuários</h1>
 <div class="page-bar">
     <ul class="page-breadcrumb">
         <li>
@@ -16,17 +16,9 @@
 <div class="portlet light">
     <div class="portlet-title">
         <div class="caption">
-            <i class="fa fa-pencil font-yellow"></i>
+            <i class="fa fa-plus font-yellow"></i>
             <span class="caption-subject font-yellow bold uppercase">Editar</span>
         </div>
-        <ul class="nav nav-tabs">
-            <li class="active" style="border-bottom: 4px solid #CBB26A;">
-                <a href="javascript:;"> Gerais </a>
-            </li>
-            <li>
-                <a href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'usuarios', 'action' => 'editarSenha', 'id' => $usuario->getId())); ?>"> Senha </a>
-            </li>
-        </ul>
     </div>
     <div class="portlet-body form">
         <?php echo $this->form()->openTag($form); ?>
@@ -44,7 +36,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="form-group">
                         <?php
                         echo $this->formLabel($form->get("unidade"));
@@ -53,7 +45,7 @@
                         ?>
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <div class="form-group">
                         <?php
                         echo $this->formLabel($form->get("grupo"));
@@ -62,7 +54,9 @@
                         ?>
                     </div>
                 </div>
-                <div class="col-md-2">
+            </div>
+            <div class="row">
+                <div class="col-md-3">
                     <div class="form-group">
                         <?php
                         echo $this->formLabel($form->get("sexo"));
@@ -71,9 +65,18 @@
                         ?>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?php
+                        echo $this->formLabel($form->get("matricula"));
+                        echo $this->formElement($form->get("matricula"));
+                        echo $this->formElementErrors($form->get("matricula"), array('class' => "parsley-error-list"));
+                        ?>
+                    </div>
+                </div>
+
+                <div class="col-md-7">
                     <div class="form-group">
                         <?php
                         echo $this->formLabel($form->get("nome"));
@@ -82,12 +85,34 @@
                         ?>
                     </div>
                 </div>
+
+
+            </div>
+            <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
                         <?php
                         echo $this->formLabel($form->get("email"));
                         echo $this->formElement($form->get("email"));
                         echo $this->formElementErrors($form->get("email"), array('class' => "parsley-error-list"));
+                        ?>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?php
+                        echo $this->formLabel($form->get("senha"));
+                        echo $this->formElement($form->get("senha"));
+                        echo $this->formElementErrors($form->get("senha"), array('class' => "parsley-error-list"));
+                        ?>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?php
+                        echo $this->formLabel($form->get("confirmacao"));
+                        echo $this->formElement($form->get("confirmacao"));
+                        echo $this->formElementErrors($form->get("confirmacao"), array('class' => "parsley-error-list"));
                         ?>
                     </div>
                 </div>

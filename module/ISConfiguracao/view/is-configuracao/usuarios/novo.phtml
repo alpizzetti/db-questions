@@ -65,6 +65,17 @@
                         ?>
                     </div>
                 </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?php
+                        echo $this->formLabel($form->get("matricula"));
+                        echo $this->formElement($form->get("matricula"));
+                        echo $this->formElementErrors($form->get("matricula"), array('class' => "parsley-error-list"));
+                        ?>
+                    </div>
+                </div>
+
                 <div class="col-md-7">
                     <div class="form-group">
                         <?php
@@ -74,6 +85,8 @@
                         ?>
                     </div>
                 </div>
+
+
             </div>
             <div class="row">
                 <div class="col-md-4">
@@ -106,7 +119,7 @@
             </div>
         </div>
         <div class="form-actions right">
-            <button type="submit" class="btn grey-mint pull-right" ><i class="fa fa-save"></i> Salvar</button>
+            <button type="submit" class="btn grey-mint pull-right"><i class="fa fa-save"></i> Salvar</button>
             <?php
             echo $this->formElement($form->get("id"));
             echo $this->formElement($form->get("security"));

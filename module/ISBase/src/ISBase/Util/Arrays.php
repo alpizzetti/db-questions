@@ -2,6 +2,5 @@
 
 namespace ISBase\Util;
 
-class Arrays {
-    
-}
+class Arrays
+{ }

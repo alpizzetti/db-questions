@@ -4,13 +4,16 @@ namespace ISConfiguracao\Form;
 
 use Zend\InputFilter\InputFilter;
 
-class UsuarioDadosFilter extends InputFilter {
+class UsuarioDadosFilter extends InputFilter
+{
 
-    public function __construct($acao = "novo") {
+    public function __construct($acao = "novo")
+    {
         $this->addElements($acao);
     }
 
-    private function addElements($acao) {
+    private function addElements($acao)
+    {
         $this->add(array(
             'name' => 'unidade',
             'required' => true,
@@ -49,6 +52,18 @@ class UsuarioDadosFilter extends InputFilter {
 
         $this->add(array(
             'name' => 'nome',
+            'required' => true,
+            'filters' => array(
+                array('name' => 'StripTags'),
+                array('name' => 'StringTrim'),
+            ),
+            'validators' => array(
+                array('name' => 'NotEmpty', 'options' => array('messages' => array('isEmpty' => 'Campo obrigatório')))
+            )
+        ));
+
+        $this->add(array(
+            'name' => 'matricula',
             'required' => true,
             'filters' => array(
                 array('name' => 'StripTags'),
@@ -120,5 +135,4 @@ class UsuarioDadosFilter extends InputFilter {
             $this->add(array('name' => 'unidade', 'required' => false));
         }
     }
-
 }

@@ -2,21 +2,23 @@
 
 namespace ISBase\Util;
 
-class RandomString {
-
+class RandomString
+{
     private $letrasMin;
     private $letrasMai = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     private $numeros = '1234567890';
     private $simbolos = '!@#$%*-';
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->letrasMin = 'abcdefghijklmnopqrstuvwxyz';
         $this->letrasMai = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $this->numeros = '1234567890';
         $this->simbolos = '!@#$%*-';
     }
 
-    function gerar($tamanho = 8, $maiusculas = true, $numeros = true, $simbolos = false) {
+    function gerar($tamanho = 8, $maiusculas = true, $numeros = true, $simbolos = false)
+    {
         $retorno = '';
         $caracteres = '';
 
@@ -38,5 +40,4 @@ class RandomString {
         }
         return $retorno;
     }
-
 }
