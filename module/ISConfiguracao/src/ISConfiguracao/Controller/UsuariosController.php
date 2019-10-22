@@ -40,7 +40,7 @@ class UsuariosController extends CrudController
             $request['filtro'] = $this->params()->fromQuery("filtro", null);
             $request['status'] = $this->params()->fromQuery("status", 1);
             $request['grupo'] = $this->params()->fromQuery("grupo", null);
-            $request['unidade'] = $this->params()->fromQuery("unidade", $this->unidadeId);
+            $request['unidade'] = $this->params()->fromQuery("unidade", null);
             $request['pagina'] = $this->params()->fromQuery("pagina", 1);
 
             $filtros = "&unidade=" . $request['unidade'];

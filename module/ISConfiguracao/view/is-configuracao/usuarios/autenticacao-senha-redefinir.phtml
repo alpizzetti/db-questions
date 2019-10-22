@@ -1,88 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>       
-        <?php
-        echo $this->headTitle('App | SENAI');
 
-        echo $this->headMeta()
-                ->setCharset('utf-8')
-                ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
-                ->appendName('viewport', 'width=device-width, initial-scale=1')
-                ->appendName('description', '')
-                ->appendName('author', '');
+<head>
+    <?php
+    echo $this->headTitle('App | SENAI');
 
-        echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/x-icon', 'href' => '/global/img/favicon.ico'))
-                ->appendStylesheet('https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all')
-                ->appendStylesheet('/global/plugins/font-awesome/css/font-awesome.min.css')
-                ->appendStylesheet('/global/plugins/simple-line-icons/simple-line-icons.min.css')
-                ->appendStylesheet('/global/plugins/bootstrap/css/bootstrap.min.css')
-                ->appendStylesheet('/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css')
-                ->appendStylesheet('/global/plugins/bootstrap-toastr/toastr.min.css')
-                ->appendStylesheet('/global/css/components-rounded.css')
-                ->appendStylesheet('/global/css/plugins.css')
-                ->appendStylesheet('/pages/css/login.min.css');
-        ?>
-    </head>
-    <body class=" login">
-        <div class="user-login-5">
-            <div class="row bs-reset">
-                <div class="col-md-6 login-container bs-reset">
-                    <img class="login-logo login-6" src="/global/img/logo-1.png" />
-                    <div class="login-content">
-                        <h1>Esqueceu sua senha?</h1>
-                        <p>Digite seu endereço de e-mail para redefinir sua senha.</p>
-                        <?php echo $this->form()->openTag($form); ?>
-                        <div class="App-alerts alert alert-danger fade in display-hide" id="msg-erro">
-                            <button class="close" type="button" data-dismiss="alert" aria-hidden="true"></button>
-                            <span id="msg-erro-conteudo"></span>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <?php echo $this->formElement($form->get("email")); ?>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-actions" id="div-acoes">
-                            <a href="<?php echo $this->url('isconfiguracao-autenticacao-entrar'); ?>" class="btn grey btn-default" >Voltar</a>
-                            <button type="submit" class="btn grey-mint pull-right"> Redefinir senha</button>
-                        </div>
-                        <div class="form-actions text-right display-hide" id="div-processando">
-                            <h4><img src="/layout/img/loading-spinner-blue.gif" /> Um momento...</h4>
-                        </div>
-                        <?php echo $this->form()->closeTag($form); ?>
+    echo $this->headMeta()
+        ->setCharset('utf-8')
+        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        ->appendName('viewport', 'width=device-width, initial-scale=1')
+        ->appendName('description', '')
+        ->appendName('author', '');
+
+    echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/x-icon', 'href' => '/global/img/favicon.ico'))
+        ->appendStylesheet('https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all')
+        ->appendStylesheet('/global/plugins/font-awesome/css/font-awesome.min.css')
+        ->appendStylesheet('/global/plugins/simple-line-icons/simple-line-icons.min.css')
+        ->appendStylesheet('/global/plugins/bootstrap/css/bootstrap.min.css')
+        ->appendStylesheet('/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css')
+        ->appendStylesheet('/global/plugins/bootstrap-toastr/toastr.min.css')
+        ->appendStylesheet('/global/css/components-rounded.css')
+        ->appendStylesheet('/global/css/plugins.css')
+        ->appendStylesheet('/pages/css/login.min.css');
+    ?>
+</head>
+
+<body class=" login">
+    <div class="user-login-5">
+        <div class="row bs-reset">
+            <div class="col-md-6 login-container bs-reset">
+                <img class="login-logo login-6" src="/global/img/logo-1.png" />
+                <div class="login-content">
+                    <h1>Esqueceu sua senha?</h1>
+                    <p>Digite seu endereço de e-mail para redefinir sua senha.</p>
+                    <?php echo $this->form()->openTag($form); ?>
+                    <div class="App-alerts alert alert-danger fade in display-hide" id="msg-erro">
+                        <button class="close" type="button" data-dismiss="alert" aria-hidden="true"></button>
+                        <span id="msg-erro-conteudo"></span>
                     </div>
-                    <div class="login-footer">
-                        <div class="row bs-reset">
-                            <div class="col-xs-5 bs-reset">
-                            </div>
-                            <div class="col-xs-7 bs-reset">
-                                <div class="login-copyright text-right">
-                                    <a style="color: #a9b5be;" href="https://pizzetti.net" target="_blank">Copyright &copy; André Luís Pizzetti 2019</a>
-                                </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <?php echo $this->formElement($form->get("email")); ?>
                             </div>
                         </div>
                     </div>
+                    <div class="form-actions" id="div-acoes">
+                        <a href="<?php echo $this->url('isconfiguracao-autenticacao-entrar'); ?>" class="btn grey btn-default">Voltar</a>
+                        <button type="submit" class="btn grey-mint pull-right"> Redefinir senha</button>
+                    </div>
+                    <div class="form-actions text-right display-hide" id="div-processando">
+                        <h4><img src="/layout/img/loading-spinner-blue.gif" /> Um momento...</h4>
+                    </div>
+                    <?php echo $this->form()->closeTag($form); ?>
                 </div>
-                <div class="col-md-6 bs-reset">
-                    <div class="login-bg"> </div>
+                <div class="login-footer">
+                    <div class="row bs-reset">
+                        <div class="col-xs-5 bs-reset">
+                        </div>
+                        <div class="col-xs-7 bs-reset">
+                            <div class="login-copyright text-right">
+                                <a style="color: #a9b5be;" href="https://pizzetti.net" target="_blank">Copyright &copy; SENAI/SC</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div class="col-md-6 bs-reset">
+                <div class="login-bg"> </div>
+            </div>
         </div>
-        <?php
-        echo $this->inlineScript()
-                ->appendFile('/global/plugins/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9'))
-                ->appendFile('/global/plugins/excanvas.min.js', 'text/javascript', array('conditional' => 'lt IE 9'))
-                ->appendFile('/global/plugins/jquery.min.js')
-                ->appendFile('/global/plugins/bootstrap/js/bootstrap.min.js')
-                ->appendFile('/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js')
-                ->appendFile('/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js')
-                ->appendFile('/global/plugins/jquery.blockui.min.js')
-                ->appendFile('/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js')
-                ->appendFile('/global/plugins/backstretch/jquery.backstretch.min.js')
-                ->appendFile('/global/plugins/bootstrap-toastr/toastr.min.js')
-                ->appendFile('/global/scripts/app.min.js')
-                ->appendFile('/layout/scripts/mod-autenticacao.js');
-        ?>
-    </body>
+    </div>
+    <?php
+    echo $this->inlineScript()
+        ->appendFile('/global/plugins/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9'))
+        ->appendFile('/global/plugins/excanvas.min.js', 'text/javascript', array('conditional' => 'lt IE 9'))
+        ->appendFile('/global/plugins/jquery.min.js')
+        ->appendFile('/global/plugins/bootstrap/js/bootstrap.min.js')
+        ->appendFile('/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js')
+        ->appendFile('/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js')
+        ->appendFile('/global/plugins/jquery.blockui.min.js')
+        ->appendFile('/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js')
+        ->appendFile('/global/plugins/backstretch/jquery.backstretch.min.js')
+        ->appendFile('/global/plugins/bootstrap-toastr/toastr.min.js')
+        ->appendFile('/global/scripts/app.min.js')
+        ->appendFile('/layout/scripts/mod-autenticacao.js');
+    ?>
+</body>
+
 </html>
