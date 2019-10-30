@@ -5,14 +5,16 @@ namespace ISConfiguracao\Entity;
 use Doctrine\ORM\EntityRepository;
 use ISBase\Paginator\AdapterQuery;
 
-class PrivilegioRepository extends EntityRepository {
+class PrivilegioRepository extends EntityRepository
+{
 
-    public function listagemIndex($request) {
+    public function listagemIndex($request)
+    {
         $dql = "SELECT pri.id, pri.ler, pri.escrever, gru.nome AS grupo, fun.nome AS funcionalidade"
-                . " FROM ISConfiguracao\Entity\Privilegio pri"
-                . " JOIN pri.grupo gru"
-                . " JOIN pri.funcionalidade fun";
-        
+            . " FROM ISConfiguracao\Entity\Privilegio pri"
+            . " JOIN pri.grupo gru"
+            . " JOIN pri.funcionalidade fun";
+
         $params = [];
 
         if (!empty($request['grupo'])) {
@@ -24,7 +26,7 @@ class PrivilegioRepository extends EntityRepository {
                 $dql .= " AND pri.funcionalidade = :funcionalidade";
             }
         } else if (!empty($request['funcionalidade'])) {
-                $params['funcionalidade'] = $request['funcionalidade'];
+            $params['funcionalidade'] = $request['funcionalidade'];
             $dql .= " WHERE p.funcionalidade = :funcionalidade";
         }
 
@@ -34,5 +36,4 @@ class PrivilegioRepository extends EntityRepository {
 
         return (new AdapterQuery($query, $request['pagina'], 20, $this->getEntityManager()))->getPaginator();
     }
-
 }

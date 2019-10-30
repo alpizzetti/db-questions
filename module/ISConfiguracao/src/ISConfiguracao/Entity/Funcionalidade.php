@@ -11,7 +11,8 @@ use Zend\Stdlib\Hydrator;
  * @ORM\Table(name="funcionalidades")
  * @ORM\Entity(repositoryClass="ISConfiguracao\Entity\FuncionalidadeRepository")
  */
-class Funcionalidade {
+class Funcionalidade
+{
 
     /**
      * @ORM\Id
@@ -27,30 +28,35 @@ class Funcionalidade {
      */
     private $nome;
 
-    public function __construct($options = array()) {
+    public function __construct($options = array())
+    {
         (new Hydrator\ClassMethods)->hydrate($options, $this);
     }
 
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function getNome() {
+    public function getNome()
+    {
         return $this->nome;
     }
 
-    public function setId($id) {
+    public function setId($id)
+    {
         $this->id = $id;
         return $this;
     }
 
-    public function setNome($nome) {
+    public function setNome($nome)
+    {
         $this->nome = $nome;
         return $this;
     }
 
-    public function toArray() {
+    public function toArray()
+    {
         return (new Hydrator\ClassMethods)->extract($this);
     }
-
 }

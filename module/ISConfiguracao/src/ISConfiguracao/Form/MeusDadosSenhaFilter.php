@@ -4,13 +4,16 @@ namespace ISConfiguracao\Form;
 
 use Zend\InputFilter\InputFilter;
 
-class MeusDadosSenhaFilter extends InputFilter {
+class MeusDadosSenhaFilter extends InputFilter
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->addElements();
     }
 
-    private function addElements() {
+    private function addElements()
+    {
         $this->add(array(
             'name' => 'senha_atual',
             'required' => true,
@@ -22,7 +25,7 @@ class MeusDadosSenhaFilter extends InputFilter {
                 array('name' => 'NotEmpty', 'options' => array('messages' => array('isEmpty' => 'Informe a senha')))
             )
         ));
-        
+
         $this->add(array(
             'name' => 'senha',
             'required' => true,
@@ -66,5 +69,4 @@ class MeusDadosSenhaFilter extends InputFilter {
             )
         ));
     }
-
 }

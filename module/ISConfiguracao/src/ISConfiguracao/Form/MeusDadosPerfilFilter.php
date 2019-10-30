@@ -4,13 +4,16 @@ namespace ISConfiguracao\Form;
 
 use Zend\InputFilter\InputFilter;
 
-class MeusDadosPerfilFilter extends InputFilter {
+class MeusDadosPerfilFilter extends InputFilter
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->addElements();
     }
 
-    private function addElements() {
+    private function addElements()
+    {
         $this->add(array(
             'name' => 'nome',
             'required' => true,
@@ -23,5 +26,4 @@ class MeusDadosPerfilFilter extends InputFilter {
             )
         ));
     }
-
 }

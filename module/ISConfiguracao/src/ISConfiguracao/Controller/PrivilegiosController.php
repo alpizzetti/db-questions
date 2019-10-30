@@ -5,9 +5,11 @@ namespace ISConfiguracao\Controller;
 use ISBase\Controller\CrudController;
 use Zend\View\Model\ViewModel;
 
-class PrivilegiosController extends CrudController {
+class PrivilegiosController extends CrudController
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
 
         $this->entity = 'ISConfiguracao\Entity\Privilegio';
@@ -37,7 +39,8 @@ class PrivilegiosController extends CrudController {
         );
     }
 
-    public function indexAction() {
+    public function indexAction()
+    {
         if ($this->getAcesso('ler')) {
             $form = $this->getServiceLocator()->get("ISConfiguracao\Form\PrivelegioIndex");
             $request['pagina'] = $this->params()->fromQuery('pagina', 1);
@@ -59,14 +62,15 @@ class PrivilegiosController extends CrudController {
         return $this->notFoundAction()->setTerminal(true);
     }
 
-    public function novoAction() {
+    public function novoAction()
+    {
         if ($this->getAcesso()) {
             $form = $this->getServiceLocator()->get($this->form);
             $request = $this->getRequest();
 
             if ($request->isPost()) {
                 $form->setData($request->getPost());
-                
+
                 if ($form->isValid()) {
                     $service = $this->getServiceLocator()->get($this->service);
                     $service->insert($request->getPost()->toArray());
@@ -85,7 +89,8 @@ class PrivilegiosController extends CrudController {
         return $this->notFoundAction()->setTerminal(true);
     }
 
-    public function editarAction() {
+    public function editarAction()
+    {
         if ($this->getAcesso()) {
             $form = $this->getServiceLocator()->get($this->form);
             $privilegios = $this->getEntityManager()->getRepository($this->entity)->find($this->params()->fromRoute('id', 0));
@@ -96,7 +101,7 @@ class PrivilegiosController extends CrudController {
 
                 if ($request->isPost()) {
                     $form->setData($request->getPost());
-                    
+
                     if ($form->isValid()) {
                         $this->getServiceLocator()->get($this->service)->update($request->getPost()->toArray());
                         $this->setMensagemSucesso($this->getMensagem('edit', 'success'));
@@ -115,7 +120,8 @@ class PrivilegiosController extends CrudController {
         return $this->notFoundAction()->setTerminal(true);
     }
 
-    public function removerAction() {
+    public function removerAction()
+    {
         if ($this->getAcesso()) {
             $service = $this->getServiceLocator()->get($this->service);
 
@@ -127,8 +133,6 @@ class PrivilegiosController extends CrudController {
                 $this->setMensagemErro($this->getMensagem('delete', 'error'));
             }
         }
-
         return $this->notFoundAction()->setTerminal(true);
     }
-
 }

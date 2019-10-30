@@ -12,11 +12,13 @@ use Zend\Session\Container;
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
 
-class AutenticacaoController extends CrudController {
+class AutenticacaoController extends CrudController
+{
 
     private $sessionStorage;
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
 
         $this->sessionStorage = "ISConfiguracao";
@@ -24,7 +26,8 @@ class AutenticacaoController extends CrudController {
         $this->entity = "ISConfiguracao\Entity\Usuario";
     }
 
-    public function entrarAction() {
+    public function entrarAction()
+    {
         $request = $this->getRequest();
 
         if ($request->isPost()) {
@@ -54,11 +57,12 @@ class AutenticacaoController extends CrudController {
         }
 
         return (new ViewModel(array('form' => new AutenticacaoEntrar(), 'mensagens' => $this->flashMessenger()->getMessages())))
-                        ->setTemplate("is-configuracao/usuarios/autenticacao-entrar.phtml")
-                        ->setTerminal(true);
+            ->setTemplate("is-configuracao/usuarios/autenticacao-entrar.phtml")
+            ->setTerminal(true);
     }
 
-    public function sairAction() {
+    public function sairAction()
+    {
         $usuarioSessao = $this->sessao->getUsuario();
 
         if (!empty($usuarioSessao)) {
@@ -76,7 +80,8 @@ class AutenticacaoController extends CrudController {
         return $this->redirect()->toRoute("isconfiguracao-autenticacao-entrar");
     }
 
-    public function senhaRedefinirAction() {
+    public function senhaRedefinirAction()
+    {
         $request = $this->getRequest();
 
         if ($request->isPost()) {
@@ -103,11 +108,12 @@ class AutenticacaoController extends CrudController {
         }
 
         return (new ViewModel(array('form' => new AutenticacaoSenhaRedefinir())))
-                        ->setTemplate("is-configuracao/usuarios/autenticacao-senha-redefinir.phtml")
-                        ->setTerminal(true);
+            ->setTemplate("is-configuracao/usuarios/autenticacao-senha-redefinir.phtml")
+            ->setTerminal(true);
     }
 
-    public function senhaConfirmarAction() {
+    public function senhaConfirmarAction()
+    {
         $token = $this->params()->fromQuery("token", null);
 
         if (!empty($token)) {
@@ -134,15 +140,16 @@ class AutenticacaoController extends CrudController {
                 }
 
                 return (new ViewModel(array('form' => $form)))
-                                ->setTemplate("is-configuracao/usuarios/autenticacao-senha-confirmar.phtml")
-                                ->setTerminal(true);
+                    ->setTemplate("is-configuracao/usuarios/autenticacao-senha-confirmar.phtml")
+                    ->setTerminal(true);
             }
         }
 
         return $this->notFoundAction()->setTerminal(true);
     }
 
-    private function validarFormSenhaConfirmar($request) {
+    private function validarFormSenhaConfirmar($request)
+    {
         $mensagem = "";
 
         if (empty($request['senha'])) {
@@ -164,5 +171,4 @@ class AutenticacaoController extends CrudController {
 
         return $mensagem;
     }
-
 }

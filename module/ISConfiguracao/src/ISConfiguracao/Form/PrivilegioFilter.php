@@ -4,13 +4,16 @@ namespace ISConfiguracao\Form;
 
 use Zend\InputFilter\InputFilter;
 
-class PrivilegioFilter extends InputFilter {
+class PrivilegioFilter extends InputFilter
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->addElements();
     }
 
-    private function addElements() {
+    private function addElements()
+    {
         $this->add(array(
             'name' => 'grupo',
             'required' => true,
@@ -59,5 +62,4 @@ class PrivilegioFilter extends InputFilter {
             )
         ));
     }
-
 }

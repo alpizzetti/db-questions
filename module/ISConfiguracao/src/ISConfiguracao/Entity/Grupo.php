@@ -11,7 +11,8 @@ use Zend\Stdlib\Hydrator;
  * @ORM\Table(name="grupos")
  * @ORM\Entity(repositoryClass="ISConfiguracao\Entity\GrupoRepository")
  */
-class Grupo {
+class Grupo
+{
 
     /**
      * @ORM\Id
@@ -46,57 +47,68 @@ class Grupo {
      */
     private $status;
 
-    public function __construct($options = array()) {
+    public function __construct($options = array())
+    {
         (new Hydrator\ClassMethods)->hydrate($options, $this);
     }
 
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function getHerda() {
+    public function getHerda()
+    {
         return $this->herda;
     }
 
-    public function getNome() {
+    public function getNome()
+    {
         return $this->nome;
     }
 
-    public function getAdministrador() {
+    public function getAdministrador()
+    {
         return $this->administrador;
     }
 
-    public function getStatus() {
+    public function getStatus()
+    {
         return $this->status;
     }
 
-    public function setId($id) {
+    public function setId($id)
+    {
         $this->id = $id;
         return $this;
     }
 
-    public function setHerda($herda) {
+    public function setHerda($herda)
+    {
         $this->herda = $herda;
         return $this;
     }
 
-    public function setNome($nome) {
+    public function setNome($nome)
+    {
         $this->nome = $nome;
         return $this;
     }
 
-    public function setAdministrador($administrador) {
+    public function setAdministrador($administrador)
+    {
         $this->administrador = $administrador;
         return $this;
     }
 
-    public function setStatus($status) {
+    public function setStatus($status)
+    {
         $this->status = $status;
         return $this;
     }
 
-    public function toArray() {
+    public function toArray()
+    {
         return (new Hydrator\ClassMethods())->extract($this);
     }
-
 }

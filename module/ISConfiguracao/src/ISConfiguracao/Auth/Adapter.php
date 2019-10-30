@@ -6,40 +6,48 @@ use Zend\Authentication\Adapter\AdapterInterface;
 use Zend\Authentication\Result;
 use Doctrine\ORM\EntityManager;
 
-class Adapter implements AdapterInterface {
+class Adapter implements AdapterInterface
+{
 
     protected $em;
     protected $email;
     protected $senha;
 
-    public function __construct(EntityManager $em) {
+    public function __construct(EntityManager $em)
+    {
         $this->em = $em;
     }
 
-    public function getEmail() {
+    public function getEmail()
+    {
         return $this->email;
     }
 
-    public function setEmail($email) {
+    public function setEmail($email)
+    {
         $this->email = $email;
         return $this;
     }
 
-    public function getSenha() {
+    public function getSenha()
+    {
         return $this->senha;
     }
 
-    public function setSenha($senha) {
+    public function setSenha($senha)
+    {
         $this->senha = $senha;
         return $this;
     }
-    
-    public function setEmailSenha($dados) {
+
+    public function setEmailSenha($dados)
+    {
         $this->email = $dados['email'];
         $this->senha = $dados['senha'];
     }
 
-    public function authenticate() {
+    public function authenticate()
+    {
         $usuario = $this->em->getRepository("ISConfiguracao\Entity\Usuario")->autenticacao($this->getEmail(), $this->getSenha());
 
         if ($usuario) {
@@ -48,5 +56,4 @@ class Adapter implements AdapterInterface {
             return new Result(Result::FAILURE_CREDENTIAL_INVALID, null, array());
         }
     }
-
 }

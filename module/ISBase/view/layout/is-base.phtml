@@ -38,7 +38,7 @@
         <div class="page-header-inner ">
             <div class="page-logo">
                 <a href="<?php echo $this->url('home'); ?>">
-                    <img src="/global/img/logo-2.png" alt="logo" class="logo-default" />
+                    <img src="/global/img/logo.png" alt="logo" class="logo-default" />
                 </a>
             </div>
             <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"></a>
@@ -86,6 +86,7 @@
                     if (
                         $sessao->getAcl("configuracoes", "usuarios", "ler") ||
                         $sessao->getAcl("configuracoes", "unidades", "ler") ||
+                        $sessao->getAcl("configuracoes", "questoes", "ler") ||
                         $sessao->getAcl("configuracoes", "acl", "ler")
                     ) {
                         ?>
@@ -105,6 +106,20 @@
                                     <li class="nav-item">
                                         <a class="nav-item" href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'unidades', 'action' => 'index')); ?>">
                                             <i class="fa fa-bars"></i> Unidades
+                                        </a>
+                                    </li>
+                                <?php }
+                                    if ($sessao->getAcl("configuracoes", "cursos", "ler")) { ?>
+                                    <li class="nav-item">
+                                        <a class="nav-item" href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'usuarios', 'action' => 'index')); ?>">
+                                            <i class="fa fa-bars"></i> Cursos
+                                        </a>
+                                    </li>
+                                <?php }
+                                    if ($sessao->getAcl("configuracoes", "disciplinas", "ler")) { ?>
+                                    <li class="nav-item">
+                                        <a class="nav-item" href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'usuarios', 'action' => 'index')); ?>">
+                                            <i class="fa fa-bars"></i> Disciplinas
                                         </a>
                                     </li>
                                 <?php }
@@ -129,6 +144,66 @@
                                 <?php } ?>
                             </ul>
                         </li>
+
+                        <li class="nav-item <?php
+                                                echo ($controller == "ISConfiguracao\Controller\Grupos" ||
+                                                    $controller == "ISConfiguracao\Controller\Privilegios" ||
+                                                    $controller == "ISConfiguracao\Controller\Unidades" ||
+                                                    $controller == "ISConfiguracao\Controller\Usuarios") ? "active open" : "";
+                                                ?>">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="icon-question"></i>
+                                <span class="title"> Questões</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <?php if ($sessao->getAcl("cadastro", "questoes", "ler")) { ?>
+                                    <li class="nav-item">
+                                        <a class="nav-item" href="<?php echo $this->url('iscadastro-admin/default', array('controller' => 'questoes', 'action' => 'index')); ?>">
+                                            <i class="fa fa-bars"></i> Cadastro
+                                        </a>
+                                    </li>
+                                <?php } ?>
+                                <?php if ($sessao->getAcl("cadastro", "questoes", "ler")) { ?>
+                                    <li class="nav-item">
+                                        <a class="nav-item" href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'cadastro', 'action' => 'index')); ?>">
+                                            <i class="fa fa-bars"></i> Edição
+                                        </a>
+                                    </li>
+                                <?php } ?>
+                                <?php if ($sessao->getAcl("cadastro", "moderador", "ler")) { ?>
+                                    <li class="nav-item">
+                                        <a class="nav-item" href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'moderacao', 'action' => 'index')); ?>">
+                                            <i class="fa fa-bars"></i> Moderação
+                                        </a>
+                                    </li>
+                                <?php } ?>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item <?php
+                                                echo ($controller == "ISConfiguracao\Controller\Grupos" ||
+                                                    $controller == "ISConfiguracao\Controller\Privilegios" ||
+                                                    $controller == "ISConfiguracao\Controller\Unidades" ||
+                                                    $controller == "ISConfiguracao\Controller\Usuarios") ? "active open" : "";
+                                                ?>">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="icon-notebook"></i>
+                                <span class="title"> Relatórios</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <?php if ($sessao->getAcl("relatorios", "basico", "ler")) { ?>
+                                    <li class="nav-item">
+                                        <a class="nav-item" href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'unidades', 'action' => 'index')); ?>">
+                                            <i class="fa fa-bars"></i> Moderações
+                                        </a>
+                                    </li>
+                                <?php } ?>
+                            </ul>
+                        </li>
+
+
                     <?php } ?>
                 </ul>
             </div>

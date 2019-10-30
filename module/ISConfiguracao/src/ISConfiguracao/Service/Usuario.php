@@ -10,7 +10,6 @@ use Zend\Stdlib\Hydrator;
 
 class Usuario extends AbstractService
 {
-
     protected $transport;
     protected $view;
 

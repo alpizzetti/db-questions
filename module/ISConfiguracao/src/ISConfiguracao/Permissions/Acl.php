@@ -6,13 +6,15 @@ use Zend\Permissions\Acl\Acl as ClassAcl;
 use Zend\Permissions\Acl\Role\GenericRole as Role;
 use Zend\Permissions\Acl\Resource\GenericResource as Resource;
 
-class Acl extends ClassAcl {
+class Acl extends ClassAcl
+{
 
     protected $grupos;
     protected $funcionalidades;
     protected $privilegios;
 
-    public function __construct(array $grupos, array $funcionalidades, array $privilegios) {
+    public function __construct(array $grupos, array $funcionalidades, array $privilegios)
+    {
         $this->grupos = $grupos;
         $this->funcionalidades = $funcionalidades;
         $this->privilegios = $privilegios;
@@ -22,7 +24,8 @@ class Acl extends ClassAcl {
         $this->carregarPrivilegios();
     }
 
-    protected function carregarGrupos() {
+    protected function carregarGrupos()
+    {
         foreach ($this->grupos as $grupo) {
             if ($grupo->getHerda()) {
                 $this->addRole(new Role($grupo->getNome()), new Role($grupo->getHerda()->getNome()));
@@ -36,13 +39,15 @@ class Acl extends ClassAcl {
         }
     }
 
-    protected function carregarFuncionalidades() {
+    protected function carregarFuncionalidades()
+    {
         foreach ($this->funcionalidades as $funcionalidade) {
             $this->addResource(new Resource($funcionalidade->getNome()));
         }
     }
 
-    protected function carregarPrivilegios() {
+    protected function carregarPrivilegios()
+    {
         foreach ($this->privilegios as $privilegio) {
             if ($privilegio->getLer()) {
                 $this->allow($privilegio->getGrupo()->getNome(), $privilegio->getFuncionalidade()->getNome(), "ler");
@@ -52,5 +57,4 @@ class Acl extends ClassAcl {
             }
         }
     }
-
 }

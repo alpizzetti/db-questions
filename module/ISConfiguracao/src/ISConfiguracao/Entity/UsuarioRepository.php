@@ -5,15 +5,17 @@ namespace ISConfiguracao\Entity;
 use Doctrine\ORM\EntityRepository;
 use ISBase\Paginator\AdapterQuery;
 
-class UsuarioRepository extends EntityRepository {
+class UsuarioRepository extends EntityRepository
+{
 
-    public function listagemIndex($request) {
+    public function listagemIndex($request)
+    {
         $dql = "SELECT usu.id, usu.nome, usu.sexo, usu.email, usu.status, gru.nome AS grupoNome, uni.nome as unidade, COUNT(ace.id) AS totalAcessos"
-                . " FROM ISConfiguracao\Entity\Usuario usu"
-                . " JOIN usu.grupo gru"
-                . " JOIN usu.unidade uni"
-                . " LEFT JOIN usu.acessos ace"
-                . " WHERE usu.status = :status";
+            . " FROM ISConfiguracao\Entity\Usuario usu"
+            . " JOIN usu.grupo gru"
+            . " JOIN usu.unidade uni"
+            . " LEFT JOIN usu.acessos ace"
+            . " WHERE usu.status = :status";
 
         $params['status'] = $request['status'];
 
@@ -38,10 +40,11 @@ class UsuarioRepository extends EntityRepository {
         return (new AdapterQuery($query, $request['pagina'], 20, $this->getEntityManager()))->getPaginator();
     }
 
-    public function autenticacao($email, $senha) {
+    public function autenticacao($email, $senha)
+    {
         $dql = "SELECT usu"
-                . " FROM ISConfiguracao\Entity\Usuario usu"
-                . " WHERE usu.email = :email AND usu.status = :status";
+            . " FROM ISConfiguracao\Entity\Usuario usu"
+            . " WHERE usu.email = :email AND usu.status = :status";
 
         $param = ['email' => $email, 'status' => true];
 
@@ -54,24 +57,25 @@ class UsuarioRepository extends EntityRepository {
         }
     }
 
-    public function selecionarPorEmailStatus($email, $status = true) {
+    public function selecionarPorEmailStatus($email, $status = true)
+    {
         $dql = "SELECT usu"
-                . " FROM ISConfiguracao\Entity\Usuario usu"
-                . " WHERE usu.email = :email AND usu.status = :status";
+            . " FROM ISConfiguracao\Entity\Usuario usu"
+            . " WHERE usu.email = :email AND usu.status = :status";
 
         $param = array('email' => $email, 'status' => $status);
 
         return $this->_em->createQuery($dql)->setMaxResults(1)->setParameters($param)->getOneOrNullResult();
     }
 
-    public function selecionarPorTokenTocarSenha($token, $status = true) {
+    public function selecionarPorTokenTocarSenha($token, $status = true)
+    {
         $dql = "SELECT usu"
-                . " FROM ISConfiguracao\Entity\Usuario usu"
-                . " WHERE usu.tokenTrocarSenha = :token AND usu.status = :status";
+            . " FROM ISConfiguracao\Entity\Usuario usu"
+            . " WHERE usu.tokenTrocarSenha = :token AND usu.status = :status";
 
         $param = array('token' => $token, 'status' => $status);
 
         return $this->_em->createQuery($dql)->setMaxResults(1)->setParameters($param)->getOneOrNullResult();
     }
-
 }

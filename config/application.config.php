@@ -6,6 +6,7 @@ return array(
         'DoctrineORMModule',
         'ISBase',
         'ISConfiguracao',
+        'ISCadastro',
     ),
     'module_listener_options' => array(
         'module_paths' => array(

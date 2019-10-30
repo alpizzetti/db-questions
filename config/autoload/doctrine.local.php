@@ -11,6 +11,11 @@ return array(
                     'dbname' => 'pizzet31_pi',
                     'user' => 'pizzet31_pi',
                     'password' => 'jONshHuJV8YW',
+                    //'host' => 'localhost',
+                    //'port' => '3306',
+                    //'dbname' => 'pizzet31_pi',
+                    //'user' => 'root',
+                    //'password' => 'root',
                     'driverOptions' => array(
                         PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'UTF8'"
                     )

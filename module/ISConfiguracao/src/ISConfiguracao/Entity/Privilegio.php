@@ -11,7 +11,8 @@ use Zend\Stdlib\Hydrator;
  * @ORM\Table(name="privilegios")
  * @ORM\Entity(repositoryClass="ISConfiguracao\Entity\PrivilegioRepository")
  */
-class Privilegio {
+class Privilegio
+{
 
     /**
      * @var integer
@@ -55,56 +56,66 @@ class Privilegio {
      * })
      */
     private $funcionalidade;
-    
-    public function __construct($options = array()) {
+
+    public function __construct($options = array())
+    {
         (new Hydrator\ClassMethods)->hydrate($options, $this);
     }
-    
-    public function getId() {
+
+    public function getId()
+    {
         return $this->id;
     }
-    
-    public function setLer($ler) {
+
+    public function setLer($ler)
+    {
         $this->ler = $ler;
 
         return $this;
     }
-    
-    public function getLer() {
+
+    public function getLer()
+    {
         return $this->ler;
     }
-    
-    public function setEscrever($escrever) {
+
+    public function setEscrever($escrever)
+    {
         $this->escrever = $escrever;
 
         return $this;
     }
-    
-    public function getEscrever() {
+
+    public function getEscrever()
+    {
         return $this->escrever;
     }
-    
-    public function setGrupo($grupo = null) {
+
+    public function setGrupo($grupo = null)
+    {
         $this->grupo = $grupo;
 
         return $this;
     }
-    
-    public function getGrupo() {
+
+    public function getGrupo()
+    {
         return $this->grupo;
     }
-    
-    public function setFuncionalidade($funcionalidade = null) {
+
+    public function setFuncionalidade($funcionalidade = null)
+    {
         $this->funcionalidade = $funcionalidade;
         return $this;
     }
-    
-    public function getFuncionalidade() {
+
+    public function getFuncionalidade()
+    {
         return $this->funcionalidade;
     }
-    
-    public function toArray() {
+
+    public function toArray()
+    {
         return (new Hydrator\ClassMethods())->extract($this);
     }
-
 }

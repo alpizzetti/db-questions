@@ -1,82 +1,91 @@
 <html>
-    <head>
-        <title></title>
-        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-    </head>
-    <body marginheight="0" marginwidth="0" bgcolor="#fff">
-        <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-                <td align="center"><table width="629" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#DC0305">
-                        <tr>
-                            <td bgcolor="#FFFFFF" style=""><table width="629" border="0" cellspacing="0" cellpadding="0">
-                                    <tr>
-                                        <td><img src="<?php echo $url; ?>global/img/email/topo.jpg?cache=1" width="629" height="122"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <table width="550" border="0" cellspacing="5" align="center" cellpadding="0">
-                                                <tr>
-                                                    <td>&nbsp;</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <p style="font-size:16px;font-family:'Trebuchet MS', Arial, Helvetica, sans-serif;color:#5a5958;padding:0;margin: 20px 0 0;">
-                                                            <b>Ol&aacute; <?php echo utf8_decode($this->nome); ?>,</b>
-                                                        </p>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <p style="font-size:16px;font-family:'Trebuchet MS', Arial, Helvetica, sans-serif;color:#5a5958;padding:0;margin: 20px 0 0;">
-                                                            <?php echo utf8_decode("Recebemos uma solicitação de redefinição de sua senha."); ?>
-                                                        </p>
-                                                        <p style="color:#5a5958;font-family:'Trebuchet MS', Arial, Helvetica, sans-serif;font-size:13px;padding:0;margin: 30px 0 30px;text-align: center;">
-                                                            <a target="_blank" href="<?php echo $this->link; ?>" style="color:#25333c;text-decoration:none;border-radius:3px;border:1px solid #25333c;padding:10px 19px 12px 19px;font-size:17px;font-weight:500;white-space:nowrap;border-collapse:collapse;display:inline-block;">
-                                                                Redefinir senha
-                                                            </a>
-                                                        </p>
-                                                        <p style="font-size:16px;font-family:'Trebuchet MS', Arial, Helvetica, sans-serif;color:#5a5958;padding:0;margin: 20px 0 20px;">
-                                                            <?php echo utf8_decode("Se você ignorar essa mensagem, sua senha não será alterada."); ?>
-                                                        </p>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <p style="font-size:16px;font-family:'Trebuchet MS', Arial, Helvetica, sans-serif;color:#5a5958;padding:0;margin: 0px 0 20px;">
-                                                            Obrigado.
-                                                        </p>
-                                                    </td>
-                                                </tr>
-                                                <tr><td>&nbsp;</td></tr>
-                                                <tr>
-                                                    <td>
-                                                        <p style="color:#5a5958;font-family:'Trebuchet MS', Arial, Helvetica, sans-serif;font-size:13px;">
-                                                            <?php echo utf8_decode("Obs.: Este e-mail foi enviado automaticamente, não responda ao remetente."); ?>
-                                                        </p>
-                                                    </td>
-                                                </tr>
-                                                <tr><td>&nbsp;</td></tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td bgcolor="#FFFFFF"><img src="<?php echo $url; ?>global/img/email/rodape.jpg?cache=1"  width="628" height="43"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p style="color:#5a5958;font-family:'Trebuchet MS', Arial, Helvetica, sans-serif;font-size:11px;text-align:center;">
-                                                <a href="https://pizzetti.net" target="_blank" style="color:#5a5958;font-family:'Trebuchet MS', Arial, Helvetica, sans-serif;font-size:11px;text-decoration:none;">
-                                                    Copyright &copy;2019 &middot; App | SENAI
-                                                </a>
-                                            </p>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-        </table>
-    </body>
+
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+</head>
+
+<body marginheight="0" marginwidth="0" bgcolor="#fff">
+    <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td align="center">
+                <table width="629" border="0" align="center" cellpadding="0" cellspacing="0" bordercolor="#DC0305">
+                    <tr>
+                        <td bgcolor="#FFFFFF" style="">
+                            <table width="629" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td><img src="<?php echo $url; ?>global/img/email/topo.jpg?cache=1" width="629" height="122"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table width="550" border="0" cellspacing="5" align="center" cellpadding="0">
+                                            <tr>
+                                                <td>&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p style="font-size:16px;font-family:'Trebuchet MS', Arial, Helvetica, sans-serif;color:#5a5958;padding:0;margin: 20px 0 0;">
+                                                        <b>Ol&aacute; <?php echo utf8_decode($this->nome); ?>,</b>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p style="font-size:16px;font-family:'Trebuchet MS', Arial, Helvetica, sans-serif;color:#5a5958;padding:0;margin: 20px 0 0;">
+                                                        <?php echo utf8_decode("Recebemos uma solicitação de redefinição de sua senha."); ?>
+                                                    </p>
+                                                    <p style="color:#5a5958;font-family:'Trebuchet MS', Arial, Helvetica, sans-serif;font-size:13px;padding:0;margin: 30px 0 30px;text-align: center;">
+                                                        <a target="_blank" href="<?php echo $this->link; ?>" style="color:#25333c;text-decoration:none;border-radius:3px;border:1px solid #25333c;padding:10px 19px 12px 19px;font-size:17px;font-weight:500;white-space:nowrap;border-collapse:collapse;display:inline-block;">
+                                                            Redefinir senha
+                                                        </a>
+                                                    </p>
+                                                    <p style="font-size:16px;font-family:'Trebuchet MS', Arial, Helvetica, sans-serif;color:#5a5958;padding:0;margin: 20px 0 20px;">
+                                                        <?php echo utf8_decode("Se você ignorar essa mensagem, sua senha não será alterada."); ?>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p style="font-size:16px;font-family:'Trebuchet MS', Arial, Helvetica, sans-serif;color:#5a5958;padding:0;margin: 0px 0 20px;">
+                                                        Obrigado.
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p style="color:#5a5958;font-family:'Trebuchet MS', Arial, Helvetica, sans-serif;font-size:13px;">
+                                                        <?php echo utf8_decode("Obs.: Este e-mail foi enviado automaticamente, não responda ao remetente."); ?>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>&nbsp;</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td bgcolor="#FFFFFF"><img src="<?php echo $url; ?>global/img/email/rodape.jpg?cache=1" width="628" height="43"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p style="color:#5a5958;font-family:'Trebuchet MS', Arial, Helvetica, sans-serif;font-size:11px;text-align:center;">
+                                            <a href="https://pizzetti.net" target="_blank" style="color:#5a5958;font-family:'Trebuchet MS', Arial, Helvetica, sans-serif;font-size:11px;text-decoration:none;">
+                                                Copyright &copy;2019 &middot; App | SENAI
+                                            </a>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+
 </html>

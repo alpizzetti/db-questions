@@ -16,9 +16,17 @@
 <div class="portlet light">
     <div class="portlet-title">
         <div class="caption">
-            <i class="fa fa-plus font-yellow"></i>
+            <i class="fa fa-pencil font-yellow"></i>
             <span class="caption-subject font-yellow bold uppercase">Editar</span>
         </div>
+        <ul class="nav nav-tabs">
+            <li class="active" style="border-bottom: 4px solid #CBB26A;">
+                <a href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'usuarios', 'action' => 'editar', 'id' => $usuario->getId())); ?>"> Gerais </a>
+            </li>
+            <li>
+                <a href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'usuarios', 'action' => 'editarSenha', 'id' => $usuario->getId())); ?>"> Senha </a>
+            </li>
+        </ul>
     </div>
     <div class="portlet-body form">
         <?php echo $this->form()->openTag($form); ?>
@@ -76,7 +84,12 @@
                     </div>
                 </div>
 
-                <div class="col-md-7">
+
+
+
+            </div>
+            <div class="row">
+                <div class="col-md-6">
                     <div class="form-group">
                         <?php
                         echo $this->formLabel($form->get("nome"));
@@ -85,11 +98,9 @@
                         ?>
                     </div>
                 </div>
-
-
             </div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group">
                         <?php
                         echo $this->formLabel($form->get("email"));
@@ -98,24 +109,7 @@
                         ?>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <?php
-                        echo $this->formLabel($form->get("senha"));
-                        echo $this->formElement($form->get("senha"));
-                        echo $this->formElementErrors($form->get("senha"), array('class' => "parsley-error-list"));
-                        ?>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <?php
-                        echo $this->formLabel($form->get("confirmacao"));
-                        echo $this->formElement($form->get("confirmacao"));
-                        echo $this->formElementErrors($form->get("confirmacao"), array('class' => "parsley-error-list"));
-                        ?>
-                    </div>
-                </div>
+
             </div>
         </div>
         <div class="form-actions right">

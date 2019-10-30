@@ -4,17 +4,19 @@ namespace ISConfiguracao\Permissions;
 
 use Zend\Session\Container;
 
-class SessaoAcl {
-
+class SessaoAcl
+{
     private $sessao;
     private $serviceLocator;
 
-    public function __construct($serviceLocator = null) {
+    public function __construct($serviceLocator = null)
+    {
         $this->sessao = new Container('ISAdministracao');
         $this->serviceLocator = $serviceLocator;
     }
 
-    public function setAcl($usuario, $usuarioSessao = null) {
+    public function setAcl($usuario, $usuarioSessao = null)
+    {
         $grupo = $usuario->getGrupo();
 
         $acl = array(
@@ -34,8 +36,17 @@ class SessaoAcl {
             'funcionalidades' => [
                 'configuracoes' => [
                     'acl' => $this->salvarAcesso($grupo->getNome(), 'Configurações Controle de Acesso'),
-                    'unidades' => $this->salvarAcesso($grupo->getNome(), 'Configurações Unidades'),
-                    'usuarios' => $this->salvarAcesso($grupo->getNome(), 'Configurações Usuários'),
+                    'usuarios' => $this->salvarAcesso($grupo->getNome(), 'Configurações de Usuários'),
+                    'unidades' => $this->salvarAcesso($grupo->getNome(), 'Configurações de Unidades'),
+                    'cursos' => $this->salvarAcesso($grupo->getNome(), 'Configurações de Cursos'),
+                    'disciplinas' => $this->salvarAcesso($grupo->getNome(), 'Configurações de Disciplinas'),
+                ],
+                'cadastro' => [
+                    'questoes' => $this->salvarAcesso($grupo->getNome(), 'Cadastro de Questões'),
+                    'moderador' => $this->salvarAcesso($grupo->getNome(), 'Moderador de Questões'),
+                ],
+                'relatorios' => [
+                    'basico' => $this->salvarAcesso($grupo->getNome(), 'Relatórios'),
                 ]
             ]
         );
@@ -45,7 +56,8 @@ class SessaoAcl {
         return $this;
     }
 
-    public function getUnidade($item = null) {
+    public function getUnidade($item = null)
+    {
         $acl = $this->sessao->offsetGet('acl');
 
         if (empty($item)) {
@@ -55,7 +67,8 @@ class SessaoAcl {
         }
     }
 
-    public function getUsuario($item = null) {
+    public function getUsuario($item = null)
+    {
         $acl = $this->sessao->offsetGet('acl');
 
         if (empty($item)) {
@@ -65,21 +78,23 @@ class SessaoAcl {
         }
     }
 
-    public function getAcl($modulo = null, $funcionalidade = null, $acao = null) {
+    public function getAcl($modulo = null, $funcionalidade = null, $acao = null)
+    {
         $acl = $this->sessao->offsetGet('acl');
 
-        if(!empty($modulo) && !empty($funcionalidade) && !empty($acao)) {
+        if (!empty($modulo) && !empty($funcionalidade) && !empty($acao)) {
             return $acl['funcionalidades'][$modulo][$funcionalidade][$acao];
-        } else if(!empty($modulo) && !empty($funcionalidade)) {
+        } else if (!empty($modulo) && !empty($funcionalidade)) {
             return $acl['funcionalidades'][$modulo][$funcionalidade];
-        } else if(!empty($modulo)) {
+        } else if (!empty($modulo)) {
             return $acl['funcionalidades'][$modulo];
         } else {
             return $acl;
         }
     }
 
-    private function salvarAcesso($grupo, $funcionalidade) {
+    private function salvarAcesso($grupo, $funcionalidade)
+    {
         $acl = $this->serviceLocator->get('ISConfiguracao\Permissions\Acl');
 
         return array(
@@ -87,5 +102,4 @@ class SessaoAcl {
             'escrever' => $acl->isAllowed($grupo, $funcionalidade, 'escrever')
         );
     }
-
 }
