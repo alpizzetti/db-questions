@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <?php
     echo $this->headTitle('App | SENAI');
@@ -21,7 +22,7 @@
         ->appendStylesheet('/global/plugins/bootstrap-toastr/toastr.min.css')
         ->appendStylesheet('/global/css/components-rounded.css')
         ->appendStylesheet('/global/css/plugins.css')
-        ->appendStylesheet('/pages/css/login.min.css');
+        ->appendStylesheet('/pages/css/login.css');
     ?>
 </head>
 
@@ -29,10 +30,10 @@
     <div class="user-login-5">
         <div class="row bs-reset">
             <div class="col-md-6 login-container bs-reset">
-                <img class="login-logo login-6" src="/global/img/logo-1.png" />
+                <!-- <img class="login-logo login-6" src="/global/img/logo-1.png" /> -->
                 <div class="login-content">
-                    <h1>Seja bem vindo</h1>
-                    <p>Informe seu usuário e senha para entrar</p>
+                    <h1>Banco de Questões</h1>
+                    <p>Digite seu endereço de e-mail para redefinir sua senha.</p>
                     <?php
                     echo $this->form()->openTag($form);
                     echo $this->partial('partials/notificacoes');
@@ -68,7 +69,7 @@
                         </div>
                         <div class="col-xs-7 bs-reset">
                             <div class="login-copyright text-right">
-                                <a style="color: #a9b5be;" href="https://pizzetti.net" target="_blank">Copyright &copy; SENAI/SC</a>
+                                <a style="color: #a9b5be;" href="https://pizzetti.net" target="_blank">Copyright 2019 - Senai SC</a>
                             </div>
                         </div>
                     </div>
