@@ -148,7 +148,28 @@
                                 <?php if ($sessao->getAcl("relatorios", "basico", "ler")) { ?>
                                     <li class="nav-item">
                                         <a class="nav-item" href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'unidades', 'action' => 'index')); ?>">
-                                            <i class="fa fa-bars"></i> Moderações
+                                            <i class="fa fa-bars"></i> Questões
+                                        </a>
+                                    </li>
+                                <?php } ?>
+                                <?php if ($sessao->getAcl("relatorios", "basico", "ler")) { ?>
+                                    <li class="nav-item">
+                                        <a class="nav-item" href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'unidades', 'action' => 'index')); ?>">
+                                            <i class="fa fa-bars"></i> Professores
+                                        </a>
+                                    </li>
+                                <?php } ?>
+                                <?php if ($sessao->getAcl("relatorios", "basico", "ler")) { ?>
+                                    <li class="nav-item">
+                                        <a class="nav-item" href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'unidades', 'action' => 'index')); ?>">
+                                            <i class="fa fa-bars"></i> Unidades Curriculares
+                                        </a>
+                                    </li>
+                                <?php } ?>
+                                <?php if ($sessao->getAcl("relatorios", "basico", "ler")) { ?>
+                                    <li class="nav-item">
+                                        <a class="nav-item" href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'unidades', 'action' => 'index')); ?>">
+                                            <i class="fa fa-bars"></i> Moderadores
                                         </a>
                                     </li>
                                 <?php } ?>
