@@ -33,7 +33,7 @@
                 <!-- <img class="login-logo login-6" src="/global/img/logo-1.png" /> -->
                 <div class="login-content">
                     <h1>Banco de Questões</h1>
-                    <p>Digite seu endereço de e-mail para redefinir sua senha.</p>
+                    <p>Informe seu usuário e senha para entrar</p>
                     <?php
                     echo $this->form()->openTag($form);
                     echo $this->partial('partials/notificacoes');
@@ -47,13 +47,13 @@
                         </div>
                     </div>
                     <div class="row" id="div-acoes">
-                        <div class="col-sm-6 text-left">
-                            <div class="forgot-password">
-                                <a href="<?php echo $this->url('isconfiguracao-autenticacao-senha-redefinir'); ?>" class="forget-password">Esqueceu sua senha?</a>
+                        <div class="col-sm-6">
+                            <div>
+                             <button type="submit" class="btn grey-mint pull-left">Acessar</button>
                             </div>
                         </div>
-                        <div class="col-sm-6 text-right">
-                            <button type="submit" class="btn grey-mint pull-right"> Acessar</button>
+                        <div class="col-sm-6 text-center forgot-password">
+                            <a href="<?php echo $this->url('isconfiguracao-autenticacao-senha-redefinir'); ?>" class="forget-password">Esqueceu sua senha?</a>
                         </div>
                     </div>
                     <div class="row display-hide" id="div-processando">
@@ -63,20 +63,19 @@
                     </div>
                     <?php echo $this->form()->closeTag($form); ?>
                 </div>
+                
+            </div>
+            <div class="col-md-6 aside-img">
+                <img src="../public/layout/img/pht/img-login-page.svg" alt="">
                 <div class="login-footer">
                     <div class="row bs-reset">
-                        <div class="col-xs-5 bs-reset">
-                        </div>
-                        <div class="col-xs-7 bs-reset">
+                        <div class="col-xs-10 bs-reset">
                             <div class="login-copyright text-right">
-                                <a style="color: #a9b5be;" href="https://pizzetti.net" target="_blank">Copyright 2019 - Senai SC</a>
+                                <a style="color: #a9b5be;" href="http://sc.senai.br/" target="_blank">Copyright 2019 - Senai SC</a>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 bs-reset">
-                <div class="login-bg"></div>
             </div>
         </div>
     </div>
