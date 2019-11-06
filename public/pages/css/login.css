@@ -158,30 +158,11 @@
     .user-login-5 .login-container > .login-content .text-right {
         text-align: left; } }
 
-
-
-        .btn.grey-mint:not(.btn-outline) {
-            border: 1px solid #00D67A;
-            background: transparent;
-            border-radius: 8px;
-            color: #00D67A;
-            font-family: Poppins;
-            font-weight: 600;
-            line-height: 25px;
-            width: 137px;
-            font-size: 16px;
-            transition: background .4s;
-            -webkit-box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.16) !important;
-            -moz-box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.16) !important;
-            box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.16) !important;
-            margin-top: -10px;
-            margin-left: 30px;
-        }
-
         .btn.grey-mint:not(.btn-outline):hover {
             background: #00D67A;
             color: #ffffff;
             border: 1px solid #00D67A;
+
         }
 
         .btn.grey-mint:not(.btn-outline):focus-within {
@@ -193,6 +174,127 @@
         .aside-img img {
             display: block;
             width: 100%;
-            max-width: 550px;
-            margin: 120px auto 100px auto;
+            max-width: 350px;
+            margin: 110px auto 0 auto;
+        }
+
+        input {
+            width: 100% !important;
+            padding: 10px 0!important;
+            border: none!important;
+            border-bottom: 1px solid!important;
+            border-color: #00D67A!important;
+            color: #707070!important;
+            font-family: 'Titillium Web'!important;
+            padding: 0 10px!important;
+            font-size: 14px!important;
+            margin-bottom: 30px!important; 
+        }
+
+        button {
+            width: 137px !important;
+            border: 1px solid #00D67A !important;
+            background: #ffffff !important;
+            border-radius: 8px !important;
+            color: #00D67A !important;
+            font-family: Poppins !important;
+            font-weight: 600 !important;
+            line-height: 25px !important;
+            font-size: 16px !important;
+            transition: background .4s !important;
+            -webkit-box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.16) !important;
+            -moz-box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.16) !important;
+            box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.16) !important;
+           
+        }
+
+        button:hover {
+            background: #00D67A !important;
+            color: #ffffff !important;
+        }
+
+
+        .btn-redefinir {
+            width: 150px !important;
+            background: #00D67A !important;
+            color: #ffffff !important;
+        }
+
+        .btn-redefinir:hover {
+            opacity: 0.75;
+        }
+
+        .btn-voltar {
+            width: 137px !important;
+            border: 1px solid #00D67A !important;
+            background: #ffffff !important;
+            border-radius: 8px !important;
+            color: #00D67A !important;
+            font-family: Poppins !important;
+            font-weight: 600 !important;
+            line-height: 25px !important;
+            font-size: 16px !important;
+            transition: background .4s !important;
+            -webkit-box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.16) !important;
+            -moz-box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.16) !important;
+            box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.16) !important;
+        }
+
+        .btn-voltar:hover {
+            background: #00D67A !important;
+            color: #ffffff !important;
+        }
+
+        .btn-acessar {
+            -webkit-box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.16) !important;
+            -moz-box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.16) !important;
+            box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.16) !important;
+            margin-left: 30px;
+            margin-top: -10px;
+        }
+
+        .brand {
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            opacity: 0.7;
+        }
+
+
+        @media (max-width: 768px) {
+            .aside-img img {
+                display: block;
+                width: 100%;
+                max-width: 140px;
+                margin: 40px auto;
+            }
+
+            h1 {
+                font-size: 24px !important;
+                text-align: center;
+            }
+
+            p {
+                text-align: center;
+                font-size: 14px;
+            }
+            .col-xs-6 {
+                width: 100% !important;
+            }
+
+            .brand {
+                width: 50px;
+            }
+
+            #div-acoes {
+                text-align: center;
+                display: flex;
+                vertical-align: center;
+                align-items: center;
+            }
+
+            .btn-acessar {
+                margin-top: 10px;
+                margin: 10px auto;
+            }
         }

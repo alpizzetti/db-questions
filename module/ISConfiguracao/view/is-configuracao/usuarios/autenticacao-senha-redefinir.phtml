@@ -3,7 +3,7 @@
 
 <head>
     <?php
-    echo $this->headTitle('App | SENAI');
+    echo $this->headTitle('Banco de Questões | Redefinir Senha');
 
     echo $this->headMeta()
         ->setCharset('utf-8')
@@ -26,10 +26,10 @@
 </head>
 
 <body class=" login">
+    <img class="brand" src="../../public/layout/img/pht/senai-brand.png" alt="">
     <div class="user-login-5">
         <div class="row bs-reset">
             <div class="col-md-6 login-container bs-reset">
-                <img class="login-logo login-6" src="/global/img/logo-1.png" />
                 <div class="login-content">
                     <h1>Esqueceu sua senha?</h1>
                     <p>Digite seu endereço de e-mail para redefinir sua senha.</p>
@@ -46,8 +46,8 @@
                         </div>
                     </div>
                     <div class="form-actions" id="div-acoes">
-                        <a href="<?php echo $this->url('isconfiguracao-autenticacao-entrar'); ?>" class="btn grey btn-default">Voltar</a>
-                        <button type="submit" class="btn grey-mint pull-right"> Redefinir senha</button>
+                        <a href="<?php echo $this->url('isconfiguracao-autenticacao-entrar'); ?>" class="btn grey btn-default btn-voltar">Voltar</a>
+                        <button type="submit" class="btn grey-mint pull-right btn-redefinir"> Redefinir senha</button>
                     </div>
                     <div class="form-actions text-right display-hide" id="div-processando">
                         <h4><img src="/layout/img/loading-spinner-blue.gif" /> Um momento...</h4>
@@ -66,8 +66,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 bs-reset">
-                <div class="login-bg"> </div>
+            <div class="col-md-6 aside-img">
+            <img src="../../public/layout/img/pht/img-login-page.png" alt="">
             </div>
         </div>
     </div>
