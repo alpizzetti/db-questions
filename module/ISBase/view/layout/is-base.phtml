@@ -94,6 +94,7 @@
                                                 echo ($controller == "ISConfiguracao\Controller\Grupos" ||
                                                     $controller == "ISConfiguracao\Controller\Privilegios" ||
                                                     $controller == "ISConfiguracao\Controller\Unidades" ||
+                                                    $controller == "ISConfiguracao\Controller\Cursos" ||
                                                     $controller == "ISConfiguracao\Controller\Usuarios") ? "active open" : "";
                                                 ?>">
                             <a href="javascript:;" class="nav-link nav-toggle">
@@ -137,6 +138,7 @@
                                                 echo ($controller == "ISConfiguracao\Controller\Grupos" ||
                                                     $controller == "ISConfiguracao\Controller\Privilegios" ||
                                                     $controller == "ISConfiguracao\Controller\Unidades" ||
+                                                    $controller == "ISConfiguracao\Controller\Cursos" ||
                                                     $controller == "ISConfiguracao\Controller\Usuarios") ? "active open" : "";
                                                 ?>">
                             <a href="javascript:;" class="nav-link nav-toggle">
@@ -180,6 +182,7 @@
                                                 echo ($controller == "ISConfiguracao\Controller\Grupos" ||
                                                     $controller == "ISConfiguracao\Controller\Privilegios" ||
                                                     $controller == "ISConfiguracao\Controller\Unidades" ||
+                                                    $controller == "ISConfiguracao\Controller\Cursos" ||
                                                     $controller == "ISConfiguracao\Controller\Usuarios") ? "active open" : "";
                                                 ?>">
                             <a href="javascript:;" class="nav-link nav-toggle">
@@ -197,15 +200,15 @@
                                 <?php }
                                     if ($sessao->getAcl("configuracoes", "cursos", "ler")) { ?>
                                     <li class="nav-item">
-                                        <a class="nav-item" href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'usuarios', 'action' => 'index')); ?>">
+                                        <a class="nav-item" href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'cursos', 'action' => 'index')); ?>">
                                             <i class="fa fa-bars"></i> Cursos
                                         </a>
                                     </li>
                                 <?php }
                                     if ($sessao->getAcl("configuracoes", "disciplinas", "ler")) { ?>
                                     <li class="nav-item">
-                                        <a class="nav-item" href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'usuarios', 'action' => 'index')); ?>">
-                                            <i class="fa fa-bars"></i> Disciplinas
+                                        <a class="nav-item" href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'disciplinas', 'action' => 'index')); ?>">
+                                            <i class="fa fa-bars"></i> Unidades Curriculares
                                         </a>
                                     </li>
                                 <?php }

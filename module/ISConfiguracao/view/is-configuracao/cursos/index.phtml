@@ -1,5 +1,5 @@
 <?php $totalItens = $dados->getTotalItemCount(); ?>
-<h1 class="page-title">Cadastro de Grupos</h1>
+<h1 class="page-title">Cadastro de Cursos</h1>
 <div class="page-bar">
     <ul class="page-breadcrumb">
         <li>
@@ -8,19 +8,19 @@
             <i class="fa fa-angle-right"></i>
         </li>
         <li>
-            <span>Grupos</span>
+            <span>Cursos</span>
         </li>
     </ul>
 </div>
-<div class="portlet light">
+<div class="portlet light ">
     <div class="portlet-title">
         <div class="caption">
             <i class="fa fa-list font-yellow"></i>
             <span class="caption-subject font-yellow bold uppercase">Exibir/Buscar</span>
-            <span class="caption-helper"><?php echo ISBase\Util\IdealizeUtil::itensLocalizados($totalItens, "grupo"); ?></span>
+            <span class="caption-helper"><?php echo ISBase\Util\IdealizeUtil::itensLocalizados($totalItens, "curso"); ?></span>
         </div>
         <div class="actions">
-            <a class="btn grey-mint pull-right" href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'grupos', 'action' => 'novo')); ?>">
+            <a class="btn grey-mint pull-right" href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'cursos', 'action' => 'novo')); ?>">
                 <i class="icon-plus"></i> Novo
             </a>
         </div>
@@ -30,21 +30,35 @@
         <div class="form-body">
             <?php echo $this->partial('partials/notificacoes'); ?>
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <div class="form-group">
                         <?php
                         echo $this->formLabel($form->get("status"));
                         echo $this->formElement($form->get("status"));
-                        echo $this->formElementErrors($form->get("status"), array('class' => "parsley-error-list"));
                         ?>
                     </div>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?php
+                        echo $this->formLabel($form->get("unidade"));
+                        echo $this->formElement($form->get("unidade"));
+                        ?>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?php
+                        echo $this->formLabel($form->get("tipo"));
+                        echo $this->formElement($form->get("tipo"));
+                        ?>
+                    </div>
+                </div>
+                <div class="col-md-4">
                     <div class="form-group">
                         <?php
                         echo $this->formLabel($form->get("nome"));
                         echo $this->formElement($form->get("nome"));
-                        echo $this->formElementErrors($form->get("nome"), array('class' => "parsley-error-list"));
                         ?>
                     </div>
                 </div>
@@ -52,7 +66,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <button type="submit" class="btn default pull-right"><i class="fa fa-search"></i> Buscar</button>
+                        <button type="submit" class="btn grey-salt pull-right"><i class="fa fa-search"></i> Buscar</button>
                     </div>
                 </div>
             </div>
@@ -65,10 +79,8 @@
                 <thead>
                     <tr>
                         <th>Nome</th>
-                        <th>Herança</th>
-                        <th class='text-center' width="10">Administrador</th>
-                        <th class='text-center' width="10">Professor</th>
-                        <th class='text-center' width="10">Moderador</th>
+                        <th class="text-center" width="109">Tipo</th>
+                        <th class="text-center" width="10">Status</th>
                         <?php if ($acl['escrever']) { ?>
                             <th width="10"></th>
                             <th width="10"></th>
@@ -76,29 +88,35 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($dados as $grupo) { ?>
+                    <?php foreach ($dados as $curso) { ?>
                         <tr>
-                            <td><?php echo $grupo->getNome(); ?></td>
-                            <td width="250"><?php echo!empty($grupo->getHerda()) ? $grupo->getHerda()->getNome() : ""; ?></td>
-                            <td class='text-center'><?php echo $grupo->getAdministrador() ? "<span class='label label-sm label-danger'>Sim</span>" : "<span class='label label-sm label-info'>Não</span>"; ?></td>
-                            <td class='text-center'><?php echo $grupo->getProfessor() ? "<span class='label label-sm label-danger'>Sim</span>" : "<span class='label label-sm label-info'>Não</span>"; ?></td>
-                            <td class='text-center'><?php echo $grupo->getModerador() ? "<span class='label label-sm label-danger'>Sim</span>" : "<span class='label label-sm label-info'>Não</span>"; ?></td>
+                            <td>
+                                <?php if ($acl['escrever']) { ?>
+                                    <a href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'cursos', 'action' => 'editar', 'id' => $curso['id'])); ?>">
+                                        <?php echo $curso['nome']; ?>
+                                    </a>
+                                <?php } else { ?>
+                                    <span><?php echo $curso['nome']; ?></span>
+                                <?php } ?>
+                            </td>
+                            <td class="text-center"><?php echo \ISBase\Util\Arrays::cursosTipos($curso['tipo']); ?></td>
+                            <td class="text-center"><?php echo $curso['status'] ? "<span class='label label-sm label-info'>Ativo</span>" : "<span class='label label-sm label-danger'>Inativo</span>"; ?></td>
                             <?php if ($acl['escrever']) { ?>
                                 <td>
-                                    <a class="btn default btn-xs yellow-stripe" href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'grupos', 'action' => 'editar', 'id' => $grupo->getId())); ?>">
+                                    <a class="btn default btn-xs yellow-stripe" href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'cursos', 'action' => 'editar', 'id' => $curso['id'])); ?>">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                 </td>
                                 <td>
-                                    <?php if ($grupo->getStatus()) { ?>
-                                        <a class="btn default btn-xs red-stripe" href="javascript:;" onclick="modal_remover('<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'grupos', 'action' => 'ativarRemover', 'id' => $grupo->getId())); ?>');"> <i class="fa fa-remove"></i></a>
+                                    <?php if ($curso['status']) { ?>
+                                        <a class="btn default btn-xs red-stripe" href="javascript:;" onclick="modal_remover('<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'cursos', 'action' => 'ativarRemover', 'id' => $curso['id'])); ?>');"> <i class="fa fa-remove"></i></a>
                                     <?php } else { ?>
-                                        <a class="btn default btn-xs green-stripe" href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'grupos', 'action' => 'ativarRemover', 'id' => $grupo->getId())); ?>"> <i class="fa fa-check"></i></a>
+                                        <a class="btn default btn-xs green-stripe" href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'cursos', 'action' => 'ativarRemover', 'id' => $curso['id'])); ?>"> <i class="fa fa-check"></i></a>
                                     <?php } ?>
                                 </td>
                             <?php } ?>
                         </tr>
-                        <?php } if ($totalItens == 0) { ?>
+                    <?php } if ($totalItens == 0) { ?>
                         <tr>
                             <td colspan="12">Nenhum registro localizado</td>
                         </tr>
@@ -109,7 +127,6 @@
         <?php if ($totalItens > 20) { ?>
             <div class="row">
                 <div class="col-md-12 col-sm-12">
-                    <?php echo $this->paginationControl($dados, 'Sliding', 'partials/paginacao', array("filters" => $filtros)); ?>
                 </div>
             </div>
         <?php } ?>

@@ -82,6 +82,14 @@ class IdealizeUtil
             } else {
                 return $total . " privilégios localizados";
             }
+        } else if ($item == "curso") {
+            if ($total == 0) {
+                return "Nenhum curso localizado";
+            } else if ($total == 1) {
+                return "Um curso localizado";
+            } else {
+                return $total . " cursos localizados";
+            }
         }
     }
 }

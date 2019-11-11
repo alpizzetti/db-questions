@@ -53,11 +53,29 @@ class Module {
 
                     return new Form\PrivelegioIndex('privilegioIndex', $grupos, $funcionalidades);
                 },
+                'ISConfiguracao\Form\CursoIndex' => function($sm) {
+                    $em = $sm->get('Doctrine\ORM\EntityManager');
+                    $unidades = $em->getRepository('ISConfiguracao\Entity\Unidade')->popularCombobox();
+
+                    return new Form\CursoIndex($unidades);
+                },
+                'ISConfiguracao\Form\Curso' => function($sm) {
+                    $em = $sm->get('Doctrine\ORM\EntityManager');
+                    $unidades = $em->getRepository('ISConfiguracao\Entity\Unidade')->popularCombobox();
+
+                    return new Form\Curso($unidades);
+                },
                 'ISConfiguracao\Service\Privilegio' => function($sm) {
                     return new Service\Privilegio($sm->get('Doctrine\ORM\Entitymanager'));
                 },
                 'ISConfiguracao\Service\Unidade' => function($sm) {
                     return new Service\Unidade($sm->get('Doctrine\ORM\EntityManager'));
+                },
+                'ISConfiguracao\Service\Curso' => function($sm) {
+                    return new Service\Curso($sm->get('Doctrine\ORM\EntityManager'));
+                },
+                'ISConfiguracao\Service\Grupo' => function($sm) {
+                    return new Service\Grupo($sm->get('Doctrine\ORM\EntityManager'));
                 },
                 'ISConfiguracao\Service\Usuario' => function($sm) {
                     return new Service\Usuario($sm->get('Doctrine\ORM\EntityManager'), $sm->get('ISConfiguracao\Mail\Transport'), $sm->get('View'));
