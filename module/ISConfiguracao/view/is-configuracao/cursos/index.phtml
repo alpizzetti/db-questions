@@ -79,7 +79,8 @@
                 <thead>
                     <tr>
                         <th>Nome</th>
-                        <th class="text-center" width="109">Tipo</th>
+                        <th class="text-center" width="400">Unidade</th>
+                        <th class="text-center" width="200">Tipo</th>
                         <th class="text-center" width="10">Status</th>
                         <?php if ($acl['escrever']) { ?>
                             <th width="10"></th>
@@ -95,12 +96,13 @@
                                     <a href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'cursos', 'action' => 'editar', 'id' => $curso['id'])); ?>">
                                         <?php echo $curso['nome']; ?>
                                     </a>
-                                    <?php
-                                } else {
-                                    echo $curso['nome'];
-                                }
-                                ?>
+                                <?php
+                                    } else {
+                                        echo $curso['nome'];
+                                    }
+                                    ?>
                             </td>
+                            <td class="text-center"><?php echo $curso['unidade']; ?></td>
                             <td class="text-center"><?php echo \ISBase\Util\Arrays::cursosTipos($curso['tipo']); ?></td>
                             <td class="text-center"><?php echo $curso['status'] ? "<span class='label label-sm label-info'>Ativo</span>" : "<span class='label label-sm label-danger'>Inativo</span>"; ?></td>
                             <?php if ($acl['escrever']) { ?>
@@ -118,7 +120,8 @@
                                 </td>
                             <?php } ?>
                         </tr>
-                    <?php } if ($totalItens == 0) { ?>
+                    <?php }
+                    if ($totalItens == 0) { ?>
                         <tr>
                             <td colspan="12">Nenhum registro localizado</td>
                         </tr>

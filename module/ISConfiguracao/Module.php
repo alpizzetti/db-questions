@@ -42,6 +42,12 @@ class Module
 
                     return new Form\UnidadeCurricularIndex($cursos);
                 },
+                'ISConfiguracao\Form\UnidadeCurricular' => function ($sm) {
+                    $em = $sm->get('Doctrine\ORM\EntityManager');
+                    $cursos = $em->getRepository('ISConfiguracao\Entity\Curso')->popularCombobox();
+
+                    return new Form\UnidadeCurricular($cursos);
+                },
                 'ISConfiguracao\Form\UsuarioDados' => function ($sm) {
                     $em = $sm->get('Doctrine\ORM\EntityManager');
                     $grupos = $em->getRepository('ISConfiguracao\Entity\Grupo')->popularCombobox();

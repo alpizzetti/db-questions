@@ -104,7 +104,7 @@ class IdealizeUtil
             } else if ($total == 1) {
                 return "Uma unidade curricular localizada";
             } else {
-                return $total . " unidades curriculares localizados";
+                return $total . " unidades curriculares localizadas";
             }
         }
     }

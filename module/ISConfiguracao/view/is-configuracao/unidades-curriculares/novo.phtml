@@ -1,4 +1,4 @@
-<h1 class="page-title">Cadastro de Cursos</h1>
+<h1 class="page-title">Cadastro de Unidade Curricular</h1>
 <div class="page-bar">
     <ul class="page-breadcrumb">
         <li>
@@ -7,11 +7,11 @@
             <i class="fa fa-angle-right"></i>
         </li>
         <li>
-            <a href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'cursos', 'action' => 'index')); ?>">Cursos</a>
+            <a href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'unidadescurriculares', 'action' => 'index')); ?>">Unidade Curricular</a>
             <i class="fa fa-angle-right"></i>
         </li>
         <li>
-            <span>Novo</span>
+            <span>Nova</span>
         </li>
     </ul>
 </div>
@@ -19,7 +19,7 @@
     <div class="portlet-title">
         <div class="caption">
             <i class="fa fa-plus font-yellow"></i>
-            <span class="caption-subject font-yellow bold uppercase">Novo</span>
+            <span class="caption-subject font-yellow bold uppercase">Nova</span>
         </div>
     </div>
     <div class="portlet-body form">
@@ -38,27 +38,18 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <div class="form-group">
                         <?php
-                        echo $this->formLabel($form->get("unidade"));
-                        echo $this->formElement($form->get("unidade"));
-                        echo $this->formElementErrors($form->get("unidade"), array('class' => "parsley-error-list"));
+                        echo $this->formLabel($form->get("curso"));
+                        echo $this->formElement($form->get("curso"));
+                        echo $this->formElementErrors($form->get("curso"), array('class' => "parsley-error-list"));
                         ?>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <?php
-                        echo $this->formLabel($form->get("tipo"));
-                        echo $this->formElement($form->get("tipo"));
-                        echo $this->formElementErrors($form->get("tipo"), array('class' => "parsley-error-list"));
-                        ?>
-                    </div>
-                </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="form-group">
                         <?php
                         echo $this->formLabel($form->get("nome"));

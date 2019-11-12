@@ -19,7 +19,7 @@ class UnidadeCurricular extends AbstractService
         $curso = $this->em->getReference("ISConfiguracao\Entity\Curso", $data['curso']);
 
         $unidadecurricular = new \ISConfiguracao\Entity\UnidadeCurricular($data);
-        $unidadecurricular->setUnidade($curso);
+        $unidadecurricular->setCurso($curso);
 
         $this->em->persist($unidadecurricular);
         $this->em->flush();
@@ -34,7 +34,7 @@ class UnidadeCurricular extends AbstractService
 
         (new Hydrator\ClassMethods())->hydrate($data, $unidadecurricular);
 
-        $unidadecurricular->setUnidade($curso);
+        $unidadecurricular->setCurso($curso);
         $unidadecurricular->setDataAlteracao();
 
         $this->em->persist($unidadecurricular);
