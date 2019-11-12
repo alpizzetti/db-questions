@@ -5,12 +5,15 @@ namespace ISConfiguracao\Entity;
 use ISBase\Paginator\AdapterQuery;
 use Doctrine\ORM\EntityRepository;
 
-class UnidadeCurricularRepository extends EntityRepository {
+class UnidadeCurricularRepository extends EntityRepository
+{
 
-    public function listagemIndex($request) {
-        $dql = "SELECT uni.id, uni.nome, uni.status"
-                . " FROM ISConfiguracao\Entity\UnidadeCurricular uni"
-                . " WHERE uni.status = :status";
+    public function listagemIndex($request)
+    {
+        $dql = "SELECT uni.id, uni.nome, uni.status, cur.nome AS curso"
+            . " FROM ISConfiguracao\Entity\UnidadeCurricular uni"
+            . " INNER JOIN uni.curso cur"
+            . " WHERE uni.status = :status";
 
         $params['status'] = $request['status'];
 
@@ -30,11 +33,12 @@ class UnidadeCurricularRepository extends EntityRepository {
         return (new AdapterQuery($query, $request['pagina'], 20, $this->getEntityManager()))->getPaginator();
     }
 
-    public function popularCombobox() {
+    public function popularCombobox()
+    {
         $dql = "SELECT uni.id, uni.nome"
-                . " FROM ISConfiguracao\Entity\UnidadeCurricular uni"
-                . " WHERE uni.status = :status"
-                . " ORDER BY uni.nome";
+            . " FROM ISConfiguracao\Entity\UnidadeCurricular uni"
+            . " WHERE uni.status = :status"
+            . " ORDER BY uni.nome";
 
         $params['status'] = true;
 
@@ -47,5 +51,4 @@ class UnidadeCurricularRepository extends EntityRepository {
 
         return $saida;
     }
-
 }

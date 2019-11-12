@@ -5,9 +5,11 @@ namespace ISConfiguracao\Controller;
 use ISBase\Controller\CrudController as CrudController;
 use Zend\View\Model\ViewModel;
 
-class UnidadesCurricularesController extends CrudController {
+class UnidadesCurricularesController extends CrudController
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
 
         $this->entity = 'ISConfiguracao\Entity\UnidadeCurricular';
@@ -37,16 +39,17 @@ class UnidadesCurricularesController extends CrudController {
         );
     }
 
-    public function indexAction() {
+    public function indexAction()
+    {
         if ($this->getAcesso('ler')) {
             $request['status'] = $this->params()->fromQuery('status', 1);
             $request['pagina'] = $this->params()->fromQuery('pagina', 1);
             $request['nome'] = $this->params()->fromQuery('nome', null);
-            $request['cursos'] = $this->params()->fromQuery('cursos', null);
+            $request['curso'] = $this->params()->fromQuery('curso', null);
 
             $filtros = $request['status'] != 1 ? "&status=" . $request['status'] : "";
             $filtros .= !empty($request['nome']) ? "&nome=" . $request['nome'] : "";
-            $filtros .= !empty($request['cursos']) ? "&cursos=" . $request['cursos'] : "";
+            $filtros .= !empty($request['curso']) ? "&curso=" . $request['curso'] : "";
 
             return new ViewModel(array(
                 'filtros' => $filtros,
@@ -59,5 +62,4 @@ class UnidadesCurricularesController extends CrudController {
 
         return $this->notFoundAction()->setTerminal(true);
     }
-
 }

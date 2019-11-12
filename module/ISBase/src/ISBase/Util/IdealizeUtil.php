@@ -90,6 +90,22 @@ class IdealizeUtil
             } else {
                 return $total . " cursos localizados";
             }
+        } else if ($item == "questao") {
+            if ($total == 0) {
+                return "Nenhuma questão localizada";
+            } else if ($total == 1) {
+                return "Uma questão localizada";
+            } else {
+                return $total . " questões localizadas";
+            }
+        } else if ($item == "unidade_curricular") {
+            if ($total == 0) {
+                return "Nenhuma unidade curricular localizada";
+            } else if ($total == 1) {
+                return "Uma unidade curricular localizada";
+            } else {
+                return $total . " unidades curriculares localizados";
+            }
         }
     }
 }

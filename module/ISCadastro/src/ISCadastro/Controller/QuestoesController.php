@@ -5,9 +5,11 @@ namespace ISCadastro\Controller;
 use ISBase\Controller\CrudController as CrudController;
 use Zend\View\Model\ViewModel;
 
-class QuestoesController extends CrudController {
+class QuestoesController extends CrudController
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
 
         $this->entity = 'ISCadastro\Entity\Questao';
@@ -37,7 +39,8 @@ class QuestoesController extends CrudController {
         );
     }
 
-    public function indexAction() {
+    public function indexAction()
+    {
         if ($this->getAcesso('ler')) {
             $request['status'] = $this->params()->fromQuery('status', 1);
             $request['filtro'] = $this->params()->fromQuery('filtro', null);
@@ -62,7 +65,8 @@ class QuestoesController extends CrudController {
         return $this->notFoundAction()->setTerminal(true);
     }
 
-    public function novoAction() {
+    public function novoAction()
+    {
         if ($this->getAcesso()) {
             $form = $this->getServiceLocator()->get($this->form);
             $request = $this->getRequest();
@@ -73,7 +77,7 @@ class QuestoesController extends CrudController {
                 if ($form->isValid()) {
                     $request = $request->getPost()->toArray();
                     $request['usuarioId'] = $this->usuarioId;
-                    
+
                     $this->getServiceLocator()->get($this->service)->insert($request);
                     $this->setMensagemSucesso($this->getMensagem('insert', 'success'));
 
@@ -89,5 +93,4 @@ class QuestoesController extends CrudController {
 
         return $this->notFoundAction()->setTerminal(true);
     }
-
 }
