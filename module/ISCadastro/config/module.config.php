@@ -5,6 +5,17 @@ namespace ISCadastro;
 return array(
     'router' => array(
         'routes' => array(
+            'home' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route' => '/',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'ISCadastro\Controller',
+                        'controller' => 'Questoes',
+                        'action' => 'index'
+                    )
+                )
+            ),
             'iscadastro-admin' => array(
                 'type' => 'Literal',
                 'options' => array(

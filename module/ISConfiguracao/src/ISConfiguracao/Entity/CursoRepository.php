@@ -34,4 +34,22 @@ class CursoRepository extends EntityRepository {
         return (new AdapterQuery($query, $request['pagina'], 20, $this->getEntityManager()))->getPaginator();
     }
 
+    public function popularCombobox() {
+        $dql = "SELECT cur.id, cur.nome"
+                . " FROM ISConfiguracao\Entity\Curso cur"
+                . " WHERE cur.status = :status"
+                . " ORDER BY cur.nome";
+
+        $params['status'] = true;
+
+        $cursos = $this->getEntityManager()->createQuery($dql)->setParameters($params)->getResult();
+        $saida = [];
+        
+        foreach ($cursos as $curso) {
+            $saida[$curso['id']] = $curso['nome'];
+        }
+        
+        return $saida;
+    }
+
 }

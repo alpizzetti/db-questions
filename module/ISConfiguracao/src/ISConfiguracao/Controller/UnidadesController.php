@@ -6,11 +6,9 @@ use ISBase\Controller\CrudController as CrudController;
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
 
-class UnidadesController extends CrudController
-{
+class UnidadesController extends CrudController {
 
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
 
         $this->entity = 'ISConfiguracao\Entity\Unidade';
@@ -40,8 +38,7 @@ class UnidadesController extends CrudController
         );
     }
 
-    public function indexAction()
-    {
+    public function indexAction() {
         if ($this->getAcesso('ler')) {
             $request['status'] = $this->params()->fromQuery('status', 1);
             $request['estado'] = $this->params()->fromQuery('estado', null);
@@ -66,8 +63,7 @@ class UnidadesController extends CrudController
         return $this->notFoundAction()->setTerminal(true);
     }
 
-    public function localizarAcessosAction()
-    {
+    public function localizarAcessosAction() {
         $request = $this->getRequest();
         $retorno["sucesso"] = false;
 
@@ -92,4 +88,5 @@ class UnidadesController extends CrudController
 
         return new JsonModel($retorno);
     }
+
 }

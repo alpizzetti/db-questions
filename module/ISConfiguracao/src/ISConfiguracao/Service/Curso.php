@@ -5,14 +5,17 @@ namespace ISConfiguracao\Service;
 use ISBase\Service\AbstractService;
 use Zend\Stdlib\Hydrator;
 
-class Curso extends AbstractService {
+class Curso extends AbstractService
+{
 
-    public function __construct(\Doctrine\ORM\EntityManager $em) {
+    public function __construct(\Doctrine\ORM\EntityManager $em)
+    {
         parent::__construct($em);
         $this->entity = 'ISConfiguracao\Entity\Curso';
     }
 
-    public function insert(array $data) {
+    public function insert(array $data)
+    {
         $unidade = $this->em->getReference("ISConfiguracao\Entity\Unidade", $data['unidade']);
 
         $curso = new \ISConfiguracao\Entity\Curso($data);
@@ -24,7 +27,8 @@ class Curso extends AbstractService {
         return $curso;
     }
 
-    public function update(array $data) {
+    public function update(array $data)
+    {
         $curso = $this->em->getReference($this->entity, $data['id']);
         $unidade = $this->em->getReference("ISConfiguracao\Entity\Unidade", $data['unidade']);
 
@@ -38,5 +42,4 @@ class Curso extends AbstractService {
 
         return $curso;
     }
-
 }

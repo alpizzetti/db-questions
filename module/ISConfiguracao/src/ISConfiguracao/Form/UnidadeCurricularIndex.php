@@ -6,16 +6,16 @@ use Zend\Form\Element\Select;
 use Zend\Form\Element\Text;
 use Zend\Form\Form;
 
-class CursoIndex extends Form
+class UnidadeCurricularIndex extends Form
 {
 
-    public function __construct($unidades)
+    public function __construct($cursos)
     {
         parent::__construct();
-        $this->addElements($unidades);
+        $this->addElements($cursos);
     }
 
-    private function addElements($unidades)
+    private function addElements($cursos)
     {
         $this->setAttribute('method', 'get');
 
@@ -31,15 +31,9 @@ class CursoIndex extends Form
             ->setOptions(array('label_attributes' => array('class' => 'control-label'))));
 
         $this->add((new Select())
-            ->setLabel('Tipo:')
+            ->setLabel('Curso:')
             ->setAttributes(array('class' => 'form-control'))
-            ->setName('tipo')
-            ->setOptions(array('label_attributes' => array('class' => 'control-label'), 'disable_inarray_validator' => true, 'empty_option' => 'Selecione', 'value_options' => \ISBase\Util\Arrays::cursosTipos())));
-
-        $this->add((new Select())
-            ->setLabel('Unidade:')
-            ->setAttributes(array('class' => 'form-control'))
-            ->setName('unidade')
-            ->setOptions(array('label_attributes' => array('class' => 'control-label'), 'disable_inarray_validator' => true, 'empty_option' => 'Selecione', 'value_options' => $unidades)));
+            ->setName('curso')
+            ->setOptions(array('label_attributes' => array('class' => 'control-label'), 'disable_inarray_validator' => true, 'empty_option' => 'Selecione', 'value_options' => $cursos)));
     }
 }

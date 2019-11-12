@@ -49,17 +49,6 @@ return array(
                     )
                 )
             ),
-            'home' => array(
-                'type' => 'Literal',
-                'options' => array(
-                    'route' => '/',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'ISConfiguracao\Controller',
-                        'controller' => 'Usuarios',
-                        'action' => 'index'
-                    )
-                )
-            ),
             'isconfiguracao-admin' => array(
                 'type' => 'Literal',
                 'options' => array(
@@ -98,6 +87,8 @@ return array(
             'ISConfiguracao\Controller\Privilegios' => 'ISConfiguracao\Controller\PrivilegiosController',
             'ISConfiguracao\Controller\Unidades' => 'ISConfiguracao\Controller\UnidadesController',
             'ISConfiguracao\Controller\Cursos' => 'ISConfiguracao\Controller\CursosController',
+            'ISConfiguracao\Controller\UnidadesCurriculares' => 'ISConfiguracao\Controller\UnidadesCurricularesController',
+            'ISConfiguracao\Controller\Capacidades' => 'ISConfiguracao\Controller\CapacidadesController',
             'ISConfiguracao\Controller\Usuarios' => 'ISConfiguracao\Controller\UsuariosController',
         )
     ),

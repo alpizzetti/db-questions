@@ -5,24 +5,22 @@ namespace ISConfiguracao\Controller;
 use ISBase\Controller\CrudController as CrudController;
 use Zend\View\Model\ViewModel;
 
-class CursosController extends CrudController
-{
+class UnidadesCurricularesController extends CrudController {
 
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
 
-        $this->entity = 'ISConfiguracao\Entity\Curso';
-        $this->service = 'ISConfiguracao\Service\Curso';
-        $this->form = 'ISConfiguracao\Form\Curso';
-        $this->controller = 'cursos';
+        $this->entity = 'ISConfiguracao\Entity\UnidadeCurricular';
+        $this->service = 'ISConfiguracao\Service\UnidadeCurricular';
+        $this->form = 'ISConfiguracao\Form\UnidadeCurricular';
+        $this->controller = 'unidadescurriculares';
         $this->formSevice = true;
         $this->route = 'isconfiguracao-admin/default';
         $this->actionNovo = 'novo';
         $this->actionEditar = 'editar';
         $this->actionRemover = 'index';
         $this->modulo = 'configuracoes';
-        $this->funcionalidade = 'cursos';
+        $this->funcionalidade = 'unidadescurriculares';
         $this->messages = array(
             'success' => array(
                 'insert' => 'Inserida com sucesso.',
@@ -39,29 +37,27 @@ class CursosController extends CrudController
         );
     }
 
-    public function indexAction()
-    {
+    public function indexAction() {
         if ($this->getAcesso('ler')) {
             $request['status'] = $this->params()->fromQuery('status', 1);
-            $request['nome'] = $this->params()->fromQuery('nome', null);
             $request['pagina'] = $this->params()->fromQuery('pagina', 1);
-            $request['unidade'] = $this->params()->fromQuery('unidade', null);
-            $request['tipo'] = $this->params()->fromQuery('tipo', null);
+            $request['nome'] = $this->params()->fromQuery('nome', null);
+            $request['cursos'] = $this->params()->fromQuery('cursos', null);
 
             $filtros = $request['status'] != 1 ? "&status=" . $request['status'] : "";
             $filtros .= !empty($request['nome']) ? "&nome=" . $request['nome'] : "";
-            $filtros .= !empty($request['unidade']) ? "&unidade=" . $request['unidade'] : "";
-            $filtros .= !empty($request['tipo']) ? "&tipo=" . $request['tipo'] : "";
+            $filtros .= !empty($request['cursos']) ? "&cursos=" . $request['cursos'] : "";
 
             return new ViewModel(array(
                 'filtros' => $filtros,
                 'acl' => $this->getAcl(),
                 'mensagens' => $this->flashMessenger()->getMessages(),
-                'form' => $this->getServiceLocator()->get('ISConfiguracao\Form\CursoIndex')->setData($request),
-                'dados' => $this->getEntityManager()->getRepository($this->entity)->listagemIndex($request)
+                'dados' => $this->getEntityManager()->getRepository($this->entity)->listagemIndex($request),
+                'form' => $this->getServiceLocator()->get('ISConfiguracao\Form\UnidadeCurricularIndex')->setData($request)
             ));
         }
 
         return $this->notFoundAction()->setTerminal(true);
     }
+
 }
