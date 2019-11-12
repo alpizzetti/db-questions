@@ -16,8 +16,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\HasLifecycleCallbacks
  * @ORM\Entity(repositoryClass="UsuarioRepository")
  */
-class Usuario
-{
+class Usuario {
 
     /**
      * @var integer
@@ -131,158 +130,130 @@ class Usuario
      */
     private $acessos;
 
-    public function __construct(array $options = array())
-    {
+    public function __construct(array $options = array()) {
         $this->salt = base64_encode(Rand::getBytes(8, true));
         $this->acessos = new ArrayCollection();
         (new Hydrator\ClassMethods)->hydrate($options, $this);
         $this->dataCriacao = new \DateTime("now");
     }
 
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
-    public function getGrupo()
-    {
+    public function getGrupo() {
         return $this->grupo;
     }
 
-    public function getUnidade()
-    {
+    public function getUnidade() {
         return $this->unidade;
     }
 
-    public function getNome()
-    {
+    public function getNome() {
         return $this->nome;
     }
 
-    public function getPrimeiroNome()
-    {
+    public function getPrimeiroNome() {
         $apelido = explode(" ", $this->getNome());
 
         return !empty($apelido[0]) ? $apelido[0] : $apelido;
     }
 
-    public function getEmail()
-    {
+    public function getEmail() {
         return $this->email;
     }
 
-    public function getSexo()
-    {
+    public function getSexo() {
         return $this->sexo;
     }
 
-    public function getSenha()
-    {
+    public function getSenha() {
         return $this->senha;
     }
 
-    public function getMatricula()
-    {
+    public function getMatricula() {
         return $this->matricula;
     }
 
-    public function getSalt()
-    {
+    public function getSalt() {
         return $this->salt;
     }
 
-    public function getTokenWeb()
-    {
+    public function getTokenWeb() {
         return $this->tokenWeb;
     }
 
-    public function getTokenTrocarSenha()
-    {
+    public function getTokenTrocarSenha() {
         return $this->tokenTrocarSenha;
     }
 
-    public function getTokenGoogle()
-    {
+    public function getTokenGoogle() {
         return $this->tokenGoogle;
     }
 
-    public function getStatus()
-    {
+    public function getStatus() {
         return $this->status;
     }
 
-    public function getDataCriacao()
-    {
+    public function getDataCriacao() {
         return $this->dataCriacao;
     }
 
-    public function getDataAlteracao()
-    {
+    public function getDataAlteracao() {
         return $this->dataAlteracao;
     }
 
-    public function getAcessos()
-    {
+    public function getAcessos() {
         return $this->acessos;
     }
 
-    public function setId($id)
-    {
+    public function setId($id) {
         $this->id = $id;
         return $this;
     }
 
-    public function setGrupo($grupo)
-    {
+    public function setGrupo($grupo) {
         $this->grupo = $grupo;
         return $this;
     }
 
-    public function setUnidade($unidade)
-    {
+    public function setUnidade($unidade) {
         $this->unidade = $unidade;
         return $this;
     }
 
-    public function setNome($nome)
-    {
+    public function setNome($nome) {
         $this->nome = IdealizeUtil::normalizarNome($nome);
         return $this;
     }
 
-    public function setSexo($sexo)
-    {
+    public function setSexo($sexo) {
         $this->sexo = $sexo;
         return $this;
     }
 
-    public function setMatricula(string $matricula)
-    {
+    public function setMatricula(string $matricula) {
         $this->matricula = $matricula;
 
         return $this;
     }
 
-    public function setEmail($email)
-    {
+    public function setEmail($email) {
         $this->email = strtolower($email);
         return $this;
     }
 
-    public function setSenha($senha)
-    {
+    public function setSenha($senha) {
         $this->senha = $this->criptografarSenha($senha);
         return $this;
     }
 
-    public function setSalt($salt)
-    {
+    public function setSalt($salt) {
         $this->salt = $salt;
         return $this;
     }
 
-    public function setTokenWeb($gerar = true)
-    {
+    public function setTokenWeb($gerar = true) {
         if ($gerar) {
             $this->tokenWeb = (new RandomString())->gerar(100);
         } else {
@@ -291,8 +262,7 @@ class Usuario
         return $this;
     }
 
-    public function setTokenTrocarSenha($gerar = true)
-    {
+    public function setTokenTrocarSenha($gerar = true) {
         if ($gerar) {
             $this->tokenTrocarSenha = (new RandomString())->gerar(100);
         } else {
@@ -301,37 +271,32 @@ class Usuario
         return $this;
     }
 
-    public function setTokenGoogle($tokenGoogle)
-    {
+    public function setTokenGoogle($tokenGoogle) {
         $this->tokenGoogle = $tokenGoogle;
         return $this;
     }
 
-    public function setStatus($status)
-    {
+    public function setStatus($status) {
         $this->status = $status;
         return $this;
     }
 
-    public function setDataCriacao()
-    {
+    public function setDataCriacao() {
         $this->dataCriacao = new \DateTime("now");
         return $this;
     }
 
-    public function setDataAlteracao()
-    {
+    public function setDataAlteracao() {
         $this->dataAlteracao = new \DateTime("now");
         return $this;
     }
 
-    public function toArray()
-    {
+    public function toArray() {
         return (new Hydrator\ClassMethods())->extract($this);
     }
 
-    public function criptografarSenha($senha)
-    {
+    public function criptografarSenha($senha) {
         return base64_encode(Pbkdf2::calc('sha256', $senha, $this->salt, 10000, strlen($senha * 2)));
     }
+
 }

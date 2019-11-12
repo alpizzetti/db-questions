@@ -6,50 +6,34 @@ use Doctrine\ORM\Mapping as ORM;
 use Zend\Stdlib\Hydrator;
 
 /**
+ * @ORM\Table(name="unidades_curriculares")
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
- * @ORM\Table(name="grupos")
- * @ORM\Entity(repositoryClass="ISConfiguracao\Entity\GrupoRepository")
+ * @ORM\Entity(repositoryClass="UnidadeCurricularRepository")
  */
-class Grupo {
+class UnidadeCurricular {
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="ISConfiguracao\Entity\Grupo")
-     * @ORM\JoinColumn(name="herda", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="ISConfiguracao\Entity\Curso")
+     * @ORM\JoinColumn(name="curso", referencedColumnName="id")
      */
-    private $herda;
+    private $curso;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nome", type="string", length=100, nullable=false)
+     * @ORM\Column(name="nome", type="string", length=100, precision=0, scale=0, nullable=false, unique=false)
      */
     private $nome;
-
-    /**
-     * @ORM\Column(name="administrador", type="boolean")
-     * @var boolean
-     */
-    private $administrador;
-
-    /**
-     * @ORM\Column(name="professor", type="boolean")
-     * @var boolean
-     */
-    private $professor;
-
-    /**
-     * @ORM\Column(name="moderador", type="boolean")
-     * @var boolean
-     */
-    private $moderador;
 
     /**
      * @var boolean
@@ -72,7 +56,7 @@ class Grupo {
      */
     private $dataAlteracao;
 
-    public function __construct($options = array()) {
+    public function __construct(array $options = array()) {
         (new Hydrator\ClassMethods)->hydrate($options, $this);
         $this->dataCriacao = new \DateTime("now");
     }
@@ -80,27 +64,15 @@ class Grupo {
     public function getId() {
         return $this->id;
     }
-
-    public function getHerda() {
-        return $this->herda;
+    
+    public function getCurso() {
+        return $this->curso;
     }
 
     public function getNome() {
         return $this->nome;
     }
 
-    public function getAdministrador() {
-        return $this->administrador;
-    }
-    
-    public function getProfessor() {
-        return $this->professor;
-    }
-    
-    public function getModerador() {
-        return $this->moderador;
-    }
-        
     public function getStatus() {
         return $this->status;
     }
@@ -115,35 +87,19 @@ class Grupo {
 
     public function setId($id) {
         $this->id = $id;
-        return $this;
     }
 
-    public function setHerda($herda) {
-        $this->herda = $herda;
+    public function setCurso($curso) {
+        $this->curso = $curso;
         return $this;
     }
 
     public function setNome($nome) {
         $this->nome = \ISBase\Util\IdealizeUtil::normalizarNome($nome);
-        return $this;
-    }
-
-    public function setAdministrador($administrador) {
-        $this->administrador = $administrador;
-        return $this;
-    }
-
-    public function setProfessor($professor) {
-        $this->professor = $professor;
-    }
-
-    public function setModerador($moderador) {
-        $this->moderador = $moderador;
     }
 
     public function setStatus($status) {
         $this->status = $status;
-        return $this;
     }
 
     public function setDataCriacao() {

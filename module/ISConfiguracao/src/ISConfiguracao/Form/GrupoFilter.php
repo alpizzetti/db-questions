@@ -4,7 +4,7 @@ namespace ISConfiguracao\Form;
 
 use Zend\InputFilter\InputFilter;
 
-class CursoFilter extends InputFilter {
+class GrupoFilter extends InputFilter {
 
     public function __construct() {
         $this->addElements();
@@ -24,7 +24,7 @@ class CursoFilter extends InputFilter {
         ));
 
         $this->add(array(
-            'name' => 'tipo',
+            'name' => 'professor',
             'required' => true,
             'filters' => array(
                 array('name' => 'StripTags'),
@@ -36,7 +36,19 @@ class CursoFilter extends InputFilter {
         ));
 
         $this->add(array(
-            'name' => 'unidade',
+            'name' => 'administrador',
+            'required' => true,
+            'filters' => array(
+                array('name' => 'StripTags'),
+                array('name' => 'StringTrim'),
+            ),
+            'validators' => array(
+                array('name' => 'NotEmpty', 'options' => array('messages' => array('isEmpty' => 'Campo obrigatório')))
+            )
+        ));
+
+        $this->add(array(
+            'name' => 'moderador',
             'required' => true,
             'filters' => array(
                 array('name' => 'StripTags'),

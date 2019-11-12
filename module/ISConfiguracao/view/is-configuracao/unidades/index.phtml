@@ -82,9 +82,11 @@
                                     <a href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'unidades', 'action' => 'editar', 'id' => $unidade['id'])); ?>">
                                         <?php echo $unidade['nome']; ?>
                                     </a>
-                                <?php } else { ?>
-                                    <span><?php echo $unidade['nome']; ?></span>
-                                <?php } ?>
+                                    <?php
+                                } else {
+                                    echo $unidade['nome'];
+                                }
+                                ?>
                             </td>
                             <td><?php echo $unidade['email']; ?></td>
                             <td><?php echo $unidade['telefone']; ?></td>
@@ -100,7 +102,7 @@
                             </td>
                             <td class="text-center" id="linha_ultimoacesso_<?php echo $unidade['id']; ?>">
                                 <?php if ($unidade['totalAcessos'] <= 1) { ?>
-                                <span><?php echo ISBase\Util\DataHora::date_string($unidade['ultimoAcesso']); ?></span>
+                                    <span><?php echo ISBase\Util\DataHora::date_string($unidade['ultimoAcesso']); ?></span>
                                 <?php } else { ?>
                                     <a href="javascript:;" onclick="unidadesHistoricoAcessos(<?php echo $unidade['id']; ?>, 'linha_ultimoacesso');" title="Ver histórico de acessos">
                                         <?php echo ISBase\Util\DataHora::date_string($unidade['ultimoAcesso']); ?>

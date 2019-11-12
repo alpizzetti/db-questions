@@ -97,6 +97,7 @@ return array(
             'ISConfiguracao\Controller\Grupos' => 'ISConfiguracao\Controller\GruposController',
             'ISConfiguracao\Controller\Privilegios' => 'ISConfiguracao\Controller\PrivilegiosController',
             'ISConfiguracao\Controller\Unidades' => 'ISConfiguracao\Controller\UnidadesController',
+            'ISConfiguracao\Controller\UnidadesCurriculares' => 'ISConfiguracao\Controller\UnidadesCurricularesController',
             'ISConfiguracao\Controller\Usuarios' => 'ISConfiguracao\Controller\UsuariosController',
         )
     ),

@@ -39,9 +39,10 @@ class SessaoAcl
                     'usuarios' => $this->salvarAcesso($grupo->getNome(), 'Configurações de Usuários'),
                     'unidades' => $this->salvarAcesso($grupo->getNome(), 'Configurações de Unidades'),
                     'cursos' => $this->salvarAcesso($grupo->getNome(), 'Configurações de Cursos'),
-                    'disciplinas' => $this->salvarAcesso($grupo->getNome(), 'Configurações de Disciplinas'),
+                    'unidadescurriculares' => $this->salvarAcesso($grupo->getNome(), 'Configurações de Unidades Curriculares'),
+                    'capacidades' => $this->salvarAcesso($grupo->getNome(), 'Configurações de Capacidades'),
                 ],
-                'cadastro' => [
+                'cadastros' => [
                     'questoes' => $this->salvarAcesso($grupo->getNome(), 'Cadastro de Questões'),
                     'moderador' => $this->salvarAcesso($grupo->getNome(), 'Moderador de Questões'),
                 ],
