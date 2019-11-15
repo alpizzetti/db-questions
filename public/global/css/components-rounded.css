@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:600,700,900|Titillium+Web:400,700&display=swap');
+
 /*********************************
  METRONIC ROUNDED STYLE COMPONENTS 
 *********************************/
@@ -22786,3 +22788,11 @@ Color library demo
       width: 100%; }
       .mt-content-row .mt-content-col-fixed .mt-content-sidebar {
         margin-left: 0; } }
+
+
+        .control-label {
+          font-family: 'Titillium Web' !important;
+          color: #00844C !important;
+          font-size: 18px !important;
+          font-weight: 500 !important;
+        }

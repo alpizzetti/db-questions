@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:600,700,900|Titillium+Web:400,700&display=swap');
+
+label {
+  color: #00844C;
+  font-weight: 700 !important;
+  font-family: 'Titillium Web';
+  line-height: 24px;
+  font-size: 18px;
+}
+
+button {
+  border: 1px solid #00D67A !important;
+  color: #00D67A!important;
+  font-family: Poppins !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  border-radius: 8px !important;
+  background: #ffffff !important;
+  line-height: 25px  !important;
+}
+
+button:hover {
+  color: #ffffff!important;
+  background: #00D67A !important;
+}
+
+.actions a.btn {
+  border: 1px solid #00D67A !important;
+  color: #00D67A!important;
+  font-family: Poppins !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  background: #ffffff !important;
+  line-height: 25px  !important;
+  border-radius: 8px !important;
+}
+
+.actions a.btn:hover {
+  color: #ffffff!important;
+  background: #00D67A !important;
+}
+
+.page-bar {
+  margin-bottom: 0 !important;
+}
+
+.page-bar a, .page-bar span {
+ color: #70A08C !important;
+}
+
+.page-bar .page-breadcrumb > li > i, .page-bar .page-breadcrumb > li > i[class^="icon-"], .page-bar .page-breadcrumb > li > i[class*="icon-"] {
+  color: #70A08C;
+}
+
+/* .form .form-body, .portlet-form .form-body {
+  padding-top: 0 !important;  
+}
+*/
+.portlet>.portlet-title {
+  border: none !important;
+} 
+
+.portlet.light>.portlet-title>.caption>.caption-subject {
+  color: #00844C !important;
+}
+
+.fa-list::before, .fa-pencil::before  {
+  color: #00844C !important;
+}
+
+
+select {
+  border: none !important;
+  border-bottom: 2px solid #00E09B !important;
+  background: #ffffff !important;
+  color: #B7B7B7!important;
+  font-family: 'Titillium Web' !important;
+}
+
+textarea {
+  border: none !important;
+  border: 1px solid #00E09B !important;
+  background: #ffffff !important;
+  color: #B7B7B7!important;
+  font-family: 'Titillium Web' !important;
+}
+
+input {
+  border: none !important;
+  border-bottom: 2px solid #00E09B !important;
+  background: #ffffff !important;
+  color: #252525!important;
+}
+
+th {
+  color: #00844C;
+  font-weight: 600 !important;
+}
+
+td {
+  color: #70A08C !important;
+}
+
+td a {
+  color: #70A08C !important;
+  font-weight: 600;
+}
+
+td a.btn.default.btn-xs.purple-stripe {
+  background-color: #B7B7B7;
+  border-color: #B7B7B7;
+  color: #ffffff !important;
+}
+
+td a.btn.default.btn-xs.red-stripe {
+  background-color: #EF6371;
+  border-color: #EF6371;
+  color: #ffffff !important;
+  margin-left: 0 !important;
+}
+
+td a.btn.default:not(.btn-outline) {
+  background-color: #6FAEEC;
+  border-color: #6FAEEC;
+  color: #ffffff !important;
+  margin-left: 0 !important;
+}
+
+a.btn-xs {
+  padding: 3px 8px !important;
+  margin-right: 0 !important;
+}
+
+.btn.purple-stripe {
+  border: none !important;
+}
+
+.btn.yellow-stripe {
+  border: none !important;
+}
+
+.btn.red-stripe {
+  border: none !important;
+}
+
+
+.label-info {
+  background: #00E09B !important;
+}
+
+.img-circle {
+  border: 1px solid #00824B;
+  background: #70A08C ;
+  border-radius: 8px !important;
+}
+
+.table-bordered, .table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
+  border: 1px solid rgba(112, 160, 140, .26) !important;
+}
+
+.username.username-hide-on-mobile {
+  color: #00844C !important;
+  font-weight: bold !important;
+  font-size: 16px !important;
+}
+
+i.fa.fa-angle-down {
+  color: #00844C !important;
+}
+
+.sub-menu, .sub-menu .nav-item {
+  background: #00844C !important;
+}
+
+.sub-menu .nav-item a {
+  color: #ffffff !important;
+}
+
+.sub-menu i.fa.fa-bars {
+  color: #ffffff !important;
+}
+
+select {
+  overflow: hidden !important;
+}
+
+@media (min-width: 992px) {
+
+  .page-sidebar-menu-hover-submenu li:hover > .sub-menu {
+      background: #70A08C !important;
+  }
+
+  .page-sidebar-menu-hover-submenu li:hover a > .arrow {
+      border-right: 8px solid #70A08C !important;
+  }
+}

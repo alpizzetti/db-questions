@@ -17,7 +17,7 @@
                 ->appendName('author', '');
 
         echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/x-icon', 'href' => '/global/img/favicon.ico'))
-                ->appendStylesheet('https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all')
+                ->appendStylesheet('https://fonts.googleapis.com/css?family=Poppins:600,700,900|Titillium+Web:400,700&display=swap')
                 ->appendStylesheet('/global/plugins/font-awesome/css/font-awesome.min.css')
                 ->appendStylesheet('/global/plugins/simple-line-icons/simple-line-icons.min.css')
                 ->appendStylesheet('/global/plugins/bootstrap/css/bootstrap.min.css')
@@ -28,7 +28,9 @@
                 ->appendStylesheet('/global/css/plugins.min.css')
                 ->appendStylesheet('/layout/css/layout.css')
                 ->appendStylesheet('/layout/css/themes/dark.css')
-                ->appendStylesheet('/layout/css/custom.css');
+                ->appendStylesheet('/layout/css/custom.css')
+                ->appendStylesheet('/global.css');
+
         ?>
     </head>
     <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
@@ -36,7 +38,7 @@
             <div class="page-header-inner ">
                 <div class="page-logo">
                     <a href="<?php echo $this->url('home'); ?>">
-                        <img src="/global/img/logo.png" alt="logo" class="logo-default" />
+                        <img src="../../public/layout/img/brd/brand-senai.png" alt="logo" class="logo-default" />
                     </a>
                 </div>
                 <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"></a>
