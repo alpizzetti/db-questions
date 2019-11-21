@@ -2,9 +2,11 @@
 
 namespace ISBase\Util;
 
-class Arrays {
-    
-    public static function cursosTipos($tipo = null) {
+class Arrays
+{
+
+    public static function cursosTipos($tipo = null)
+    {
         if (empty($tipo)) {
             return array(
                 "ensmed" => "Ensino Médio",
@@ -21,15 +23,16 @@ class Arrays {
             }
         }
     }
-    
-    public static function questoesDificuldades($tipo = null) {
+
+    public static function questoesDificuldades($tipo = null)
+    {
         if (empty($tipo)) {
             return array(
                 "mui_fac" => "Muito Fácil",
                 "fac" => "Fácil",
                 "med" => "Médio",
                 "dif" => "Difícil",
-                "mui_dif" => "Muito Difício",
+                "mui_dif" => "Muito Difícil",
             );
         } else {
             if ($tipo == "mui_fac") {
@@ -41,7 +44,7 @@ class Arrays {
             } else if ($tipo == "dif") {
                 return "Difícil";
             } else if ($tipo == "mui_dif") {
-                return "Muito Difício";
+                return "Muito Difícil";
             }
         }
     }

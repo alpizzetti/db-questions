@@ -1,7 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:600,700,900|Titillium+Web:400,700&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Poppins:600,700,900|Titillium+Web:400,700&display=swap");
 
-@charset "UTF-8";
-/* Cubic Bezier Transition */
 @media print {
     body {
         background-color: #fff !important;
@@ -2278,7 +2276,7 @@ Page content
     letter-spacing: -1px;
     line-height: 26px;
     display: block;
-    color: #70A08C;
+    color: #70a08c;
     margin: 0px 0px 20px 0px;
     font-weight: 300;
     font-family: "Open Sans", sans-serif;
@@ -2288,13 +2286,13 @@ Page content
     font-size: 13px;
     letter-spacing: 0px;
     font-weight: 300;
-    color: #70A08C;
+    color: #70a08c;
 }
 .page-container-bg-solid .page-title {
-    color: #70A08C;
+    color: #70a08c;
 }
 .page-container-bg-solid .page-title small {
-    color: #70A08C;
+    color: #70a08c;
 }
 
 /* Page breadcrumb */
@@ -3843,35 +3841,38 @@ Page Loading
     transition: all 2s;
 }
 
-
-
-
-
 /* editadas*/
 
 .nav-link.nav-toggle {
-    background: #00844C!important;
+    background: #00844c !important;
 }
 
 .page-header.navbar .page-logo {
-    background: #00844C!important;  
+    background: #00844c !important;
 }
 
-.page-sidebar .page-sidebar-menu > li > a > .title, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li > a > .title {
-    font-family: 'Titillium Web';
+.page-sidebar .page-sidebar-menu > li > a > .title,
+.page-sidebar-closed.page-sidebar-fixed
+    .page-sidebar:hover
+    .page-sidebar-menu
+    > li
+    > a
+    > .title {
+    font-family: "Titillium Web";
     font-weight: bold;
     font-size: 18px;
     color: #ffffff;
 }
 
-.icon-question, .icon-notebook, .icon-settings {
+.icon-question,
+.icon-notebook,
+.icon-settings {
     display: none !important;
 }
 
 .logo-dashboard {
     width: 81px;
 }
-
 
 /*logo menu*/
 .page-header.navbar .page-logo {
@@ -3880,7 +3881,7 @@ Page Loading
     justify-content: center;
 }
 
- .page-header.navbar .page-logo .logo-default {
+.page-header.navbar .page-logo .logo-default {
     width: 160px;
 }
 
@@ -3888,18 +3889,17 @@ Page Loading
     display: none;
 }
 
-
 .page-title {
     display: inline-block;
     font-size: 28px;
-    color: #70A08C;
+    color: #70a08c;
     font-family: Poppins;
     line-height: 42px;
     position: relative;
 }
 
 .page-title::after {
-    content: '';
+    content: "";
     bottom: 0;
     left: 0;
     position: absolute;
@@ -3907,4 +3907,3 @@ Page Loading
     height: 5px;
     background: currentColor;
 }
-

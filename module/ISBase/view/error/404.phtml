@@ -3,44 +3,50 @@
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
 <html lang="en">
-    <!--<![endif]-->
-    <head>       
-        <?php
-        echo $this->headTitle(' Erro 404');
+<!--<![endif]-->
 
-        echo $this->headMeta()
-                ->setCharset('utf-8')
-                ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
-                ->appendName('viewport', 'width=device-width, initial-scale=1')
-                ->appendName('description', '')
-                ->appendName('author', '');
+<head>
+    <?php
+    echo $this->headTitle(' Erro 404');
 
-        echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/x-icon', 'href' => '/global/img/favicon.ico'))
-                ->appendStylesheet('https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all')
-                ->appendStylesheet('/global/plugins/font-awesome/css/font-awesome.min.css')
-                ->appendStylesheet('/global/plugins/simple-line-icons/simple-line-icons.min.css')
-                ->appendStylesheet('/global/plugins/bootstrap/css/bootstrap.min.css')
-                ->appendStylesheet('/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css')
-                ->appendStylesheet('/global/css/components-rounded.css')
-                ->appendStylesheet('/global/css/plugins.css')
-                ->appendStylesheet('/layout/css/layout.min.css')
-                ->appendStylesheet('/layout/css/themes/light2.min.css')
-                ->appendStylesheet('/pages/css/error.min.css');
-        ?>
-    </head>
-    <body class="page-404-full-page">
-        <div class="row">
-            <div class="col-md-12 page-404">
-                <div class="number">
-                    404
-                </div>
-                <div class="details">
-                    <h3>Esta página não está disponível.</h3>
-                    <p>
-                        O link que você acessou pode estar quebrado ou a página pode ter sido removida.
-                    </p>
-                </div>
+    echo $this->headMeta()
+        ->setCharset('utf-8')
+        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        ->appendName('viewport', 'width=device-width, initial-scale=1')
+        ->appendName('description', '')
+        ->appendName('author', '');
+
+    echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/x-icon', 'href' => '/global/img/favicon.ico'))
+        ->appendStylesheet('https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all')
+        ->appendStylesheet('/global/plugins/font-awesome/css/font-awesome.min.css')
+        ->appendStylesheet('/global/plugins/simple-line-icons/simple-line-icons.min.css')
+        ->appendStylesheet('/global/plugins/bootstrap/css/bootstrap.min.css')
+        ->appendStylesheet('/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css')
+        ->appendStylesheet('/global/css/components-rounded.css')
+        ->appendStylesheet('/global/css/plugins.css')
+        ->appendStylesheet('/layout/css/layout.min.css')
+        ->appendStylesheet('/layout/css/themes/light2.min.css')
+        ->appendStylesheet('/pages/css/error.min.css')
+        ->appendStylesheet('/global.css');
+    ?>
+</head>
+
+
+
+<body class="page-404-full-page">
+    <div class="row">
+        <div class="col-md-12 page-404">
+            <div class="number">
+                X
+            </div>
+            <div class="details">
+                <h3>Você não tem permissão para acessar esta página.</h3>
+                <p>
+                    Entre em contato com o Administrador.
+                </p>
             </div>
         </div>
-    </body>
+    </div>
+</body>
+
 </html>
