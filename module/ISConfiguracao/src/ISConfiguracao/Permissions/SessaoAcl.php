@@ -21,7 +21,7 @@ class SessaoAcl
 
         $acl = array(
             'unidade' => [
-                'id' => $usuario->getUnidade()->getId(),
+                'id' => $usuario->getUnidade()->getId()
             ],
             'usuario' => [
                 'id' => $usuario->getId(),
@@ -40,14 +40,14 @@ class SessaoAcl
                     'unidades' => $this->salvarAcesso($grupo->getNome(), 'Configurações de Unidades'),
                     'cursos' => $this->salvarAcesso($grupo->getNome(), 'Configurações de Cursos'),
                     'unidadescurriculares' => $this->salvarAcesso($grupo->getNome(), 'Configurações de Unidades Curriculares'),
-                    'capacidades' => $this->salvarAcesso($grupo->getNome(), 'Configurações de Capacidades'),
+                    'capacidades' => $this->salvarAcesso($grupo->getNome(), 'Configurações de Capacidades')
                 ],
                 'cadastros' => [
                     'questoes' => $this->salvarAcesso($grupo->getNome(), 'Cadastro de Questões'),
-                    'moderador' => $this->salvarAcesso($grupo->getNome(), 'Moderador de Questões'),
+                    'moderador' => $this->salvarAcesso($grupo->getNome(), 'Moderador de Questões')
                 ],
                 'relatorios' => [
-                    'basico' => $this->salvarAcesso($grupo->getNome(), 'Relatórios'),
+                    'basico' => $this->salvarAcesso($grupo->getNome(), 'Relatórios')
                 ]
             ]
         );
@@ -85,9 +85,9 @@ class SessaoAcl
 
         if (!empty($modulo) && !empty($funcionalidade) && !empty($acao)) {
             return $acl['funcionalidades'][$modulo][$funcionalidade][$acao];
-        } else if (!empty($modulo) && !empty($funcionalidade)) {
+        } elseif (!empty($modulo) && !empty($funcionalidade)) {
             return $acl['funcionalidades'][$modulo][$funcionalidade];
-        } else if (!empty($modulo)) {
+        } elseif (!empty($modulo)) {
             return $acl['funcionalidades'][$modulo];
         } else {
             return $acl;

@@ -13,7 +13,6 @@ use Zend\Stdlib\Hydrator;
  */
 class UsuarioAcesso
 {
-
     /**
      * @var integer
      *
@@ -38,7 +37,7 @@ class UsuarioAcesso
 
     public function __construct(array $options = array())
     {
-        (new Hydrator\ClassMethods)->hydrate($options, $this);
+        (new Hydrator\ClassMethods())->hydrate($options, $this);
         $this->data = new \DateTime("now");
     }
 

@@ -1,0 +1,27 @@
+<?php
+foreach ($imagens as $key => $imagem) {
+    ?>
+    <tr>
+        <td class="text-center">
+            <?php echo $key + 1; ?>
+        </td>
+        <td>
+            <a href="/questoes/<?php echo $imagem->getArquivo(); ?>" class="fancybox-button" data-rel="fancybox-button" data-title="" title="">
+                <img style="width: 100px;" class="img-responsive" src="/questoes/<?php echo $imagem->getArquivo(); ?>" title="" alt="">
+            </a>
+        </td>
+        <td class="text-center">
+            <span class='label label-sm label-info'><?php echo $imagem->getItem(); ?></span>
+        </td>
+        <td>
+            <button class="btn default btn-xs red-stripe" type="button" title="Remover arquivo" onclick="questoesImagemRemover('<?php echo $imagem->getId(); ?>', true);">
+                <i class="fa fa-remove"></i>
+            </button>
+        </td>
+    </tr>
+<?php } if (count($imagens) == 0) { ?>
+    <tr>
+        <td colspan="5">Nenhuma imagem foi enviada</td>
+    </tr>
+    <?php
+}

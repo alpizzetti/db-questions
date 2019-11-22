@@ -13,7 +13,6 @@ use Zend\Stdlib\Hydrator;
  */
 class Funcionalidade
 {
-
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -30,7 +29,7 @@ class Funcionalidade
 
     public function __construct($options = array())
     {
-        (new Hydrator\ClassMethods)->hydrate($options, $this);
+        (new Hydrator\ClassMethods())->hydrate($options, $this);
     }
 
     public function getId()
@@ -57,6 +56,6 @@ class Funcionalidade
 
     public function toArray()
     {
-        return (new Hydrator\ClassMethods)->extract($this);
+        return (new Hydrator\ClassMethods())->extract($this);
     }
 }

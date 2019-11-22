@@ -75,7 +75,7 @@
                         echo $this->formElementErrors($form->get("enunciado"), array('class' => "parsley-error-list"));
                         ?>
                     </div>
-                </div>                
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-8">
@@ -86,7 +86,7 @@
                         echo $this->formElementErrors($form->get("suporte"), array('class' => "parsley-error-list"));
                         ?>
                     </div>
-                </div>            
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-8">
@@ -97,7 +97,7 @@
                         echo $this->formElementErrors($form->get("comando"), array('class' => "parsley-error-list"));
                         ?>
                     </div>
-                </div>            
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-4">
@@ -117,7 +117,7 @@
                         echo $this->formElementErrors($form->get("item_b"), array('class' => "parsley-error-list"));
                         ?>
                     </div>
-                </div>            
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-4">
@@ -137,7 +137,7 @@
                         echo $this->formElementErrors($form->get("item_d"), array('class' => "parsley-error-list"));
                         ?>
                     </div>
-                </div>            
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-4">
@@ -150,14 +150,94 @@
                     </div>
                 </div>
             </div>
+            <div class="form-actions right">
+                <button type="submit" class="btn grey-mint pull-right"><i class="fa fa-save"></i> Salvar</button>
+                <?php
+                echo $this->formElement($form->get("id"));
+                echo $this->formElement($form->get("security"));
+                ?>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="form-section">IMAGENS <small>Enviar imagens. Salvamento automático.</small></h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <?php
+                        echo $this->formLabel($form->get("item"));
+                        echo $this->formElement($form->get("item"));
+                        ?>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <?php echo $this->formLabel($form->get("imagens")); ?>
+                    <div class="input-group">
+                        <?php
+                        echo $this->formElement($form->get("imagens"));
+                        echo $this->formElement($form->get("id"));
+                        ?>
+                        <span id="btn_enviar_arquivo" class="input-group-addon" style="cursor: pointer;" title="Enviar imagens" onclick="questoesImagensEnviar();">
+                            <i class="fa fa-upload font-blue-sharp"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row display-none" id="div_porcentagem_imagens" style="margin-top: 10px;">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="progress progress-striped" role="progressbar">
+                            <div class="progress-bar progress-bar-success-espm" id="valor"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 15px;">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th width="10">#</th>
+                                    <th>Imagem</th>
+                                    <th class="text-center" width="10">Item</th>
+                                    <th width="10"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabela_imagens">
+                                <?php echo $tabela_imagens; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="form-actions right">
-            <button type="submit" class="btn grey-mint pull-right"><i class="fa fa-save"></i> Salvar</button>
-            <?php
-            echo $this->formElement($form->get("id"));
-            echo $this->formElement($form->get("security"));
-            ?>
-        </div>
+
         <?php echo $this->form()->closeTag($form); ?>
+    </div>
+</div>
+<div id="modal_remover_imagem" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">ATENÇÃO</h4>
+            </div>
+            <div class="modal-body">
+                <div class="scroller" style="height:50px" data-always-visible="1" data-rail-visible1="1">
+                    <h4>Deseja realmente remover a imagem?</h4>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div id="acoes">
+                    <button class="btn default" data-dismiss="modal" type="button"><i class="fa fa-remove"></i> Não</button>
+                    <button class="btn red-haze" type="button" id="btn_remover" onclick=""><i class="fa fa-check"></i> Sim</button>
+                </div>
+                <div id="carregando" class="display-none">
+                    <h4><img src="/global/img/loading-spinner-grey.gif" /> Um momento...</h4>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

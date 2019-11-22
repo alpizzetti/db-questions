@@ -7,13 +7,13 @@ use Doctrine\ORM\EntityRepository;
 
 class UnidadeCurricularRepository extends EntityRepository
 {
-
     public function listagemIndex($request)
     {
-        $dql = "SELECT uni.id, uni.nome, uni.status, cur.nome AS curso"
-            . " FROM ISConfiguracao\Entity\UnidadeCurricular uni"
-            . " INNER JOIN uni.curso cur"
-            . " WHERE uni.status = :status";
+        $dql =
+            "SELECT uni.id, uni.nome, uni.status, cur.nome AS curso" .
+            " FROM ISConfiguracao\Entity\UnidadeCurricular uni" .
+            " INNER JOIN uni.curso cur" .
+            " WHERE uni.status = :status";
 
         $params['status'] = $request['status'];
 
@@ -28,21 +28,23 @@ class UnidadeCurricularRepository extends EntityRepository
 
         $dql .= " ORDER BY uni.nome";
 
-        $query = $this->getEntityManager()->createQuery($dql)->setParameters($params);
+        $query = $this->getEntityManager()
+            ->createQuery($dql)
+            ->setParameters($params);
 
         return (new AdapterQuery($query, $request['pagina'], 20, $this->getEntityManager()))->getPaginator();
     }
 
     public function popularCombobox()
     {
-        $dql = "SELECT uni.id, uni.nome"
-            . " FROM ISConfiguracao\Entity\UnidadeCurricular uni"
-            . " WHERE uni.status = :status"
-            . " ORDER BY uni.nome";
+        $dql = "SELECT uni.id, uni.nome" . " FROM ISConfiguracao\Entity\UnidadeCurricular uni" . " WHERE uni.status = :status" . " ORDER BY uni.nome";
 
         $params['status'] = true;
 
-        $unidadescurriculares = $this->getEntityManager()->createQuery($dql)->setParameters($params)->getResult();
+        $unidadescurriculares = $this->getEntityManager()
+            ->createQuery($dql)
+            ->setParameters($params)
+            ->getResult();
         $saida = [];
 
         foreach ($unidadescurriculares as $unidadescurricular) {

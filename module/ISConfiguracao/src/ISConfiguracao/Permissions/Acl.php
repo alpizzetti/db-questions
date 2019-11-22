@@ -8,7 +8,6 @@ use Zend\Permissions\Acl\Resource\GenericResource as Resource;
 
 class Acl extends ClassAcl
 {
-
     protected $grupos;
     protected $funcionalidades;
     protected $privilegios;

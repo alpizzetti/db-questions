@@ -8,7 +8,6 @@ use Zend\View\Model\JsonModel;
 
 class UsuariosController extends CrudController
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -54,7 +53,9 @@ class UsuariosController extends CrudController
                 "form" => $form->setData($request),
                 "mensagens" => $this->flashMessenger()->getMessages(),
                 "administrador" => $this->sessao->getUsuario("administrador"),
-                "dados" => $this->getEntityManager()->getRepository($this->entity)->listagemIndex($request)
+                "dados" => $this->getEntityManager()
+                    ->getRepository($this->entity)
+                    ->listagemIndex($request)
             ));
         }
 
@@ -72,7 +73,9 @@ class UsuariosController extends CrudController
                     $request = $request->getPost()->toArray();
 
                     if ($this->validarEmail($request["id"], $request["email"])) {
-                        $usuario = $this->getServiceLocator()->get($this->service)->insert($request);
+                        $usuario = $this->getServiceLocator()
+                            ->get($this->service)
+                            ->insert($request);
 
                         if (!empty($usuario)) {
                             $this->setMensagemSucesso("Usuário inserido com sucesso.");
@@ -98,7 +101,9 @@ class UsuariosController extends CrudController
     public function editarAction()
     {
         if ($this->getAcesso()) {
-            $usuario = $this->getEntityManager()->getRepository($this->entity)->find($this->params()->fromRoute("id", 0));
+            $usuario = $this->getEntityManager()
+                ->getRepository($this->entity)
+                ->find($this->params()->fromRoute("id", 0));
 
             if (!empty($usuario)) {
                 $form = $this->getServiceLocator()->get("ISConfiguracao\Form\UsuarioDados");
@@ -111,10 +116,16 @@ class UsuariosController extends CrudController
                         $request = $request->getPost()->toArray();
 
                         if ($this->validarEmail($request["id"], $request["email"])) {
-                            $this->getServiceLocator()->get($this->service)->update($request);
+                            $this->getServiceLocator()
+                                ->get($this->service)
+                                ->update($request);
                             $this->setMensagemSucesso("Usuário editado com sucesso.");
 
-                            return $this->redirect()->toRoute($this->route, array("controller" => $this->controller, "action" => "editar", "id" => $usuario->getId()));
+                            return $this->redirect()->toRoute($this->route, array(
+                                "controller" => $this->controller,
+                                "action" => "editar",
+                                "id" => $usuario->getId()
+                            ));
                         } else {
                             $this->setMensagemErro("E-mail já cadastrado no sistema.");
                         }
@@ -135,7 +146,9 @@ class UsuariosController extends CrudController
     public function editarSenhaAction()
     {
         if ($this->getAcesso()) {
-            $usuario = $this->getEntityManager()->getRepository($this->entity)->find($this->params()->fromRoute("id", 0));
+            $usuario = $this->getEntityManager()
+                ->getRepository($this->entity)
+                ->find($this->params()->fromRoute("id", 0));
 
             if (!empty($usuario)) {
                 $form = new \ISConfiguracao\Form\UsuarioSenha();
@@ -146,7 +159,9 @@ class UsuariosController extends CrudController
 
                     if ($form->isValid()) {
                         $request = $request->getPost()->toArray();
-                        $this->getServiceLocator()->get($this->service)->updateMeusDadosSenha($request, $usuario);
+                        $this->getServiceLocator()
+                            ->get($this->service)
+                            ->updateMeusDadosSenha($request, $usuario);
                         $this->setMensagemSucesso("Senha atualizada.");
                     }
                 }
@@ -154,7 +169,7 @@ class UsuariosController extends CrudController
                 return new ViewModel(array(
                     "form" => $form,
                     "usuario" => $usuario,
-                    "mensagens" => $this->flashMessenger()->getCurrentMessages(),
+                    "mensagens" => $this->flashMessenger()->getCurrentMessages()
                 ));
             }
         }
@@ -164,7 +179,9 @@ class UsuariosController extends CrudController
 
     public function meusDadosPerfilAction()
     {
-        $usuario = $this->getEntityManager()->getRepository($this->entity)->find($this->usuarioId);
+        $usuario = $this->getEntityManager()
+            ->getRepository($this->entity)
+            ->find($this->usuarioId);
 
         if (!empty($usuario)) {
             $form = new \ISConfiguracao\Form\MeusDadosPerfil();
@@ -175,17 +192,19 @@ class UsuariosController extends CrudController
                 $form->setData($request->getPost());
 
                 if ($form->isValid()) {
-                    $this->getServiceLocator()->get($this->service)->updateMeusDadosPerfil($request->getPost()->toArray(), $usuario);
+                    $this->getServiceLocator()
+                        ->get($this->service)
+                        ->updateMeusDadosPerfil($request->getPost()->toArray(), $usuario);
                     $this->setMensagemSucesso("Seu perfil foi atualizado.");
 
                     return $this->redirect()->toRoute($this->route, array("controller" => $this->controller, "action" => "meusDadosPerfil"));
                 }
             }
 
-            return (new ViewModel(array(
+            return new ViewModel(array(
                 "form" => $form,
                 "mensagens" => $this->flashMessenger()->getCurrentMessages()
-            )));
+            ));
         }
 
         return $this->notFoundAction()->setTerminal(true);
@@ -193,7 +212,9 @@ class UsuariosController extends CrudController
 
     public function meusDadosSenhaAction()
     {
-        $usuario = $this->getEntityManager()->getRepository($this->entity)->find($this->usuarioId);
+        $usuario = $this->getEntityManager()
+            ->getRepository($this->entity)
+            ->find($this->usuarioId);
 
         if (!empty($usuario)) {
             $form = new \ISConfiguracao\Form\MeusDadosSenha();
@@ -205,10 +226,14 @@ class UsuariosController extends CrudController
 
                 if ($form->isValid()) {
                     $request = $request->getPost()->toArray();
-                    $autenticacao = $this->getEntityManager()->getRepository($this->entity)->autenticacao($usuario->getEmail(), $request["senha_atual"]);
+                    $autenticacao = $this->getEntityManager()
+                        ->getRepository($this->entity)
+                        ->autenticacao($usuario->getEmail(), $request["senha_atual"]);
 
                     if (!empty($autenticacao)) {
-                        $this->getServiceLocator()->get($this->service)->updateMeusDadosSenha($request, $usuario);
+                        $this->getServiceLocator()
+                            ->get($this->service)
+                            ->updateMeusDadosSenha($request, $usuario);
                         $this->setMensagemSucesso("Sua senha foi atualizada.");
 
                         return $this->redirect()->toRoute($this->route, array("controller" => $this->controller, "action" => "meusDadosSenha"));
@@ -218,10 +243,10 @@ class UsuariosController extends CrudController
                 }
             }
 
-            return (new ViewModel(array(
+            return new ViewModel(array(
                 "form" => $form,
                 "mensagens" => $this->flashMessenger()->getCurrentMessages()
-            )));
+            ));
         }
 
         return $this->notFoundAction()->setTerminal(true);
@@ -230,7 +255,9 @@ class UsuariosController extends CrudController
     public function ativarRemoverAction()
     {
         if ($this->getAcesso()) {
-            $usuario = $this->getEntityManager()->getRepository($this->entity)->find($this->params()->fromRoute('id', 0));
+            $usuario = $this->getEntityManager()
+                ->getRepository($this->entity)
+                ->find($this->params()->fromRoute('id', 0));
 
             if (!empty($usuario)) {
                 $service = $this->getServiceLocator()->get($this->service);
@@ -259,7 +286,9 @@ class UsuariosController extends CrudController
     public function autenticarComoAction()
     {
         if ($this->getAcesso() || !empty($this->sessao->getUsuario("usuarioSessao"))) {
-            $usuario = $this->getEntityManager()->getRepository($this->entity)->find($this->params()->fromRoute("id", 0));
+            $usuario = $this->getEntityManager()
+                ->getRepository($this->entity)
+                ->find($this->params()->fromRoute("id", 0));
 
             if (!empty($usuario)) {
                 $sessaoAut = new \ISConfiguracao\Permissions\SessaoAcl($this->getServiceLocator());
@@ -288,12 +317,16 @@ class UsuariosController extends CrudController
             $request = $request->getPost()->toArray();
 
             if (!empty($request["id"])) {
-                $usuario = $this->getEntityManager()->getRepository($this->entity)->find($request["id"]);
+                $usuario = $this->getEntityManager()
+                    ->getRepository($this->entity)
+                    ->find($request["id"]);
 
                 if (!empty($usuario)) {
                     $retorno["sucesso"] = true;
                     $retorno["conteudo"] = "<ul>";
-                    $acessos = $this->getEntityManager()->getRepository("ISConfiguracao\Entity\UsuarioAcesso")->selecionarAcessosUsuario($usuario->getId(), 500);
+                    $acessos = $this->getEntityManager()
+                        ->getRepository("ISConfiguracao\Entity\UsuarioAcesso")
+                        ->selecionarAcessosUsuario($usuario->getId(), 500);
 
                     foreach ($acessos as $acesso) {
                         $retorno["conteudo"] .= "<li>" . \ISBase\Util\DataHora::dateTimeToString($acesso["data"]) . "</li>";
@@ -308,7 +341,9 @@ class UsuariosController extends CrudController
 
     private function validarEmail($id, $email)
     {
-        $usuario = $this->getEntityManager()->getRepository($this->entity)->selecionarPorEmailStatus($email);
+        $usuario = $this->getEntityManager()
+            ->getRepository($this->entity)
+            ->selecionarPorEmailStatus($email);
 
         if ($usuario != null) {
             if ($id == $usuario->getId()) {

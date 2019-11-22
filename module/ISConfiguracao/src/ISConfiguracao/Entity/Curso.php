@@ -11,8 +11,8 @@ use Zend\Stdlib\Hydrator;
  * @ORM\HasLifecycleCallbacks
  * @ORM\Entity(repositoryClass="CursoRepository")
  */
-class Curso {
-
+class Curso
+{
     /**
      * @var integer
      *
@@ -63,71 +63,86 @@ class Curso {
      */
     private $dataAlteracao;
 
-    public function __construct(array $options = array()) {
-        (new Hydrator\ClassMethods)->hydrate($options, $this);
+    public function __construct(array $options = array())
+    {
+        (new Hydrator\ClassMethods())->hydrate($options, $this);
         $this->dataCriacao = new \DateTime("now");
     }
 
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function getUnidade() {
+    public function getUnidade()
+    {
         return $this->unidade;
     }
 
-    public function getNome() {
+    public function getNome()
+    {
         return $this->nome;
     }
 
-    public function getTipo() {
+    public function getTipo()
+    {
         return $this->tipo;
     }
 
-    public function getStatus() {
+    public function getStatus()
+    {
         return $this->status;
     }
 
-    public function getDataCriacao() {
+    public function getDataCriacao()
+    {
         return $this->dataCriacao;
     }
 
-    public function getDataAlteracao() {
+    public function getDataAlteracao()
+    {
         return $this->dataAlteracao;
     }
 
-    public function setId($id) {
+    public function setId($id)
+    {
         $this->id = $id;
     }
 
-    public function setUnidade($unidade) {
+    public function setUnidade($unidade)
+    {
         $this->unidade = $unidade;
     }
 
-    public function setNome($nome) {
+    public function setNome($nome)
+    {
         $this->nome = \ISBase\Util\IdealizeUtil::normalizarNome($nome);
     }
 
-    public function setTipo($tipo) {
+    public function setTipo($tipo)
+    {
         $this->tipo = $tipo;
     }
 
-    public function setStatus($status) {
+    public function setStatus($status)
+    {
         $this->status = $status;
     }
 
-    public function setDataCriacao() {
+    public function setDataCriacao()
+    {
         $this->dataCriacao = new \DateTime("now");
         return $this;
     }
 
-    public function setDataAlteracao() {
+    public function setDataAlteracao()
+    {
         $this->dataAlteracao = new \DateTime("now");
         return $this;
     }
 
-    public function toArray() {
+    public function toArray()
+    {
         return (new Hydrator\ClassMethods())->extract($this);
     }
-
 }

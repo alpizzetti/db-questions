@@ -4,6 +4,7 @@ namespace ISCadastro\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Zend\Stdlib\Hydrator;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Table(name="questoes")
@@ -11,8 +12,8 @@ use Zend\Stdlib\Hydrator;
  * @ORM\HasLifecycleCallbacks
  * @ORM\Entity(repositoryClass="QuestaoRepository")
  */
-class Questao {
-
+class Questao
+{
     /**
      * @var integer
      *
@@ -25,6 +26,7 @@ class Questao {
     /**
      * @ORM\OneToOne(targetEntity="ISConfiguracao\Entity\Usuario")
      * @ORM\JoinColumn(name="usuario", referencedColumnName="id")
+     *
      */
     private $usuario;
 
@@ -146,184 +148,236 @@ class Questao {
      */
     private $dataAlteracao;
 
-    public function __construct(array $options = array()) {
-        (new Hydrator\ClassMethods)->hydrate($options, $this);
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="ISCadastro\Entity\QuestaoImagem", mappedBy="questao")
+     */
+    private $imagens;
+
+    public function __construct(array $options = array())
+    {
+        (new Hydrator\ClassMethods())->hydrate($options, $this);
         $this->dataCriacao = new \DateTime("now");
+        $this->imagens = new ArrayCollection();
     }
 
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function getUsuario() {
+    public function getUsuario()
+    {
         return $this->usuario;
     }
 
-    public function getUnidadeCurricular() {
+    public function getUnidadeCurricular()
+    {
         return $this->unidadeCurricular;
     }
 
-    public function getDificuldade() {
+    public function getDificuldade()
+    {
         return $this->dificuldade;
     }
 
-    public function getEnunciado() {
+    public function getEnunciado()
+    {
         return $this->enunciado;
     }
 
-    public function getEnunciadoImg() {
+    public function getEnunciadoImg()
+    {
         return $this->enunciadoImg;
     }
 
-    public function getSuporte() {
+    public function getSuporte()
+    {
         return $this->suporte;
     }
 
-    public function getSuporteImg() {
+    public function getSuporteImg()
+    {
         return $this->suporteImg;
     }
 
-    public function getComando() {
+    public function getComando()
+    {
         return $this->comando;
     }
 
-    public function getComandoImg() {
+    public function getComandoImg()
+    {
         return $this->comandoImg;
     }
 
-    public function getItemA() {
+    public function getItemA()
+    {
         return $this->itemA;
     }
 
-    public function getItemB() {
+    public function getItemB()
+    {
         return $this->itemB;
     }
 
-    public function getItemC() {
+    public function getItemC()
+    {
         return $this->itemC;
     }
 
-    public function getItemD() {
+    public function getItemD()
+    {
         return $this->itemD;
     }
 
-    public function getItemE() {
+    public function getItemE()
+    {
         return $this->itemE;
     }
 
-    public function getGabarito() {
+    public function getGabarito()
+    {
         return $this->gabarito;
     }
 
-    public function getStatus() {
+    public function getStatus()
+    {
         return $this->status;
     }
 
-    public function getDataCriacao() {
+    public function getDataCriacao()
+    {
         return $this->dataCriacao;
     }
 
-    public function getDataAlteracao() {
+    public function getDataAlteracao()
+    {
         return $this->dataAlteracao;
     }
 
-    public function setId($id) {
+    public function getImagens()
+    {
+        return $this->imagens;
+    }
+
+    public function setId($id)
+    {
         $this->id = $id;
         return $this;
     }
 
-    public function setUsuario($usuario) {
+    public function setUsuario($usuario)
+    {
         $this->usuario = $usuario;
         return $this;
     }
 
-    public function setUnidadeCurricular($unidadeCurricular) {
+    public function setUnidadeCurricular($unidadeCurricular)
+    {
         $this->unidadeCurricular = $unidadeCurricular;
         return $this;
     }
 
-    public function setDificuldade($dificuldade) {
+    public function setDificuldade($dificuldade)
+    {
         $this->dificuldade = $dificuldade;
         return $this;
     }
 
-    public function setEnunciado($enunciado) {
+    public function setEnunciado($enunciado)
+    {
         $this->enunciado = $enunciado;
         return $this;
     }
 
-    public function setEnunciadoImg($enunciadoImg) {
+    public function setEnunciadoImg($enunciadoImg)
+    {
         $this->enunciadoImg = $enunciadoImg;
         return $this;
     }
 
-    public function setSuporte($suporte) {
+    public function setSuporte($suporte)
+    {
         $this->suporte = $suporte;
         return $this;
     }
 
-    public function setSuporteImg($suporteImg) {
+    public function setSuporteImg($suporteImg)
+    {
         $this->suporteImg = $suporteImg;
         return $this;
     }
 
-    public function setComando($comando) {
+    public function setComando($comando)
+    {
         $this->comando = $comando;
         return $this;
     }
 
-    public function setComandoImg($comandoImg) {
+    public function setComandoImg($comandoImg)
+    {
         $this->comandoImg = $comandoImg;
         return $this;
     }
 
-    public function setItemA($itemA) {
+    public function setItemA($itemA)
+    {
         $this->itemA = $itemA;
         return $this;
     }
 
-    public function setItemB($itemB) {
+    public function setItemB($itemB)
+    {
         $this->itemB = $itemB;
         return $this;
     }
 
-    public function setItemC($itemC) {
+    public function setItemC($itemC)
+    {
         $this->itemC = $itemC;
         return $this;
     }
 
-    public function setItemD($itemD) {
+    public function setItemD($itemD)
+    {
         $this->itemD = $itemD;
         return $this;
     }
 
-    public function setItemE($itemE) {
+    public function setItemE($itemE)
+    {
         $this->itemE = $itemE;
         return $this;
     }
 
-    public function setGabarito($gabarito) {
+    public function setGabarito($gabarito)
+    {
         $this->gabarito = $gabarito;
         return $this;
     }
 
-    public function setStatus($status) {
+    public function setStatus($status)
+    {
         $this->status = $status;
         return $this;
     }
 
-    public function setDataCriacao() {
+    public function setDataCriacao()
+    {
         $this->dataCriacao = new \DateTime("now");
         return $this;
     }
 
-    public function setDataAlteracao() {
+    public function setDataAlteracao()
+    {
         $this->dataAlteracao = new \DateTime("now");
         return $this;
     }
 
-    public function toArray() {
+    public function toArray()
+    {
         return (new Hydrator\ClassMethods())->extract($this);
     }
-
 }

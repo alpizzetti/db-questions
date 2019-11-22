@@ -14,7 +14,6 @@ use Zend\View\Model\JsonModel;
 
 class AutenticacaoController extends CrudController
 {
-
     private $sessionStorage;
 
     public function __construct()
@@ -44,7 +43,9 @@ class AutenticacaoController extends CrudController
                 if ($auth->authenticate($authAdapter)->isValid()) {
                     $usuario = $auth->getIdentity()['usuario'];
                     $sessionStorage->write($usuario);
-                    $retorno['sucesso'] = $this->getServiceLocator()->get($this->service)->criarToken($usuario);
+                    $retorno['sucesso'] = $this->getServiceLocator()
+                        ->get($this->service)
+                        ->criarToken($usuario);
                     (new SessaoAcl($this->getServiceLocator()))->setAcl($usuario);
                 } else {
                     $retorno['mensagem'] = "Dados inválidos.";
@@ -66,14 +67,19 @@ class AutenticacaoController extends CrudController
         $usuarioSessao = $this->sessao->getUsuario();
 
         if (!empty($usuarioSessao)) {
-            $usuario = $this->getEntityManager()->getRepository($this->entity)->find($usuarioSessao['id']);
+            $usuario = $this->getEntityManager()
+                ->getRepository($this->entity)
+                ->find($usuarioSessao['id']);
 
             if (!empty($usuario)) {
                 $auth = new AuthenticationService();
                 $auth->setStorage(new SessionStorage($this->sessionStorage));
                 $auth->clearIdentity();
 
-                (new Container($this->sessionStorage))->getManager()->getStorage()->clear();
+                (new Container($this->sessionStorage))
+                    ->getManager()
+                    ->getStorage()
+                    ->clear();
             }
         }
 
@@ -89,10 +95,14 @@ class AutenticacaoController extends CrudController
             $request = $request->getPost()->toArray();
 
             if (!empty($request['email'])) {
-                $usuario = $this->getEntityManager()->getRepository($this->entity)->selecionarPorEmailStatus($request["email"]);
+                $usuario = $this->getEntityManager()
+                    ->getRepository($this->entity)
+                    ->selecionarPorEmailStatus($request["email"]);
 
                 if (!empty($usuario)) {
-                    $retorno["sucesso"] = $this->getServiceLocator()->get($this->service)->senhaRedefinir($usuario, $this->getGlobalConfig());
+                    $retorno["sucesso"] = $this->getServiceLocator()
+                        ->get($this->service)
+                        ->senhaRedefinir($usuario, $this->getGlobalConfig());
 
                     if ($retorno["sucesso"]) {
                         $this->setMensagemSucesso("Obrigado! Confira (" . $usuario->getEmail() . ") para obter o link de redefinição de senha.");
@@ -107,9 +117,7 @@ class AutenticacaoController extends CrudController
             return new JsonModel($retorno);
         }
 
-        return (new ViewModel(array('form' => new AutenticacaoSenhaRedefinir())))
-            ->setTemplate("is-configuracao/usuarios/autenticacao-senha-redefinir.phtml")
-            ->setTerminal(true);
+        return (new ViewModel(array('form' => new AutenticacaoSenhaRedefinir())))->setTemplate("is-configuracao/usuarios/autenticacao-senha-redefinir.phtml")->setTerminal(true);
     }
 
     public function senhaConfirmarAction()
@@ -117,7 +125,9 @@ class AutenticacaoController extends CrudController
         $token = $this->params()->fromQuery("token", null);
 
         if (!empty($token)) {
-            $usuario = $this->getEntityManager()->getRepository($this->entity)->selecionarPorTokenTocarSenha($token);
+            $usuario = $this->getEntityManager()
+                ->getRepository($this->entity)
+                ->selecionarPorTokenTocarSenha($token);
 
             if (!empty($usuario)) {
                 $form = new \ISConfiguracao\Form\AutenticacaoSenhaConfirmar();
@@ -129,8 +139,11 @@ class AutenticacaoController extends CrudController
                     $retorno["sucesso"] = false;
                     $retorno["mensagem"] = $this->validarFormSenhaConfirmar($request);
 
-                    if (empty($retorno["mensagem"]))
-                        $retorno["sucesso"] = $this->getServiceLocator()->get($this->service)->senhaConfirmar($usuario, $request['senha']);
+                    if (empty($retorno["mensagem"])) {
+                        $retorno["sucesso"] = $this->getServiceLocator()
+                            ->get($this->service)
+                            ->senhaConfirmar($usuario, $request['senha']);
+                    }
 
                     if ($retorno["sucesso"]) {
                         $this->setMensagemSucesso("Sua senha foi redefinida.");
@@ -139,9 +152,7 @@ class AutenticacaoController extends CrudController
                     return new JsonModel($retorno);
                 }
 
-                return (new ViewModel(array('form' => $form)))
-                    ->setTemplate("is-configuracao/usuarios/autenticacao-senha-confirmar.phtml")
-                    ->setTerminal(true);
+                return (new ViewModel(array('form' => $form)))->setTemplate("is-configuracao/usuarios/autenticacao-senha-confirmar.phtml")->setTerminal(true);
             }
         }
 
@@ -161,7 +172,7 @@ class AutenticacaoController extends CrudController
         if (empty($mensagem)) {
             if ($request['senha'] != $request['senha_repete']) {
                 $mensagem .= "<br/> - As senhas não são iguais";
-            } else if (strlen($request['senha']) < 6) {
+            } elseif (strlen($request['senha']) < 6) {
                 $mensagem .= "<br/> -Informe uma senha maior que 6 caracteres";
             }
         }

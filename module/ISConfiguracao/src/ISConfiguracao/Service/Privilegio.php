@@ -8,7 +8,6 @@ use Zend\Stdlib\Hydrator;
 
 class Privilegio extends AbstractService
 {
-
     public function __construct(EntityManager $em)
     {
         parent::__construct($em);

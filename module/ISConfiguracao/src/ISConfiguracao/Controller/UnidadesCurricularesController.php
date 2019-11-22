@@ -7,7 +7,6 @@ use Zend\View\Model\ViewModel;
 
 class UnidadesCurricularesController extends CrudController
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -55,8 +54,12 @@ class UnidadesCurricularesController extends CrudController
                 'filtros' => $filtros,
                 'acl' => $this->getAcl(),
                 'mensagens' => $this->flashMessenger()->getMessages(),
-                'dados' => $this->getEntityManager()->getRepository($this->entity)->listagemIndex($request),
-                'form' => $this->getServiceLocator()->get('ISConfiguracao\Form\UnidadeCurricularIndex')->setData($request)
+                'dados' => $this->getEntityManager()
+                    ->getRepository($this->entity)
+                    ->listagemIndex($request),
+                'form' => $this->getServiceLocator()
+                    ->get('ISConfiguracao\Form\UnidadeCurricularIndex')
+                    ->setData($request)
             ));
         }
 

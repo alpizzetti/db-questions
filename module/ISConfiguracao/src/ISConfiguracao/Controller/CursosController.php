@@ -7,11 +7,9 @@ use Zend\View\Model\ViewModel;
 
 class CursosController extends CrudController
 {
-
     public function __construct()
     {
         parent::__construct();
-
         $this->entity = 'ISConfiguracao\Entity\Curso';
         $this->service = 'ISConfiguracao\Service\Curso';
         $this->form = 'ISConfiguracao\Form\Curso';
@@ -57,8 +55,12 @@ class CursosController extends CrudController
                 'filtros' => $filtros,
                 'acl' => $this->getAcl(),
                 'mensagens' => $this->flashMessenger()->getMessages(),
-                'form' => $this->getServiceLocator()->get('ISConfiguracao\Form\CursoIndex')->setData($request),
-                'dados' => $this->getEntityManager()->getRepository($this->entity)->listagemIndex($request)
+                'form' => $this->getServiceLocator()
+                    ->get('ISConfiguracao\Form\CursoIndex')
+                    ->setData($request),
+                'dados' => $this->getEntityManager()
+                    ->getRepository($this->entity)
+                    ->listagemIndex($request)
             ));
         }
 

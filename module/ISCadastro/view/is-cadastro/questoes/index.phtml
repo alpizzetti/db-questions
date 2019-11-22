@@ -79,8 +79,8 @@
                 <thead>
                     <tr>
                         <th>Enunciado</th>
-                        <th>Unidade Curricular</th>
-                        <th class="text-center" width="150">Dificuldade</th>
+                        <th class="text-center" width="250">Unidade Curricular</th>
+                        <th class="text-center" width="100">Dificuldade</th>
                         <th class="text-center" width="10">Status</th>
                         <?php if ($acl['escrever']) { ?>
                             <th width="10"></th>
@@ -95,8 +95,8 @@
                                 <?php
                                     $enunciado = strip_tags($questao['enunciado']);
 
-                                    if (strlen($enunciado) > 100) {
-                                        $enunciado = substr($enunciado, 0, 100) . "...";
+                                    if (strlen($enunciado) > 85) {
+                                        $enunciado = substr($enunciado, 0, 85) . "...";
                                     } else {
                                         $enunciado = $enunciado;
                                     }

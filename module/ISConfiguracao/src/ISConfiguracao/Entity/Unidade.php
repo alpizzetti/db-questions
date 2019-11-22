@@ -14,7 +14,6 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Unidade
 {
-
     /**
      * @var integer
      *
@@ -75,7 +74,7 @@ class Unidade
 
     public function __construct(array $options = array())
     {
-        (new Hydrator\ClassMethods)->hydrate($options, $this);
+        (new Hydrator\ClassMethods())->hydrate($options, $this);
         $this->dataCriacao = new \DateTime("now");
         $this->usuarios = new ArrayCollection();
     }

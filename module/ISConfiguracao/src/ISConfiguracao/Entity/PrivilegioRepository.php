@@ -7,13 +7,13 @@ use ISBase\Paginator\AdapterQuery;
 
 class PrivilegioRepository extends EntityRepository
 {
-
     public function listagemIndex($request)
     {
-        $dql = "SELECT pri.id, pri.ler, pri.escrever, gru.nome AS grupo, fun.nome AS funcionalidade"
-            . " FROM ISConfiguracao\Entity\Privilegio pri"
-            . " JOIN pri.grupo gru"
-            . " JOIN pri.funcionalidade fun";
+        $dql =
+            "SELECT pri.id, pri.ler, pri.escrever, gru.nome AS grupo, fun.nome AS funcionalidade" .
+            " FROM ISConfiguracao\Entity\Privilegio pri" .
+            " JOIN pri.grupo gru" .
+            " JOIN pri.funcionalidade fun";
 
         $params = [];
 
@@ -25,14 +25,16 @@ class PrivilegioRepository extends EntityRepository
                 $params['funcionalidade'] = $request['funcionalidade'];
                 $dql .= " AND pri.funcionalidade = :funcionalidade";
             }
-        } else if (!empty($request['funcionalidade'])) {
+        } elseif (!empty($request['funcionalidade'])) {
             $params['funcionalidade'] = $request['funcionalidade'];
             $dql .= " WHERE p.funcionalidade = :funcionalidade";
         }
 
         $dql .= " ORDER BY gru.nome, fun.nome";
 
-        $query = $this->getEntityManager()->createQuery($dql)->setParameters($params);
+        $query = $this->getEntityManager()
+            ->createQuery($dql)
+            ->setParameters($params);
 
         return (new AdapterQuery($query, $request['pagina'], 20, $this->getEntityManager()))->getPaginator();
     }

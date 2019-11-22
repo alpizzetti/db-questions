@@ -89,7 +89,7 @@ return array(
             'ISConfiguracao\Controller\Cursos' => 'ISConfiguracao\Controller\CursosController',
             'ISConfiguracao\Controller\UnidadesCurriculares' => 'ISConfiguracao\Controller\UnidadesCurricularesController',
             'ISConfiguracao\Controller\Capacidades' => 'ISConfiguracao\Controller\CapacidadesController',
-            'ISConfiguracao\Controller\Usuarios' => 'ISConfiguracao\Controller\UsuariosController',
+            'ISConfiguracao\Controller\Usuarios' => 'ISConfiguracao\Controller\UsuariosController'
         )
     ),
     'view_manager' => array(
@@ -103,14 +103,10 @@ return array(
             'partials/paginacao' => __DIR__ . '/../../ISBase/view/partials/paginacao.phtml',
             'layout/layout' => __DIR__ . '/../../ISBase/view/layout/is-base.phtml',
             'error/404' => __DIR__ . '/../../ISBase/view/error/404.phtml',
-            'error/500' => __DIR__ . '/../../ISBase/view/error/500.phtml',
+            'error/500' => __DIR__ . '/../../ISBase/view/error/500.phtml'
         ),
-        'template_path_stack' => array(
-            __DIR__ . '/../view',
-        ),
-        'strategies' => array(
-            'ViewJsonStrategy',
-        ),
+        'template_path_stack' => array(__DIR__ . '/../view'),
+        'strategies' => array('ViewJsonStrategy')
     ),
     'doctrine' => array(
         'driver' => array(
@@ -122,8 +118,8 @@ return array(
             'orm_default' => array(
                 'drivers' => array(
                     __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'
-                ),
-            ),
-        ),
+                )
+            )
+        )
     )
 );

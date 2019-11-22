@@ -107,9 +107,14 @@ class Usuario extends AbstractService
         $this->em->flush();
 
         $mail = new Mail($this->transport, $this->view, 'redefinir-senha');
-        $mail->setSubject('Redefinir sua senha')
+        $mail
+            ->setSubject('Redefinir sua senha')
             ->setTo($usuario->getEmail())
-            ->setData(array('url' => $global['url'], 'link' => $global['url'] . 'usuarios/senha/redefinir/confirmar?token=' . $usuario->getTokenTrocarSenha(), 'nome' => $usuario->getNome(true)))
+            ->setData(array(
+                'url' => $global['url'],
+                'link' => $global['url'] . 'usuarios/senha/redefinir/confirmar?token=' . $usuario->getTokenTrocarSenha(),
+                'nome' => $usuario->getNome(true)
+            ))
             ->prepare()
             ->send();
 

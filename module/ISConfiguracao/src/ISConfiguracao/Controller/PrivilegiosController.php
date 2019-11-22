@@ -7,7 +7,6 @@ use Zend\View\Model\ViewModel;
 
 class PrivilegiosController extends CrudController
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -55,7 +54,9 @@ class PrivilegiosController extends CrudController
                 'acl' => $this->getAcl(),
                 "form" => $form->setData($request),
                 'mensagens' => $this->flashMessenger()->getMessages(),
-                'dados' => $this->getEntityManager()->getRepository($this->entity)->listagemIndex($request)
+                'dados' => $this->getEntityManager()
+                    ->getRepository($this->entity)
+                    ->listagemIndex($request)
             ));
         }
 
@@ -93,7 +94,9 @@ class PrivilegiosController extends CrudController
     {
         if ($this->getAcesso()) {
             $form = $this->getServiceLocator()->get($this->form);
-            $privilegios = $this->getEntityManager()->getRepository($this->entity)->find($this->params()->fromRoute('id', 0));
+            $privilegios = $this->getEntityManager()
+                ->getRepository($this->entity)
+                ->find($this->params()->fromRoute('id', 0));
 
             if (!empty($privilegios)) {
                 $form->setData($privilegios->toArray());
@@ -103,7 +106,9 @@ class PrivilegiosController extends CrudController
                     $form->setData($request->getPost());
 
                     if ($form->isValid()) {
-                        $this->getServiceLocator()->get($this->service)->update($request->getPost()->toArray());
+                        $this->getServiceLocator()
+                            ->get($this->service)
+                            ->update($request->getPost()->toArray());
                         $this->setMensagemSucesso($this->getMensagem('edit', 'success'));
 
                         return $this->redirect()->toRoute($this->route, array('controller' => $this->controller, 'action' => $this->actionEditar, 'id' => $privilegios->getId()));

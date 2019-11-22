@@ -6,9 +6,10 @@ use ISBase\Controller\CrudController as CrudController;
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
 
-class UnidadesController extends CrudController {
-
-    public function __construct() {
+class UnidadesController extends CrudController
+{
+    public function __construct()
+    {
         parent::__construct();
 
         $this->entity = 'ISConfiguracao\Entity\Unidade';
@@ -38,7 +39,8 @@ class UnidadesController extends CrudController {
         );
     }
 
-    public function indexAction() {
+    public function indexAction()
+    {
         if ($this->getAcesso('ler')) {
             $request['status'] = $this->params()->fromQuery('status', 1);
             $request['estado'] = $this->params()->fromQuery('estado', null);
@@ -56,14 +58,17 @@ class UnidadesController extends CrudController {
                 'acl' => $this->getAcl(),
                 'form' => $form->setData($request),
                 'mensagens' => $this->flashMessenger()->getMessages(),
-                'dados' => $this->getEntityManager()->getRepository($this->entity)->listagemIndex($request),
+                'dados' => $this->getEntityManager()
+                    ->getRepository($this->entity)
+                    ->listagemIndex($request)
             ));
         }
 
         return $this->notFoundAction()->setTerminal(true);
     }
 
-    public function localizarAcessosAction() {
+    public function localizarAcessosAction()
+    {
         $request = $this->getRequest();
         $retorno["sucesso"] = false;
 
@@ -71,12 +76,16 @@ class UnidadesController extends CrudController {
             $request = $request->getPost()->toArray();
 
             if (!empty($request["id"])) {
-                $unidade = $this->getEntityManager()->getRepository($this->entity)->find($request["id"]);
+                $unidade = $this->getEntityManager()
+                    ->getRepository($this->entity)
+                    ->find($request["id"]);
 
                 if (!empty($unidade)) {
                     $retorno["sucesso"] = true;
                     $retorno['conteudo'] = "<ul>";
-                    $acessos = $this->getEntityManager()->getRepository("ISConfiguracao\Entity\UsuarioAcesso")->selecionarAcessosUnidade($unidade->getId(), 500);
+                    $acessos = $this->getEntityManager()
+                        ->getRepository("ISConfiguracao\Entity\UsuarioAcesso")
+                        ->selecionarAcessosUnidade($unidade->getId(), 500);
 
                     foreach ($acessos as $acesso) {
                         $retorno['conteudo'] .= "<li>" . \ISBase\Util\DataHora::dateTimeToString($acesso['data']) . " - " . $acesso['nome'] . "</li>";
@@ -88,5 +97,4 @@ class UnidadesController extends CrudController {
 
         return new JsonModel($retorno);
     }
-
 }

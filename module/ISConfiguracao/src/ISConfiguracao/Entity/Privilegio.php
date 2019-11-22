@@ -13,7 +13,6 @@ use Zend\Stdlib\Hydrator;
  */
 class Privilegio
 {
-
     /**
      * @var integer
      *
@@ -59,7 +58,7 @@ class Privilegio
 
     public function __construct($options = array())
     {
-        (new Hydrator\ClassMethods)->hydrate($options, $this);
+        (new Hydrator\ClassMethods())->hydrate($options, $this);
     }
 
     public function getId()

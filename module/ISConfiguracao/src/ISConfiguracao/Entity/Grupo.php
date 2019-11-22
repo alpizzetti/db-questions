@@ -11,8 +11,8 @@ use Zend\Stdlib\Hydrator;
  * @ORM\Table(name="grupos")
  * @ORM\Entity(repositoryClass="ISConfiguracao\Entity\GrupoRepository")
  */
-class Grupo {
-
+class Grupo
+{
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -72,92 +72,111 @@ class Grupo {
      */
     private $dataAlteracao;
 
-    public function __construct($options = array()) {
-        (new Hydrator\ClassMethods)->hydrate($options, $this);
+    public function __construct($options = array())
+    {
+        (new Hydrator\ClassMethods())->hydrate($options, $this);
         $this->dataCriacao = new \DateTime("now");
     }
 
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function getHerda() {
+    public function getHerda()
+    {
         return $this->herda;
     }
 
-    public function getNome() {
+    public function getNome()
+    {
         return $this->nome;
     }
 
-    public function getAdministrador() {
+    public function getAdministrador()
+    {
         return $this->administrador;
     }
-    
-    public function getProfessor() {
+
+    public function getProfessor()
+    {
         return $this->professor;
     }
-    
-    public function getModerador() {
+
+    public function getModerador()
+    {
         return $this->moderador;
     }
-        
-    public function getStatus() {
+
+    public function getStatus()
+    {
         return $this->status;
     }
 
-    public function getDataCriacao() {
+    public function getDataCriacao()
+    {
         return $this->dataCriacao;
     }
 
-    public function getDataAlteracao() {
+    public function getDataAlteracao()
+    {
         return $this->dataAlteracao;
     }
 
-    public function setId($id) {
+    public function setId($id)
+    {
         $this->id = $id;
         return $this;
     }
 
-    public function setHerda($herda) {
+    public function setHerda($herda)
+    {
         $this->herda = $herda;
         return $this;
     }
 
-    public function setNome($nome) {
+    public function setNome($nome)
+    {
         $this->nome = \ISBase\Util\IdealizeUtil::normalizarNome($nome);
         return $this;
     }
 
-    public function setAdministrador($administrador) {
+    public function setAdministrador($administrador)
+    {
         $this->administrador = $administrador;
         return $this;
     }
 
-    public function setProfessor($professor) {
+    public function setProfessor($professor)
+    {
         $this->professor = $professor;
     }
 
-    public function setModerador($moderador) {
+    public function setModerador($moderador)
+    {
         $this->moderador = $moderador;
     }
 
-    public function setStatus($status) {
+    public function setStatus($status)
+    {
         $this->status = $status;
         return $this;
     }
 
-    public function setDataCriacao() {
+    public function setDataCriacao()
+    {
         $this->dataCriacao = new \DateTime("now");
         return $this;
     }
 
-    public function setDataAlteracao() {
+    public function setDataAlteracao()
+    {
         $this->dataAlteracao = new \DateTime("now");
         return $this;
     }
 
-    public function toArray() {
+    public function toArray()
+    {
         return (new Hydrator\ClassMethods())->extract($this);
     }
-
 }

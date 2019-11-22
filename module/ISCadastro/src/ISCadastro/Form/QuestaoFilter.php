@@ -4,22 +4,29 @@ namespace ISCadastro\Form;
 
 use Zend\InputFilter\InputFilter;
 
-class QuestaoFilter extends InputFilter {
-
-    public function __construct() {
+class QuestaoFilter extends InputFilter
+{
+    public function __construct()
+    {
         $this->addElements();
     }
 
-    private function addElements() {
+    private function addElements()
+    {
         $this->add(array(
             'name' => 'unidade_curricular',
             'required' => true,
             'filters' => array(
                 array('name' => 'StripTags'),
-                array('name' => 'StringTrim'),
+                array('name' => 'StringTrim')
             ),
             'validators' => array(
-                array('name' => 'NotEmpty', 'options' => array('messages' => array('isEmpty' => 'Campo obrigatório')))
+                array(
+                    'name' => 'NotEmpty',
+                    'options' => array(
+                        'messages' => array('isEmpty' => 'Campo obrigatório')
+                    )
+                )
             )
         ));
 
@@ -28,10 +35,15 @@ class QuestaoFilter extends InputFilter {
             'required' => true,
             'filters' => array(
                 array('name' => 'StripTags'),
-                array('name' => 'StringTrim'),
+                array('name' => 'StringTrim')
             ),
             'validators' => array(
-                array('name' => 'NotEmpty', 'options' => array('messages' => array('isEmpty' => 'Campo obrigatório')))
+                array(
+                    'name' => 'NotEmpty',
+                    'options' => array(
+                        'messages' => array('isEmpty' => 'Campo obrigatório')
+                    )
+                )
             )
         ));
 
@@ -40,10 +52,15 @@ class QuestaoFilter extends InputFilter {
             'required' => true,
             'filters' => array(
                 array('name' => 'StripTags'),
-                array('name' => 'StringTrim'),
+                array('name' => 'StringTrim')
             ),
             'validators' => array(
-                array('name' => 'NotEmpty', 'options' => array('messages' => array('isEmpty' => 'Campo obrigatório')))
+                array(
+                    'name' => 'NotEmpty',
+                    'options' => array(
+                        'messages' => array('isEmpty' => 'Campo obrigatório')
+                    )
+                )
             )
         ));
 
@@ -52,10 +69,15 @@ class QuestaoFilter extends InputFilter {
             'required' => true,
             'filters' => array(
                 array('name' => 'StripTags'),
-                array('name' => 'StringTrim'),
+                array('name' => 'StringTrim')
             ),
             'validators' => array(
-                array('name' => 'NotEmpty', 'options' => array('messages' => array('isEmpty' => 'Campo obrigatório')))
+                array(
+                    'name' => 'NotEmpty',
+                    'options' => array(
+                        'messages' => array('isEmpty' => 'Campo obrigatório')
+                    )
+                )
             )
         ));
 
@@ -64,10 +86,15 @@ class QuestaoFilter extends InputFilter {
             'required' => true,
             'filters' => array(
                 array('name' => 'StripTags'),
-                array('name' => 'StringTrim'),
+                array('name' => 'StringTrim')
             ),
             'validators' => array(
-                array('name' => 'NotEmpty', 'options' => array('messages' => array('isEmpty' => 'Campo obrigatório')))
+                array(
+                    'name' => 'NotEmpty',
+                    'options' => array(
+                        'messages' => array('isEmpty' => 'Campo obrigatório')
+                    )
+                )
             )
         ));
 
@@ -76,10 +103,15 @@ class QuestaoFilter extends InputFilter {
             'required' => true,
             'filters' => array(
                 array('name' => 'StripTags'),
-                array('name' => 'StringTrim'),
+                array('name' => 'StringTrim')
             ),
             'validators' => array(
-                array('name' => 'NotEmpty', 'options' => array('messages' => array('isEmpty' => 'Campo obrigatório')))
+                array(
+                    'name' => 'NotEmpty',
+                    'options' => array(
+                        'messages' => array('isEmpty' => 'Campo obrigatório')
+                    )
+                )
             )
         ));
 
@@ -88,10 +120,15 @@ class QuestaoFilter extends InputFilter {
             'required' => true,
             'filters' => array(
                 array('name' => 'StripTags'),
-                array('name' => 'StringTrim'),
+                array('name' => 'StringTrim')
             ),
             'validators' => array(
-                array('name' => 'NotEmpty', 'options' => array('messages' => array('isEmpty' => 'Campo obrigatório')))
+                array(
+                    'name' => 'NotEmpty',
+                    'options' => array(
+                        'messages' => array('isEmpty' => 'Campo obrigatório')
+                    )
+                )
             )
         ));
 
@@ -100,10 +137,15 @@ class QuestaoFilter extends InputFilter {
             'required' => true,
             'filters' => array(
                 array('name' => 'StripTags'),
-                array('name' => 'StringTrim'),
+                array('name' => 'StringTrim')
             ),
             'validators' => array(
-                array('name' => 'NotEmpty', 'options' => array('messages' => array('isEmpty' => 'Campo obrigatório')))
+                array(
+                    'name' => 'NotEmpty',
+                    'options' => array(
+                        'messages' => array('isEmpty' => 'Campo obrigatório')
+                    )
+                )
             )
         ));
 
@@ -112,12 +154,19 @@ class QuestaoFilter extends InputFilter {
             'required' => true,
             'filters' => array(
                 array('name' => 'StripTags'),
-                array('name' => 'StringTrim'),
+                array('name' => 'StringTrim')
             ),
             'validators' => array(
-                array('name' => 'NotEmpty', 'options' => array('messages' => array('isEmpty' => 'Campo obrigatório')))
+                array(
+                    'name' => 'NotEmpty',
+                    'options' => array(
+                        'messages' => array('isEmpty' => 'Campo obrigatório')
+                    )
+                )
             )
         ));
-    }
 
+        $this->add(array('name' => 'item', 'required' => false));
+        $this->add(array('name' => 'imagens', 'required' => false));
+    }
 }

@@ -5,9 +5,10 @@ namespace ISConfiguracao\Controller;
 use ISBase\Controller\CrudController;
 use Zend\View\Model\ViewModel;
 
-class GruposController extends CrudController {
-
-    public function __construct() {
+class GruposController extends CrudController
+{
+    public function __construct()
+    {
         parent::__construct();
 
         $this->entity = 'ISConfiguracao\Entity\Grupo';
@@ -37,7 +38,8 @@ class GruposController extends CrudController {
         );
     }
 
-    public function indexAction() {
+    public function indexAction()
+    {
         if ($this->getAcesso('ler')) {
             $request['nome'] = $this->params()->fromQuery("nome", "");
             $request['status'] = $this->params()->fromQuery("status", 1);
@@ -51,11 +53,12 @@ class GruposController extends CrudController {
                 'acl' => $this->getAcl(),
                 "mensagens" => $this->flashMessenger()->getMessages(),
                 "form" => (new \ISConfiguracao\Form\GrupoIndex())->setData($request),
-                "dados" => $this->getEntityManager()->getRepository($this->entity)->listagemIndex($request)
+                "dados" => $this->getEntityManager()
+                    ->getRepository($this->entity)
+                    ->listagemIndex($request)
             ));
         }
 
         return $this->notFoundAction()->setTerminal(true);
     }
-
 }
