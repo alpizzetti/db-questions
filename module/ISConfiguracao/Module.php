@@ -46,6 +46,18 @@ class Module
 
                     return new Form\UnidadeCurricular($cursos);
                 },
+                'ISConfiguracao\Form\Capacidade' => function ($sm) {
+                    $em = $sm->get('Doctrine\ORM\EntityManager');
+                    $unidades = $em->getRepository('ISConfiguracao\Entity\Curso')->popularCombobox();
+
+                    return new Form\Capacidade($unidades);
+                },
+                'ISConfiguracao\Form\CapacidadeIndex' => function ($sm) {
+                    $em = $sm->get('Doctrine\ORM\EntityManager');
+                    $unidades = $em->getRepository('ISConfiguracao\Entity\UnidadeCurricular')->popularCombobox();
+
+                    return new Form\CapacidadeIndex($unidades);
+                },
                 'ISConfiguracao\Form\UsuarioDados' => function ($sm) {
                     $em = $sm->get('Doctrine\ORM\EntityManager');
                     $grupos = $em->getRepository('ISConfiguracao\Entity\Grupo')->popularCombobox();

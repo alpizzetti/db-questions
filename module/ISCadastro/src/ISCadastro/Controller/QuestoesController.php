@@ -77,11 +77,10 @@ class QuestoesController extends CrudController
 
             if ($request->isPost()) {
                 $form->setData($request->getPost());
+                $request = $request->getPost()->toArray();
 
                 if ($form->isValid()) {
-                    $request = $request->getPost()->toArray();
                     $request['usuarioId'] = $this->usuarioId;
-
                     $questao = $this->getServiceLocator()
                         ->get($this->service)
                         ->insert($request);
@@ -92,6 +91,11 @@ class QuestoesController extends CrudController
                         'action' => $this->actionEditar,
                         'id' => $questao->getId()
                     ));
+                } elseif (!empty($request['unidade_curricular'])) {
+                    $capacidades = $this->getEntityManager()
+                        ->getRepository('ISConfiguracao\Entity\Capacidade')
+                        ->popularCombobox($request["unidade_curricular"]);
+                    $form->get("capacidade")->setValueOptions($capacidades);
                 }
             }
 
@@ -132,6 +136,11 @@ class QuestoesController extends CrudController
                             'id' => $questao->getId()
                         ));
                     }
+                } else {
+                    $capacidades = $this->getEntityManager()
+                        ->getRepository('ISConfiguracao\Entity\Capacidade')
+                        ->popularCombobox($questao->getUnidadeCurricular()->getId());
+                    $form->get("capacidade")->setValueOptions($capacidades);
                 }
 
                 return new ViewModel(array(

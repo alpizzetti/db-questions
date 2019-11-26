@@ -37,6 +37,13 @@ class Questao
     private $unidadeCurricular;
 
     /**
+     * @ORM\OneToOne(targetEntity="ISConfiguracao\Entity\Capacidade")
+     * @ORM\JoinColumn(name="capacidade", referencedColumnName="id")
+     *
+     */
+    private $capacidade;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="dificuldade", type="string", length=10, precision=0, scale=0, nullable=false, unique=false)
@@ -177,6 +184,11 @@ class Questao
         return $this->unidadeCurricular;
     }
 
+    public function getCapacidade()
+    {
+        return $this->capacidade;
+    }
+
     public function getDificuldade()
     {
         return $this->dificuldade;
@@ -277,6 +289,12 @@ class Questao
     public function setUnidadeCurricular($unidadeCurricular)
     {
         $this->unidadeCurricular = $unidadeCurricular;
+        return $this;
+    }
+
+    public function setCapacidade($capacidade)
+    {
+        $this->capacidade = $capacidade;
         return $this;
     }
 

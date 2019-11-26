@@ -25,7 +25,7 @@ class QuestaoIndex extends Form
                 ->setName('status')
                 ->setOptions(array(
                     'label_attributes' => array('class' => 'control-label'),
-                    'value_options' => array(1 => 'Ativo', 0 => 'Inativo')
+                    'value_options' => array(1 => 'Ativa', 0 => 'Pendente')
                 ))
         );
 
@@ -35,8 +35,7 @@ class QuestaoIndex extends Form
                 ->setAttributes([
                     'maxLength' => 100,
                     'class' => 'form-control',
-                    'placeholder' =>
-                        'Pesquise por: enunciado, suporte ou comando'
+                    'placeholder' => 'Pesquise por: enunciado, suporte ou comando'
                 ])
                 ->setOptions(array(
                     'label_attributes' => array('class' => 'control-label')

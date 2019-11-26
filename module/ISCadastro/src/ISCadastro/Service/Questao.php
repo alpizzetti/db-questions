@@ -18,17 +18,13 @@ class Questao extends AbstractService
 
     public function insert(array $data)
     {
-        $unidadeCurricular = $this->em->getReference(
-            "ISConfiguracao\Entity\UnidadeCurricular",
-            $data['unidade_curricular']
-        );
-        $usuario = $this->em->getReference(
-            "ISConfiguracao\Entity\Usuario",
-            $data['usuarioId']
-        );
+        $unidadeCurricular = $this->em->getReference("ISConfiguracao\Entity\UnidadeCurricular", $data['unidade_curricular']);
+        $usuario = $this->em->getReference("ISConfiguracao\Entity\Usuario", $data['usuarioId']);
+        $capacidade = $this->em->getReference("ISConfiguracao\Entity\Capacidade", $data['capacidade']);
 
         $questao = new \ISCadastro\Entity\Questao($data);
         $questao->setUnidadeCurricular($unidadeCurricular);
+        $questao->setCapacidade($capacidade);
         $questao->setUsuario($usuario);
 
         $this->em->persist($questao);
@@ -39,15 +35,14 @@ class Questao extends AbstractService
 
     public function update(array $data)
     {
-        $unidadeCurricular = $this->em->getReference(
-            "ISConfiguracao\Entity\UnidadeCurricular",
-            $data['unidade_curricular']
-        );
+        $unidadeCurricular = $this->em->getReference("ISConfiguracao\Entity\UnidadeCurricular", $data['unidade_curricular']);
+        $capacidade = $this->em->getReference("ISConfiguracao\Entity\Capacidade", $data['capacidade']);
         $questao = $this->em->getReference($this->entity, $data['id']);
 
         (new Hydrator\ClassMethods())->hydrate($data, $questao);
 
         $questao->setUnidadeCurricular($unidadeCurricular);
+        $questao->setCapacidade($capacidade);
 
         $this->em->persist($questao);
         $this->em->flush();
@@ -61,10 +56,7 @@ class Questao extends AbstractService
 
         foreach ($imagens as $imagem) {
             $extensao = pathinfo($imagem["name"], PATHINFO_EXTENSION);
-            $hash =
-                $questao->getId() .
-                "-" .
-                (new RandomString())->gerar(10, false, true, false);
+            $hash = $questao->getId() . "-" . (new RandomString())->gerar(10, false, true, false);
 
             $diretorio = "./public/questoes/" . $hash;
             $arquivoOriginal = $diretorio . "." . $extensao;

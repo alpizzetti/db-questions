@@ -40,20 +40,37 @@ class Questao extends Form
                 ->setName('status')
                 ->setOptions(array(
                     'label_attributes' => array('class' => 'control-label'),
-                    'value_options' => array(1 => 'Ativo', 0 => 'Inativo')
+                    'value_options' => array(1 => 'Ativa', 0 => 'Pendente')
                 ))
         );
 
         $this->add(
             (new Select())
                 ->setLabel('*Unidade Curricular:')
-                ->setAttributes(array('class' => 'form-control'))
+                ->setAttributes(array(
+                    'class' => 'form-control',
+                    'onchange' => 'unidadeCurricularCarregarCapacidades();',
+                    'id' => 'unidade_curricular'
+                ))
                 ->setName('unidade_curricular')
                 ->setOptions(array(
                     'label_attributes' => array('class' => 'control-label'),
                     'disable_inarray_validator' => true,
                     'empty_option' => 'Selecione',
                     'value_options' => $unidadesCurriculares
+                ))
+        );
+
+        $this->add(
+            (new Select())
+                ->setLabel('*Capacidade:')
+                ->setAttributes(array('class' => 'form-control', 'id' => 'capacidade'))
+                ->setName('capacidade')
+                ->setOptions(array(
+                    'label_attributes' => array('class' => 'control-label'),
+                    'disable_inarray_validator' => true,
+                    'empty_option' => 'Selecione',
+                    'value_options' => []
                 ))
         );
 
