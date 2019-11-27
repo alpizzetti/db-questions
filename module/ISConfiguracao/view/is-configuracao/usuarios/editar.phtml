@@ -21,10 +21,18 @@
         </div>
         <ul class="nav nav-tabs">
             <li class="active" style="border-bottom: 4px solid #CBB26A;">
-                <a href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'usuarios', 'action' => 'editar', 'id' => $usuario->getId())); ?>"> Gerais </a>
+                <a href="<?php echo $this->url('isconfiguracao-admin/default', array(
+                    'controller' => 'usuarios',
+                    'action' => 'editar',
+                    'id' => $usuario->getId()
+                )); ?>"> Gerais </a>
             </li>
             <li>
-                <a href="<?php echo $this->url('isconfiguracao-admin/default', array('controller' => 'usuarios', 'action' => 'editarSenha', 'id' => $usuario->getId())); ?>"> Senha </a>
+                <a href="<?php echo $this->url('isconfiguracao-admin/default', array(
+                    'controller' => 'usuarios',
+                    'action' => 'editarSenha',
+                    'id' => $usuario->getId()
+                )); ?>"> Senha </a>
             </li>
         </ul>
     </div>
@@ -113,6 +121,11 @@
             </div>
         </div>
         <div class="form-actions right">
+            <a href="<?php echo $this->url('isconfiguracao-admin/default', array(
+                'controller' => 'usuarios',
+                'action' => 'zerarGoogleAuthenticator',
+                'id' => $usuario->getId()
+            )); ?>" class="btn red-haze pull-left"><i class="fa fa-qrcode"></i> Gerar Novo Código 2FA</a>
             <button type="submit" class="btn grey-mint pull-right"><i class="fa fa-save"></i> Salvar</button>
             <?php
             echo $this->formElement($form->get("id"));

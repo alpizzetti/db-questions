@@ -300,9 +300,13 @@ class Usuario
         return $this;
     }
 
-    public function setTokenGoogle($tokenGoogle)
+    public function setTokenGoogle($limparToken = false)
     {
-        $this->tokenGoogle = $tokenGoogle;
+        if ($limparToken) {
+            $this->tokenGoogle = null;
+        } else {
+            $this->tokenGoogle = (new \ISBase\Util\GoogleAuthenticator())->createSecret();
+        }
         return $this;
     }
 

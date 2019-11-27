@@ -33,7 +33,7 @@ class Capacidade extends AbstractService
 
         (new Hydrator\ClassMethods())->hydrate($data, $capacidade);
 
-        $capacidade->setCapacidade($unidadeCurricular);
+        $capacidade->setunidadeCurricular($unidadeCurricular);
         $capacidade->setDataAlteracao();
 
         $this->em->persist($capacidade);

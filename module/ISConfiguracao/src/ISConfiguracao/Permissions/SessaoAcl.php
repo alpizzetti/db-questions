@@ -27,9 +27,11 @@ class SessaoAcl
                 'id' => $usuario->getId(),
                 'grupo' => $usuario->getGrupo()->getId(),
                 'nome' => $usuario->getNome(),
+                'email' => $usuario->getEmail(),
                 'primeiroNome' => $usuario->getPrimeiroNome(),
                 'administrador' => $grupo->getAdministrador(),
                 'token' => $usuario->getTokenWeb(),
+                'tokenGoogle' => $usuario->getTokenGoogle(),
                 'imagem' => $usuario->getSexo() == "M" ? "padrao_masc.jpg" : "padrao_femi.jpg",
                 'usuarioSessao' => $usuarioSessao
             ],
@@ -102,5 +104,15 @@ class SessaoAcl
             'ler' => $acl->isAllowed($grupo, $funcionalidade, 'ler'),
             'escrever' => $acl->isAllowed($grupo, $funcionalidade, 'escrever')
         );
+    }
+
+    public function setValores($nome, $valor)
+    {
+        $this->sessao->offsetSet($nome, $valor);
+    }
+
+    public function getValores($nome)
+    {
+        return $this->sessao->offsetGet($nome);
     }
 }

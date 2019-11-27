@@ -71,8 +71,7 @@
             </div>
         </div>
     </div>
-    <?php
-    echo $this->inlineScript()
+    <?php echo $this->inlineScript()
         ->appendFile('/global/plugins/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9'))
         ->appendFile('/global/plugins/excanvas.min.js', 'text/javascript', array('conditional' => 'lt IE 9'))
         ->appendFile('/global/plugins/jquery.min.js')
@@ -84,8 +83,7 @@
         ->appendFile('/global/plugins/backstretch/jquery.backstretch.min.js')
         ->appendFile('/global/plugins/bootstrap-toastr/toastr.min.js')
         ->appendFile('/global/scripts/app.min.js')
-        ->appendFile('/layout/scripts/mod-autenticacao.js');
-    ?>
+        ->appendFile('/layout/scripts/mod-autenticacao.js?cache=1'); ?>
 </body>
 
 </html>

@@ -143,6 +143,30 @@ class UsuariosController extends CrudController
         return $this->notFoundAction()->setTerminal(true);
     }
 
+    public function zerarGoogleAuthenticatorAction()
+    {
+        if ($this->getAcesso()) {
+            $usuario = $this->getEntityManager()
+                ->getRepository($this->entity)
+                ->find($this->params()->fromRoute("id", 0));
+
+            if (!empty($usuario)) {
+                $this->getServiceLocator()
+                    ->get($this->service)
+                    ->zerarGoogleAuthenticator($usuario);
+                $this->setMensagemSucesso("Código 2FA zerado com sucesso.");
+
+                return $this->redirect()->toRoute($this->route, array(
+                    "controller" => $this->controller,
+                    "action" => "editar",
+                    "id" => $usuario->getId()
+                ));
+            }
+        }
+
+        return $this->notFoundAction()->setTerminal(true);
+    }
+
     public function editarSenhaAction()
     {
         if ($this->getAcesso()) {

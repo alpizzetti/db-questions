@@ -100,6 +100,9 @@ class Module
                 'ISConfiguracao\Service\Curso' => function ($sm) {
                     return new Service\Curso($sm->get('Doctrine\ORM\EntityManager'));
                 },
+                'ISConfiguracao\Service\Capacidade' => function ($sm) {
+                    return new Service\Capacidade($sm->get('Doctrine\ORM\EntityManager'));
+                },
                 'ISConfiguracao\Service\Grupo' => function ($sm) {
                     return new Service\Grupo($sm->get('Doctrine\ORM\EntityManager'));
                 },

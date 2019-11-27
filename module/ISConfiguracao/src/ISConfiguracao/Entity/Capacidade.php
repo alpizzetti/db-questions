@@ -69,116 +69,76 @@ class Capacidade
         $this->dataCriacao = new \DateTime("now");
     }
 
-    /**
-     * @return int
-     */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     */
     public function setId($id)
     {
         $this->id = $id;
     }
 
-    /**
-     * @return mixed
-     */
     public function getUnidadeCurricular()
     {
         return $this->unidadeCurricular;
     }
 
-    /**
-     * @param mixed $unidadeCurricular
-     */
     public function setUnidadeCurricular($unidadeCurricular)
     {
         $this->unidadeCurricular = $unidadeCurricular;
     }
 
-    /**
-     * @return string
-     */
     public function getNumero()
     {
         return $this->numero;
     }
 
-    /**
-     * @param string $numero
-     */
     public function setNumero($numero)
     {
         $this->numero = $numero;
     }
 
-    /**
-     * @return string
-     */
     public function getDescricao()
     {
         return $this->descricao;
     }
 
-    /**
-     * @param string $descricao
-     */
     public function setDescricao($descricao)
     {
         $this->descricao = $descricao;
     }
 
-    /**
-     * @return bool
-     */
     public function isStatus()
     {
         return $this->status;
     }
 
-    /**
-     * @param bool $status
-     */
     public function setStatus($status)
     {
         $this->status = $status;
     }
 
-    /**
-     * @return \DateTime
-     */
     public function getDataCriacao()
     {
         return $this->dataCriacao;
     }
 
-    /**
-     * @param \DateTime $dataCriacao
-     */
-    public function setDataCriacao($dataCriacao)
+    public function setDataCriacao()
     {
-        $this->dataCriacao = $dataCriacao;
+        $this->dataCriacao = new \DateTime("now");
+        return $this;
     }
 
-    /**
-     * @return \DateTime
-     */
     public function getDataAlteracao()
     {
         return $this->dataAlteracao;
     }
 
-    /**
-     * @param \DateTime $dataAlteracao
-     */
-    public function setDataAlteracao($dataAlteracao)
+    public function setDataAlteracao()
     {
-        $this->dataAlteracao = $dataAlteracao;
+        $this->dataAlteracao = new \DateTime("now");
+        return $this;
     }
 
     public function toArray()

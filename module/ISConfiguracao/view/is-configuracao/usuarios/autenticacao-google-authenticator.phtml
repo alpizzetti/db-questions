@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+    <head>
+        <?php
+        echo $this->headTitle('App | SENAI');
+
+        echo $this->headMeta()
+            ->setCharset('utf-8')
+            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+            ->appendName('viewport', 'width=device-width, initial-scale=1')
+            ->appendName('description', '')
+            ->appendName('author', '');
+
+        echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/x-icon', 'href' => '/global/img/favicon.ico'))
+            ->appendStylesheet('https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all')
+            ->appendStylesheet('/global/plugins/font-awesome/css/font-awesome.min.css')
+            ->appendStylesheet('/global/plugins/simple-line-icons/simple-line-icons.min.css')
+            ->appendStylesheet('/global/plugins/bootstrap/css/bootstrap.min.css')
+            ->appendStylesheet('/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css')
+            ->appendStylesheet('/global/plugins/bootstrap-toastr/toastr.min.css')
+            ->appendStylesheet('/global/css/components-rounded.css')
+            ->appendStylesheet('/global/css/plugins.css')
+            ->appendStylesheet('/layout/css/custom.css')
+            ->appendStylesheet('/pages/css/login.css');
+        ?>
+    </head>
+
+    <body class="login">
+        <img class="brand" src="../../public/layout/img/pht/senai-brand.png" alt="">
+        <div class="user-login-5">
+            <div class="row bs-reset">
+                <div class="col-md-6 login-container bs-reset">
+                    <!-- <img class="login-logo login-6" src="/global/img/logo-1.png" /> -->
+                    <div class="login-content">
+                        <h1>Autenticação em Duas Etapas</h1>
+                        <p>Insira o código de verificação gerado no aplicativo Google Authenticator do seu telefone.</p>
+                        <?php
+                        echo $this->form()->openTag($form);
+                        echo $this->partial('partials/notificacoes');
+                        ?>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <?php if (!empty($qrCodeUrl)) { ?>
+                                    <img src="<?php echo $qrCodeUrl; ?>" />
+                                <?php } ?>
+                            </div>
+                            <div class="col-xs-6" style="margin-top: 70px;">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <?php echo $this->formElement($form->get("codigo")); ?>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12" id="div-acoes">
+                                        <button type="submit" class="btn grey-mint btn-acessar pull-right">Continuar</button>
+                                    </div>
+                                    <div class="col-sm-12 display-none" id="div-processando">
+                                        <h4 class="pull-right"><img src="/layout/img/loading-spinner-blue.gif" /> Um momento...</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 50px;">
+                            <div class="col-sm-12 text-left forgot-password">
+                                <p style="font-size: 12px; font-weight: 100; margin-bottom: 5px;">Baixe o Google Authenticator para o seu telefone</p>
+                            </div>
+                            <div class="col-sm-12 text-left forgot-password">
+                                <a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8" target="_blank">
+                                    <img class='app' src="/layout/img/iphone.png" />
+                                </a>
+                                <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en" target="_blank">
+                                    <img class="app" src="/layout/img/android.png" />
+                                </a>
+                            </div>                        
+                        </div>
+                        <?php echo $this->form()->closeTag($form); ?>
+                    </div>                
+                </div>
+                <div class="col-md-6 aside-img">
+                    <img src="/layout/img/pht/img-login-page.png" alt="">
+                    <div class="login-footer">
+                        <div class="row bs-reset">
+                            <div class="col-xs-10 bs-reset">
+                                <div class="login-copyright text-right">
+                                    <a style="color: #a9b5be;" href="http://sc.senai.br/" target="_blank">Copyright 2019 - Senai SC</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php echo $this->inlineScript()
+            ->appendFile('/global/plugins/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9'))
+            ->appendFile('/global/plugins/excanvas.min.js', 'text/javascript', array('conditional' => 'lt IE 9'))
+            ->appendFile('/global/plugins/jquery.min.js')
+            ->appendFile('/global/plugins/bootstrap/js/bootstrap.min.js')
+            ->appendFile('/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js')
+            ->appendFile('/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js')
+            ->appendFile('/global/plugins/jquery.blockui.min.js')
+            ->appendFile('/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js')
+            ->appendFile('/global/plugins/backstretch/jquery.backstretch.min.js')
+            ->appendFile('/global/plugins/bootstrap-toastr/toastr.min.js')
+            ->appendFile('/global/plugins/jquery.mask.min.js')
+            ->appendFile('/global/scripts/app.min.js')
+            ->appendFile('/layout/scripts/geral.js?cache=4')
+            ->appendFile('/layout/scripts/mod-autenticacao.js?cache=1'); ?>
+    </body>
+</html>

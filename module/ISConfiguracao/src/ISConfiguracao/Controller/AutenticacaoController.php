@@ -4,6 +4,7 @@ namespace ISConfiguracao\Controller;
 
 use ISConfiguracao\Form\AutenticacaoEntrar;
 use ISConfiguracao\Form\AutenticacaoSenhaRedefinir;
+use ISConfiguracao\Form\AutenticacaoGoogle;
 use ISBase\Controller\CrudController as CrudController;
 use Zend\Authentication\AuthenticationService;
 use Zend\Authentication\Storage\Session as SessionStorage;
@@ -35,18 +36,13 @@ class AutenticacaoController extends CrudController
             $request = $request->getPost()->toArray();
 
             if (!empty($request['email']) && !empty($request['senha'])) {
-                $sessionStorage = new SessionStorage("ISConfiguracao");
-                $auth = (new AuthenticationService())->setStorage($sessionStorage);
-                $authAdapter = $this->getServiceLocator()->get("ISConfiguracao\Auth\Adapter");
-                $authAdapter->setEmailSenha($request);
+                $usuario = $this->getEntityManager()
+                    ->getRepository($this->entity)
+                    ->autenticacao($request["email"], $request['senha']);
 
-                if ($auth->authenticate($authAdapter)->isValid()) {
-                    $usuario = $auth->getIdentity()['usuario'];
-                    $sessionStorage->write($usuario);
-                    $retorno['sucesso'] = $this->getServiceLocator()
-                        ->get($this->service)
-                        ->criarToken($usuario);
-                    (new SessaoAcl($this->getServiceLocator()))->setAcl($usuario);
+                if (!empty($usuario)) {
+                    $retorno['sucesso'] = true;
+                    $this->sessao->setValores("usuarioId", $usuario->getId());
                 } else {
                     $retorno['mensagem'] = "Dados inválidos.";
                 }
@@ -60,6 +56,61 @@ class AutenticacaoController extends CrudController
         return (new ViewModel(array('form' => new AutenticacaoEntrar(), 'mensagens' => $this->flashMessenger()->getMessages())))
             ->setTemplate("is-configuracao/usuarios/autenticacao-entrar.phtml")
             ->setTerminal(true);
+    }
+
+    public function googleAuthenticatorAction()
+    {
+        $request = $this->getRequest();
+        $usuarioId = $this->sessao->getValores("usuarioId");
+
+        if (!empty($usuarioId)) {
+            $usuario = $this->getEntityManager()
+                ->getRepository($this->entity)
+                ->find($usuarioId);
+
+            if (!empty($usuario)) {
+                $qrCodeUrl = null;
+
+                if ($request->isPost()) {
+                    $retorno['mensagem'] = "";
+                    $retorno['sucesso'] = false;
+                    $request = $request->getPost()->toArray();
+
+                    if (!empty($request['codigo'])) {
+                        $validacao = (new \ISBase\Util\GoogleAuthenticator())->verifyCode($usuario->getTokenGoogle(), $request['codigo'], 2);
+
+                        if ($validacao) {
+                            $retorno['sucesso'] = true;
+                            $sessionStorage = new SessionStorage("ISConfiguracao");
+                            $sessionStorage->write($usuario);
+                            (new SessaoAcl($this->getServiceLocator()))->setAcl($usuario);
+                        } else {
+                            $retorno['mensagem'] = "Código inválido.";
+                        }
+                    } else {
+                        $retorno['mensagem'] = "Informe o código de autenticação.";
+                    }
+
+                    return new JsonModel($retorno);
+                } elseif (empty($usuario->getTokenGoogle())) {
+                    $this->getServiceLocator()
+                        ->get($this->service)
+                        ->criarToken($usuario);
+                    $ga = new \ISBase\Util\GoogleAuthenticator();
+                    $qrCodeUrl = $ga->getQRCodeGoogleUrl($usuario->getEmail(), $usuario->getTokenGoogle(), 'Banco de Dados de Questões - SENAI/SC');
+                }
+
+                return (new ViewModel(array(
+                    'form' => new AutenticacaoGoogle(),
+                    'mensagens' => $this->flashMessenger()->getMessages(),
+                    'qrCodeUrl' => $qrCodeUrl
+                )))
+                    ->setTemplate("is-configuracao/usuarios/autenticacao-google-authenticator.phtml")
+                    ->setTerminal(true);
+            }
+        }
+
+        return $this->notFoundAction()->setTerminal(true);
     }
 
     public function sairAction()
@@ -117,7 +168,9 @@ class AutenticacaoController extends CrudController
             return new JsonModel($retorno);
         }
 
-        return (new ViewModel(array('form' => new AutenticacaoSenhaRedefinir())))->setTemplate("is-configuracao/usuarios/autenticacao-senha-redefinir.phtml")->setTerminal(true);
+        return (new ViewModel(array('form' => new AutenticacaoSenhaRedefinir())))
+            ->setTemplate("is-configuracao/usuarios/autenticacao-senha-redefinir.phtml")
+            ->setTerminal(true);
     }
 
     public function senhaConfirmarAction()
@@ -152,7 +205,9 @@ class AutenticacaoController extends CrudController
                     return new JsonModel($retorno);
                 }
 
-                return (new ViewModel(array('form' => $form)))->setTemplate("is-configuracao/usuarios/autenticacao-senha-confirmar.phtml")->setTerminal(true);
+                return (new ViewModel(array('form' => $form)))
+                    ->setTemplate("is-configuracao/usuarios/autenticacao-senha-confirmar.phtml")
+                    ->setTerminal(true);
             }
         }
 

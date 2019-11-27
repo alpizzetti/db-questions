@@ -16,6 +16,17 @@ return array(
                     )
                 )
             ),
+            'isconfiguracao-autenticacao-entrar-2fa' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route' => '/usuarios/entrar/googleAuthenticator',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'ISConfiguracao\Controller',
+                        'controller' => 'Autenticacao',
+                        'action' => 'googleAuthenticator'
+                    )
+                )
+            ),
             'isconfiguracao-autenticacao-sair' => array(
                 'type' => 'Literal',
                 'options' => array(

@@ -54,6 +54,17 @@ class Usuario extends AbstractService
         return $usuario;
     }
 
+    public function zerarGoogleAuthenticator($usuario)
+    {
+        $usuario->setTokenGoogle(true);
+        $usuario->setDataAlteracao();
+
+        $this->em->persist($usuario);
+        $this->em->flush();
+
+        return $usuario;
+    }
+
     public function updateMeusDadosPerfil(array $data, $usuario)
     {
         $usuario->setNome($data['nome']);
@@ -90,6 +101,10 @@ class Usuario extends AbstractService
     public function criarToken($usuario)
     {
         $usuario->setTokenWeb();
+
+        if (empty($usuario->getTokenGoogle())) {
+            $usuario->setTokenGoogle();
+        }
 
         $this->em->persist($usuario);
         $this->em->flush();
