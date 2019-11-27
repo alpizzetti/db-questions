@@ -60,13 +60,6 @@ class Questao
     /**
      * @var string
      *
-     * @ORM\Column(name="enunciado_img", type="string", length=100, precision=0, scale=0, nullable=true, unique=false)
-     */
-    private $enunciadoImg;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="suporte", type="string", precision=0, scale=0, nullable=true, unique=false)
      */
     private $suporte;
@@ -74,23 +67,9 @@ class Questao
     /**
      * @var string
      *
-     * @ORM\Column(name="suporte_img", type="string", length=100, precision=0, scale=0, nullable=true, unique=false)
-     */
-    private $suporteImg;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="comando", type="string", precision=0, scale=0, nullable=false, unique=false)
      */
     private $comando;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="comando_img", type="string", length=100, precision=0, scale=0, nullable=true, unique=false)
-     */
-    private $comandoImg;
 
     /**
      * @var string
@@ -199,29 +178,14 @@ class Questao
         return $this->enunciado;
     }
 
-    public function getEnunciadoImg()
-    {
-        return $this->enunciadoImg;
-    }
-
     public function getSuporte()
     {
         return $this->suporte;
     }
 
-    public function getSuporteImg()
-    {
-        return $this->suporteImg;
-    }
-
     public function getComando()
     {
         return $this->comando;
-    }
-
-    public function getComandoImg()
-    {
-        return $this->comandoImg;
     }
 
     public function getItemA()

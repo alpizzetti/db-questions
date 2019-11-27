@@ -63,7 +63,7 @@ class Usuario
     /**
      * @var string
      *
-     * @ORM\Column(name="matricula", type="integer", length=20, nullable=false)
+     * @ORM\Column(name="matricula", type="integer", length=10, nullable=false)
      */
     private $matricula;
 
