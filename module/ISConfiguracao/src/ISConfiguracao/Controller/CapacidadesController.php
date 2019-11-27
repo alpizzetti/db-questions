@@ -46,9 +46,11 @@ class CapacidadesController extends CrudController
             $request['pagina'] = $this->params()->fromQuery('pagina', 1);
             $request['numero'] = $this->params()->fromQuery('numero', null);
             $request['unidadeCurricular'] = $this->params()->fromQuery('unidadeCurricular', null);
+            $request['descricao'] = $this->params()->fromQuery('descricao', null);
 
             $filtros = $request['status'] != 1 ? "&status=" . $request['status'] : "";
             $filtros .= !empty($request['numero']) ? "&numero=" . $request['numero'] : "";
+            $filtros .= !empty($request['descricao']) ? "&descricao=" . $request['descricao'] : "";
             $filtros .= !empty($request['unidadeCurricular']) ? "&unidadeCurricular=" . $request['unidadeCurricular'] : "";
 
             return new ViewModel(array(

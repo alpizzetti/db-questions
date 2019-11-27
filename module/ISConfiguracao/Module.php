@@ -48,7 +48,7 @@ class Module
                 },
                 'ISConfiguracao\Form\Capacidade' => function ($sm) {
                     $em = $sm->get('Doctrine\ORM\EntityManager');
-                    $unidades = $em->getRepository('ISConfiguracao\Entity\Curso')->popularCombobox();
+                    $unidades = $em->getRepository('ISConfiguracao\Entity\UnidadeCurricular')->popularCombobox();
 
                     return new Form\Capacidade($unidades);
                 },

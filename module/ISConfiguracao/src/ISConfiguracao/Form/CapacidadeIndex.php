@@ -45,5 +45,12 @@ class CapacidadeIndex extends Form
                     'value_options' => $unidadesCurriculares
                 ))
         );
+
+        $this->add(
+            (new Text('descricao'))
+                ->setLabel('Descrição:')
+                ->setAttributes(['maxLength' => 100, 'class' => 'form-control'])
+                ->setOptions(array('label_attributes' => array('class' => 'control-label')))
+        );
     }
 }

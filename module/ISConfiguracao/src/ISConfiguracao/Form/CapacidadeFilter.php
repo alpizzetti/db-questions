@@ -26,5 +26,12 @@ class CapacidadeFilter extends InputFilter
             'filters' => array(array('name' => 'StripTags'), array('name' => 'StringTrim')),
             'validators' => array(array('name' => 'NotEmpty', 'options' => array('messages' => array('isEmpty' => 'Campo obrigatório'))))
         ));
+
+        $this->add(array(
+            'name' => 'descricao',
+            'required' => true,
+            'filters' => array(array('name' => 'StripTags'), array('name' => 'StringTrim')),
+            'validators' => array(array('name' => 'NotEmpty', 'options' => array('messages' => array('isEmpty' => 'Campo obrigatório'))))
+        ));
     }
 }

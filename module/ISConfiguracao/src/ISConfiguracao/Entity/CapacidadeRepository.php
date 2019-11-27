@@ -26,6 +26,11 @@ class CapacidadeRepository extends EntityRepository
             $dql .= " AND cap.numero LIKE :numero";
         }
 
+        if (!empty($request['descricao'])) {
+            $params['descricao'] = $request['descricao'] . "%";
+            $dql .= " AND cap.descricao LIKE :descricao";
+        }
+
         $dql .= " ORDER BY cap.numero";
 
         $query = $this->getEntityManager()

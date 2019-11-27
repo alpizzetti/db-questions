@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-4">
                     <div class="form-group">
                         <?php
                         echo $this->formLabel($form->get("unidadeCurricular"));
@@ -52,12 +52,23 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <div class="form-group">
                         <?php
                         echo $this->formLabel($form->get("numero"));
                         echo $this->formElement($form->get("numero"));
                         echo $this->formElementErrors($form->get("numero"), array('class' => "parsley-error-list"));
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <?php
+                        echo $this->formLabel($form->get("descricao"));
+                        echo $this->formElement($form->get("descricao"));
+                        echo $this->formElementErrors($form->get("descricao"), array('class' => "parsley-error-list"));
                         ?>
                     </div>
                 </div>
