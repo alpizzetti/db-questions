@@ -126,7 +126,10 @@
                                         <?php }
                                     if ($sessao->getAcl("cadastros", "moderador", "ler")) { ?>
                                         <li class="nav-item">
-                                            <a class="nav-item" href="javascript:;" onclick="alert('Em desenvolvimento!');">
+                                            <a class="nav-item" href="<?php echo $this->url('iscadastro-admin/default', array(
+                                                'controller' => 'questoes',
+                                                'action' => 'validar'
+                                            )); ?>">
                                                 <i class="fa fa-bars"></i> Validar
                                             </a>
                                         </li>

@@ -30,6 +30,12 @@ class Module
 
                     return new Form\QuestaoIndex($unidadesCurriculares);
                 },
+                'ISCadastro\Form\QuestaoValidar' => function ($sm) {
+                    $em = $sm->get('Doctrine\ORM\EntityManager');
+                    $unidadesCurriculares = $em->getRepository('ISConfiguracao\Entity\UnidadeCurricular')->popularCombobox();
+
+                    return new Form\QuestaoValidar($unidadesCurriculares);
+                },
                 'ISCadastro\Form\Questao' => function ($sm) {
                     $em = $sm->get('Doctrine\ORM\EntityManager');
                     $unidadesCurriculares = $em->getRepository('ISConfiguracao\Entity\UnidadeCurricular')->popularCombobox();

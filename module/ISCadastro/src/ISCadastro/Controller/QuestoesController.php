@@ -21,6 +21,7 @@ class QuestoesController extends CrudController
         $this->actionNovo = 'novo';
         $this->actionEditar = 'editar';
         $this->actionRemover = 'index';
+        $this->actionValidar = 'validar';
         $this->modulo = 'cadastros';
         $this->funcionalidade = 'questoes';
         $this->messages = array(
@@ -62,6 +63,36 @@ class QuestoesController extends CrudController
                     ->listagemIndex($request),
                 'form' => $this->getServiceLocator()
                     ->get('ISCadastro\Form\QuestaoIndex')
+                    ->setData($request)
+            ));
+        }
+
+        return $this->notFoundAction()->setTerminal(true);
+    }
+
+    public function actionValidar()
+    {
+        if ($this->getAcesso('ler')) {
+            $request['status'] = $this->params()->fromQuery('status', 0);
+            $request['filtro'] = $this->params()->fromQuery('filtro', null);
+            $request['dificuldade'] = $this->params()->fromQuery('dificuldade', null);
+            $request['unidade_curricular'] = $this->params()->fromQuery('unidade', null);
+            $request['pagina'] = $this->params()->fromQuery('pagina', 1);
+
+            $filtros = $request['status'] != 1 ? "&status=" . $request['status'] : "";
+            $filtros .= !empty($request['filtro']) ? "&filtro=" . $request['filtro'] : "";
+            $filtros .= !empty($request['dificuldade']) ? "&dificuldade=" . $request['dificuldade'] : "";
+            $filtros .= !empty($request['unidade']) ? "&unidade=" . $request['unidade'] : "";
+
+            return new ViewModel(array(
+                'filtros' => $filtros,
+                'acl' => $this->getAcl(),
+                'mensagens' => $this->flashMessenger()->getMessages(),
+                'dados' => $this->getEntityManager()
+                    ->getRepository($this->entity)
+                    ->listagemIndex($request),
+                'form' => $this->getServiceLocator()
+                    ->get('ISCadastro\Form\QuestaoValidar')
                     ->setData($request)
             ));
         }
