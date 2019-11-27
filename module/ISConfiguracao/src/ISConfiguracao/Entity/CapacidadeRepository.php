@@ -31,7 +31,7 @@ class CapacidadeRepository extends EntityRepository
             $dql .= " AND cap.descricao LIKE :descricao";
         }
 
-        $dql .= " ORDER BY cap.numero";
+        $dql .= " ORDER BY unidadeCurricular";
 
         $query = $this->getEntityManager()
             ->createQuery($dql)
