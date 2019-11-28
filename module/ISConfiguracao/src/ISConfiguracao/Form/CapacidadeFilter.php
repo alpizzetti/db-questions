@@ -21,7 +21,7 @@ class CapacidadeFilter extends InputFilter
         ));
 
         $this->add(array(
-            'name' => 'unidadeCurricular',
+            'name' => 'unidade_curricular',
             'required' => true,
             'filters' => array(array('name' => 'StripTags'), array('name' => 'StringTrim')),
             'validators' => array(array('name' => 'NotEmpty', 'options' => array('messages' => array('isEmpty' => 'Campo obrigatório'))))

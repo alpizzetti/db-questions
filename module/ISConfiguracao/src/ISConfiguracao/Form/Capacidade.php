@@ -44,7 +44,7 @@ class Capacidade extends Form
             (new Select())
                 ->setLabel('*Unidade Curricular:')
                 ->setAttributes(array('class' => 'form-control'))
-                ->setName('unidadeCurricular')
+                ->setName('unidade_curricular')
                 ->setOptions(array(
                     'label_attributes' => array('class' => 'control-label'),
                     'disable_inarray_validator' => true,

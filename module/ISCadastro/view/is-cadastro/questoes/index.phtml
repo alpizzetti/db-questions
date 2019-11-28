@@ -20,7 +20,10 @@
             <span class="caption-helper"><?php echo ISBase\Util\IdealizeUtil::itensLocalizados($totalItens, "questao"); ?></span>
         </div>
         <div class="actions">
-            <a class="btn grey-mint pull-right" href="<?php echo $this->url('iscadastro-admin/default', array('controller' => 'questoes', 'action' => 'novo')); ?>">
+            <a class="btn grey-mint pull-right" href="<?php echo $this->url('iscadastro-admin/default', array(
+                'controller' => 'questoes',
+                'action' => 'novo'
+            )); ?>">
                 <i class="icon-plus"></i> Nova
             </a>
         </div>
@@ -89,42 +92,56 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($dados as $questao) { ?>
+                    <?php
+                    foreach ($dados as $questao) { ?>
                         <tr>
                             <td>
                                 <?php
-                                    $enunciado = strip_tags($questao['enunciado']);
+                                $enunciado = strip_tags($questao['enunciado']);
 
-                                    if (strlen($enunciado) > 85) {
-                                        $enunciado = substr($enunciado, 0, 85) . "...";
-                                    } else {
-                                        $enunciado = $enunciado;
-                                    }
-                                    if ($acl['escrever']) {
-                                        ?>
-                                    <a href="<?php echo $this->url('iscadastro-admin/default', array('controller' => 'questoes', 'action' => 'editar', 'id' => $questao['id'])); ?>">
+                                if (strlen($enunciado) > 85) {
+                                    $enunciado = substr($enunciado, 0, 85) . "...";
+                                } else {
+                                    $enunciado = $enunciado;
+                                }
+                                if ($acl['escrever']) { ?>
+                                    <a href="<?php echo $this->url('iscadastro-admin/default', array(
+                                        'controller' => 'questoes',
+                                        'action' => 'editar',
+                                        'id' => $questao['id']
+                                    )); ?>">
                                         <?php echo $enunciado; ?>
                                     </a>
-                                <?php
-                                    } else {
-                                        echo $enunciado;
-                                    }
-                                    ?>
+                                <?php } else {echo $enunciado;}
+                                ?>
                             </td>
                             <td class="text-center"><?php echo $questao['unidade']; ?></td>
                             <td class="text-center"><?php echo \ISBase\Util\Arrays::questoesDificuldades($questao['dificuldade']); ?></td>
-                            <td class="text-center"><?php echo $questao['status'] ? "<span class='label label-sm label-info'>Ativa</span>" : "<span class='label label-sm label-danger'>Pendente</span>"; ?></td>
+                            <td class="text-center"><?php echo $questao['status']
+                                ? "<span class='label label-sm label-info'>Ativa</span>"
+                                : "<span class='label label-sm label-danger'>Pendente</span>"; ?></td>
                             <?php if ($acl['escrever']) { ?>
                                 <td>
-                                    <a class="btn default btn-xs yellow-stripe" href="<?php echo $this->url('iscadastro-admin/default', array('controller' => 'questoes', 'action' => 'editar', 'id' => $questao['id'])); ?>">
+                                    <a class="btn default btn-xs yellow-stripe" href="<?php echo $this->url('iscadastro-admin/default', array(
+                                        'controller' => 'questoes',
+                                        'action' => 'editar',
+                                        'id' => $questao['id']
+                                    )); ?>">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                 </td>
                                 <td>
                                     <?php if ($questao['status']) { ?>
-                                        <a class="btn default btn-xs red-stripe" href="javascript:;" onclick="modal_remover('<?php echo $this->url('iscadastro-admin/default', array('controller' => 'questoes', 'action' => 'ativarRemover', 'id' => $questao['id'])); ?>');"> <i class="fa fa-remove"></i></a>
+                                        <a class="btn default btn-xs red-stripe" href="javascript:;" onclick="modal_remover('<?php echo $this->url(
+                                            'iscadastro-admin/default',
+                                            array('controller' => 'questoes', 'action' => 'ativarRemover', 'id' => $questao['id'])
+                                        ); ?>');"> <i class="fa fa-remove"></i></a>
                                     <?php } else { ?>
-                                        <a class="btn default btn-xs green-stripe" href="<?php echo $this->url('iscadastro-admin/default', array('controller' => 'questoes', 'action' => 'ativarRemover', 'id' => $questao['id'])); ?>"> <i class="fa fa-check"></i></a>
+                                        <a class="btn default btn-xs green-stripe" href="<?php echo $this->url('iscadastro-admin/default', array(
+                                            'controller' => 'questoes',
+                                            'action' => 'ativarRemover',
+                                            'id' => $questao['id']
+                                        )); ?>"> <i class="fa fa-check"></i></a>
                                     <?php } ?>
                                 </td>
                             <?php } ?>
@@ -134,7 +151,8 @@
                         <tr>
                             <td colspan="12">Nenhum registro localizado</td>
                         </tr>
-                    <?php } ?>
+                    <?php }
+                    ?>
                 </tbody>
             </table>
         </div>

@@ -40,7 +40,7 @@ class Questao extends Form
                 ->setName('status')
                 ->setOptions(array(
                     'label_attributes' => array('class' => 'control-label'),
-                    'value_options' => array(1 => 'Ativa', 0 => 'Pendente')
+                    'value_options' => array(0 => 'Pendente')
                 ))
         );
 

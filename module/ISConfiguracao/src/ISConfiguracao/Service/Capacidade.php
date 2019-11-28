@@ -15,7 +15,7 @@ class Capacidade extends AbstractService
 
     public function insert(array $data)
     {
-        $unidadeCurricular = $this->em->getReference("ISConfiguracao\Entity\UnidadeCurricular", $data['unidadeCurricular']);
+        $unidadeCurricular = $this->em->getReference("ISConfiguracao\Entity\UnidadeCurricular", $data['unidade_curricular']);
 
         $capacidade = new \ISConfiguracao\Entity\Capacidade($data);
         $capacidade->setunidadeCurricular($unidadeCurricular);
@@ -29,7 +29,7 @@ class Capacidade extends AbstractService
     public function update(array $data)
     {
         $capacidade = $this->em->getReference($this->entity, $data['id']);
-        $unidadeCurricular = $this->em->getReference("ISConfiguracao\Entity\UnidadeCurricular", $data['unidadeCurricular']);
+        $unidadeCurricular = $this->em->getReference("ISConfiguracao\Entity\UnidadeCurricular", $data['unidade_curricular']);
 
         (new Hydrator\ClassMethods())->hydrate($data, $capacidade);
 

@@ -21,15 +21,14 @@ class QuestoesController extends CrudController
         $this->actionNovo = 'novo';
         $this->actionEditar = 'editar';
         $this->actionRemover = 'index';
-        $this->actionValidar = 'validar';
         $this->modulo = 'cadastros';
         $this->funcionalidade = 'questoes';
         $this->messages = array(
             'success' => array(
                 'insert' => 'Inserida com sucesso, agora você pode fazer o upload das imagens se necessário.',
                 'edit' => 'Editada com sucesso.',
-                'delete' => 'Excluída com sucesso.',
-                'ativar' => 'Ativada com sucesso.'
+                'delete' => 'Marcada como pendente com sucesso.',
+                'ativar' => 'Validada com sucesso.'
             ),
             'error' => array(
                 'insert' => 'Erro ao inserir.',
@@ -63,36 +62,6 @@ class QuestoesController extends CrudController
                     ->listagemIndex($request),
                 'form' => $this->getServiceLocator()
                     ->get('ISCadastro\Form\QuestaoIndex')
-                    ->setData($request)
-            ));
-        }
-
-        return $this->notFoundAction()->setTerminal(true);
-    }
-
-    public function actionValidar()
-    {
-        if ($this->getAcesso('ler')) {
-            $request['status'] = $this->params()->fromQuery('status', 0);
-            $request['filtro'] = $this->params()->fromQuery('filtro', null);
-            $request['dificuldade'] = $this->params()->fromQuery('dificuldade', null);
-            $request['unidade_curricular'] = $this->params()->fromQuery('unidade', null);
-            $request['pagina'] = $this->params()->fromQuery('pagina', 1);
-
-            $filtros = $request['status'] != 1 ? "&status=" . $request['status'] : "";
-            $filtros .= !empty($request['filtro']) ? "&filtro=" . $request['filtro'] : "";
-            $filtros .= !empty($request['dificuldade']) ? "&dificuldade=" . $request['dificuldade'] : "";
-            $filtros .= !empty($request['unidade']) ? "&unidade=" . $request['unidade'] : "";
-
-            return new ViewModel(array(
-                'filtros' => $filtros,
-                'acl' => $this->getAcl(),
-                'mensagens' => $this->flashMessenger()->getMessages(),
-                'dados' => $this->getEntityManager()
-                    ->getRepository($this->entity)
-                    ->listagemIndex($request),
-                'form' => $this->getServiceLocator()
-                    ->get('ISCadastro\Form\QuestaoValidar')
                     ->setData($request)
             ));
         }
@@ -244,6 +213,33 @@ class QuestoesController extends CrudController
         }
 
         return $this->notFoundAction();
+    }
+
+    public function ativarRemoverAction()
+    {
+        if ($this->getAcesso()) {
+            $questao = $this->getEntityManager()
+                ->getRepository($this->entity)
+                ->find($this->params()->fromRoute('id', 0));
+
+            if (!empty($questao)) {
+                $service = $this->getServiceLocator()->get($this->service);
+
+                if ($questao->getStatus()) {
+                    $service->alterStatus($questao->getId(), false);
+                    $this->setMensagemSucesso($this->getMensagem('delete', 'success'));
+
+                    return $this->redirect()->toRoute($this->route, array('controller' => $this->controller, 'action' => $this->actionRemover));
+                } else {
+                    $service->alterStatus($questao->getId(), true);
+                    $this->setMensagemSucesso($this->getMensagem('ativar', 'success'));
+
+                    return $this->redirect()->toUrl("/mod-cadastro/questoes/index?status=0");
+                }
+            }
+        }
+
+        return $this->notFoundAction()->setTerminal(true);
     }
 
     private function imagensValidarFormulario($imagens, $dados)
