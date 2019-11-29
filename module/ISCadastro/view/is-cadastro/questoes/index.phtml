@@ -1,5 +1,5 @@
 <?php $totalItens = $dados->getTotalItemCount(); ?>
-<h1 class="page-title">Cadastro de Questões</h1>
+<h1 class="page-title">Questões</h1>
 <div class="page-bar">
     <ul class="page-breadcrumb">
         <li>
@@ -86,8 +86,8 @@
                         <th class="text-center" width="100">Dificuldade</th>
                         <th class="text-center" width="10">Status</th>
                         <?php if ($acl['escrever']) { ?>
-                            <th width="10"></th>
-                            <th width="10"></th>
+                            <th width="10">Editar</th>
+                            <th width="10">Excluir</th>
                         <?php } ?>
                     </tr>
                 </thead>
