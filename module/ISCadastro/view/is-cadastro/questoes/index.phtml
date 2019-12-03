@@ -1,5 +1,5 @@
 <?php $totalItens = $dados->getTotalItemCount(); ?>
-<h1 class="page-title">Questões</h1>
+<h1 class="page-title">Banco de Questões</h1>
 <div class="page-bar">
     <ul class="page-breadcrumb">
         <li>
@@ -86,8 +86,8 @@
                         <th class="text-center" width="100">Dificuldade</th>
                         <th class="text-center" width="10">Status</th>
                         <?php if ($acl['escrever']) { ?>
-                            <th width="10">Editar</th>
-                            <th width="10">Excluir</th>
+                            <th class="text-center"  width="10"></th>
+                            <th class="text-center"  width="10"></th>
                         <?php } ?>
                     </tr>
                 </thead>
@@ -137,7 +137,7 @@
                                             array('controller' => 'questoes', 'action' => 'ativarRemover', 'id' => $questao['id'])
                                         ); ?>');"> <i class="fa fa-remove"></i></a>
                                     <?php } else { ?>
-                                        <a class="btn default btn-xs green-stripe" href="<?php echo $this->url('iscadastro-admin/default', array(
+                                        <a class="btn default btn-xs green-stripe"  href="<?php echo $this->url('iscadastro-admin/default', array(
                                             'controller' => 'questoes',
                                             'action' => 'ativarRemover',
                                             'id' => $questao['id']
