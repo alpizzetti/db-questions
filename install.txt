@@ -1,0 +1,4 @@
+Master Login: admin@senai.br
+Password: 123456
+
+Import dump.sql and change /config/autolod/doctrine.local.php
